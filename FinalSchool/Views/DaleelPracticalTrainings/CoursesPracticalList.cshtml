@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FinalSchool.Models.DaleelPracticalTraining>
+@{
+    ViewBag.Title = "CoursesList";
+}
+
+<h2>قائمة المواد العملي </h2>
+
+<table class="table table-bordered table-hover" style=" direction:rtl;text-align:center">
+    <tr style="background-color:#28a745;color:antiquewhite;font-size:larger">
+
+        <td>
+            <b>أسم المادة</b>
+        </td>
+        <td>
+            <b>التخصص </b>
+        </td>
+        <td></td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                <b>@Html.DisplayFor(modelItem => item.CourseName)</b>
+            </td>
+
+            <td>
+                <b>@Html.DisplayFor(modelItem => item.Specialty)</b>
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink("تفــــاصيل", "PracticalDetails", new { id = item.ID }, new { @class = "btn btn-info hide-print" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<a href="/Home/SubjectIndex" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>

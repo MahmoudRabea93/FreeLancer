@@ -1,0 +1,813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0B0CF001-95D6-4B4E-A6CE-FD6C0B2F361E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FinalSchool</RootNamespace>
+    <AssemblyName>FinalSchool</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.5.1\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.5.1\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.5.1\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.5.1\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.5.1\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.5.1\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CoursedistributionsController.cs" />
+    <Compile Include="Controllers\DaleelPracticalTrainingsController.cs" />
+    <Compile Include="Controllers\DegreesController.cs" />
+    <Compile Include="Controllers\EvaluationsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PracticalDegreesController.cs" />
+    <Compile Include="Controllers\RatingsController.cs" />
+    <Compile Include="Controllers\SupervisorsController.cs" />
+    <Compile Include="Controllers\teachersController.cs" />
+    <Compile Include="Controllers\TheoreticalDegreesController.cs" />
+    <Compile Include="Controllers\UserRolesVMController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Coursedistribution.cs" />
+    <Compile Include="Models\DaleelPracticalTraining.cs" />
+    <Compile Include="Models\Degree.cs" />
+    <Compile Include="Models\PracticalDegree.cs" />
+    <Compile Include="Models\Repositories\EfGenaricRepository.cs" />
+    <Compile Include="Models\Repositories\IGenaricRepository.cs" />
+    <Compile Include="Models\TheoreticalDegree.cs" />
+    <Compile Include="Models\Evaluation.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\Supervisors.cs" />
+    <Compile Include="Models\teacher.cs" />
+    <Compile Include="Models\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Models\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Models\UserRolesVM.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Calendar\BootstrapToggle\bootstrap-toggle.min.css" />
+    <Content Include="Content\Calendar\BootstrapToggle\bootstrap-toggle.min.js" />
+    <Content Include="Content\Calendar\calendar-blue.gif" />
+    <Content Include="Content\Calendar\calendar-green.gif" />
+    <Content Include="Content\Calendar\calendar.gif" />
+    <Content Include="Content\Calendar\calendarsBasic.html" />
+    <Content Include="Content\Calendar\calendarsPickerBasic.html" />
+    <Content Include="Content\Calendar\calendarsPickerRef.html" />
+    <Content Include="Content\Calendar\calendarsRef.html" />
+    <Content Include="Content\Calendar\css\demo.css" />
+    <Content Include="Content\Calendar\flora.calendars.picker.css" />
+    <Content Include="Content\Calendar\humanity.calendars.picker.css" />
+    <Content Include="Content\Calendar\jquery.calendars-af.js" />
+    <Content Include="Content\Calendar\jquery.calendars-am.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ar-DZ.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ar-EG.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ar.js" />
+    <Content Include="Content\Calendar\jquery.calendars-az.js" />
+    <Content Include="Content\Calendar\jquery.calendars-bg.js" />
+    <Content Include="Content\Calendar\jquery.calendars-bs.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ca.js" />
+    <Content Include="Content\Calendar\jquery.calendars-cs.js" />
+    <Content Include="Content\Calendar\jquery.calendars-da.js" />
+    <Content Include="Content\Calendar\jquery.calendars-de-CH.js" />
+    <Content Include="Content\Calendar\jquery.calendars-de.js" />
+    <Content Include="Content\Calendar\jquery.calendars-el.js" />
+    <Content Include="Content\Calendar\jquery.calendars-en-AU.js" />
+    <Content Include="Content\Calendar\jquery.calendars-en-GB.js" />
+    <Content Include="Content\Calendar\jquery.calendars-en-NZ.js" />
+    <Content Include="Content\Calendar\jquery.calendars-eo.js" />
+    <Content Include="Content\Calendar\jquery.calendars-es-AR.js" />
+    <Content Include="Content\Calendar\jquery.calendars-es-PE.js" />
+    <Content Include="Content\Calendar\jquery.calendars-es.js" />
+    <Content Include="Content\Calendar\jquery.calendars-et.js" />
+    <Content Include="Content\Calendar\jquery.calendars-eu.js" />
+    <Content Include="Content\Calendar\jquery.calendars-fa.js" />
+    <Content Include="Content\Calendar\jquery.calendars-fi.js" />
+    <Content Include="Content\Calendar\jquery.calendars-fo.js" />
+    <Content Include="Content\Calendar\jquery.calendars-fr-CH.js" />
+    <Content Include="Content\Calendar\jquery.calendars-fr.js" />
+    <Content Include="Content\Calendar\jquery.calendars-gl.js" />
+    <Content Include="Content\Calendar\jquery.calendars-gu.js" />
+    <Content Include="Content\Calendar\jquery.calendars-he.js" />
+    <Content Include="Content\Calendar\jquery.calendars-hi-IN.js" />
+    <Content Include="Content\Calendar\jquery.calendars-hr.js" />
+    <Content Include="Content\Calendar\jquery.calendars-hu.js" />
+    <Content Include="Content\Calendar\jquery.calendars-hy.js" />
+    <Content Include="Content\Calendar\jquery.calendars-id.js" />
+    <Content Include="Content\Calendar\jquery.calendars-is.js" />
+    <Content Include="Content\Calendar\jquery.calendars-it.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ja.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ka.js" />
+    <Content Include="Content\Calendar\jquery.calendars-km.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ko.js" />
+    <Content Include="Content\Calendar\jquery.calendars-lt.js" />
+    <Content Include="Content\Calendar\jquery.calendars-lv.js" />
+    <Content Include="Content\Calendar\jquery.calendars-me-ME.js" />
+    <Content Include="Content\Calendar\jquery.calendars-me.js" />
+    <Content Include="Content\Calendar\jquery.calendars-mk.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ml.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ms.js" />
+    <Content Include="Content\Calendar\jquery.calendars-mt.js" />
+    <Content Include="Content\Calendar\jquery.calendars-nl-BE.js" />
+    <Content Include="Content\Calendar\jquery.calendars-nl.js" />
+    <Content Include="Content\Calendar\jquery.calendars-no.js" />
+    <Content Include="Content\Calendar\jquery.calendars-pa.js" />
+    <Content Include="Content\Calendar\jquery.calendars-pl.js" />
+    <Content Include="Content\Calendar\jquery.calendars-pt-BR.js" />
+    <Content Include="Content\Calendar\jquery.calendars-rm.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ro.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ru.js" />
+    <Content Include="Content\Calendar\jquery.calendars-sk.js" />
+    <Content Include="Content\Calendar\jquery.calendars-sl.js" />
+    <Content Include="Content\Calendar\jquery.calendars-sq.js" />
+    <Content Include="Content\Calendar\jquery.calendars-sr-SR.js" />
+    <Content Include="Content\Calendar\jquery.calendars-sr.js" />
+    <Content Include="Content\Calendar\jquery.calendars-sv.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ta.js" />
+    <Content Include="Content\Calendar\jquery.calendars-th.js" />
+    <Content Include="Content\Calendar\jquery.calendars-tr.js" />
+    <Content Include="Content\Calendar\jquery.calendars-tt.js" />
+    <Content Include="Content\Calendar\jquery.calendars-uk.js" />
+    <Content Include="Content\Calendar\jquery.calendars-ur.js" />
+    <Content Include="Content\Calendar\jquery.calendars-vi.js" />
+    <Content Include="Content\Calendar\jquery.calendars-zh-CN.js" />
+    <Content Include="Content\Calendar\jquery.calendars-zh-HK.js" />
+    <Content Include="Content\Calendar\jquery.calendars-zh-TW.js" />
+    <Content Include="Content\Calendar\jquery.calendars.all.js" />
+    <Content Include="Content\Calendar\jquery.calendars.all.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.coptic.js" />
+    <Content Include="Content\Calendar\jquery.calendars.coptic.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.discworld.js" />
+    <Content Include="Content\Calendar\jquery.calendars.discworld.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.ethiopian-am.js" />
+    <Content Include="Content\Calendar\jquery.calendars.ethiopian.js" />
+    <Content Include="Content\Calendar\jquery.calendars.ethiopian.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.hebrew-he.js" />
+    <Content Include="Content\Calendar\jquery.calendars.hebrew.js" />
+    <Content Include="Content\Calendar\jquery.calendars.hebrew.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.islamic-ar.js" />
+    <Content Include="Content\Calendar\jquery.calendars.islamic-fa.js" />
+    <Content Include="Content\Calendar\jquery.calendars.islamic.js" />
+    <Content Include="Content\Calendar\jquery.calendars.islamic.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.js" />
+    <Content Include="Content\Calendar\jquery.calendars.julian.js" />
+    <Content Include="Content\Calendar\jquery.calendars.julian.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.lang.js" />
+    <Content Include="Content\Calendar\jquery.calendars.lang.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.mayan.js" />
+    <Content Include="Content\Calendar\jquery.calendars.mayan.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.nanakshahi-pa.js" />
+    <Content Include="Content\Calendar\jquery.calendars.nanakshahi.js" />
+    <Content Include="Content\Calendar\jquery.calendars.nanakshahi.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.nepali-ne.js" />
+    <Content Include="Content\Calendar\jquery.calendars.nepali.js" />
+    <Content Include="Content\Calendar\jquery.calendars.nepali.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.persian-fa.js" />
+    <Content Include="Content\Calendar\jquery.calendars.persian.js" />
+    <Content Include="Content\Calendar\jquery.calendars.persian.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-af.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-am.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ar-DZ.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ar-EG.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ar.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-az.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-bg.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-bs.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ca.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-cs.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-da.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-de-CH.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-de.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-el.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-en-AU.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-en-GB.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-en-NZ.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-eo.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-es-AR.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-es-PE.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-es.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-et.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-eu.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-fa.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-fi.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-fo.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-fr-CH.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-fr.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-gl.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-gu.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-he.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-hi-IN.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-hr.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-hu.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-hy.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-id.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-is.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-it.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ja.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ka.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-km.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ko.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-lt.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-lv.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-me-ME.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-me.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-mk.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ml.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ms.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-mt.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-nl-BE.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-nl.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-no.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-pl.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-pt-BR.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-rm.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ro.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ru.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-sk.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-sl.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-sq.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-sr-SR.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-sr.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-sv.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ta.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-th.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-tr.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-tt.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-uk.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-ur.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-vi.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-zh-CN.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-zh-HK.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker-zh-TW.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker.css" />
+    <Content Include="Content\Calendar\jquery.calendars.picker.ext.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker.ext.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker.lang.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker.lang.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.picker.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.plus.js" />
+    <Content Include="Content\Calendar\jquery.calendars.plus.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.taiwan-zh-TW.js" />
+    <Content Include="Content\Calendar\jquery.calendars.taiwan.js" />
+    <Content Include="Content\Calendar\jquery.calendars.taiwan.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.thai-th.js" />
+    <Content Include="Content\Calendar\jquery.calendars.thai.js" />
+    <Content Include="Content\Calendar\jquery.calendars.thai.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.ummalqura-ar.js" />
+    <Content Include="Content\Calendar\jquery.calendars.ummalqura.js" />
+    <Content Include="Content\Calendar\jquery.calendars.ummalqura.min.js" />
+    <Content Include="Content\Calendar\jquery.calendars.validation.js" />
+    <Content Include="Content\Calendar\jquery.calendars.validation.min.js" />
+    <Content Include="Content\Calendar\jquery.plugin.js" />
+    <Content Include="Content\Calendar\jquery.plugin.min.js" />
+    <Content Include="Content\Calendar\js\demo.js" />
+    <Content Include="Content\Calendar\redmond.calendars.picker.css" />
+    <Content Include="Content\Calendar\smoothness.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-black-tie.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-blitzer.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-cupertino.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-dark-hive.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-dot-luv.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-eggplant.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-excite-bike.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-flick.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-hot-sneaks.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-humanity.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-le-frog.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-mint-choc.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-overcast.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-pepper-grinder.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-redmond.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-smoothness.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-south-street.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-start.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-sunny.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-swanky-purse.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-trontastic.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-ui-darkness.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-ui-lightness.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui-vader.calendars.picker.css" />
+    <Content Include="Content\Calendar\ui.calendars.picker.css" />
+    <Content Include="Content\custimeclander\css\flora.datepick.css" />
+    <Content Include="Content\custimeclander\css\humanity.datepick.css" />
+    <Content Include="Content\custimeclander\css\jquery.datepick.css" />
+    <Content Include="Content\custimeclander\css\redmond.datepick.css" />
+    <Content Include="Content\custimeclander\css\smoothness.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-black-tie.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-blitzer.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-cupertino.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-dark-hive.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-dot-luv.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-eggplant.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-excite-bike.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-flick.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-hot-sneaks.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-humanity.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-le-frog.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-mint-choc.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-overcast.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-pepper-grinder.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-redmond.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-smoothness.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-south-street.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-start.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-sunny.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-swanky-purse.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-trontastic.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-ui-darkness.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-ui-lightness.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui-vader.datepick.css" />
+    <Content Include="Content\custimeclander\css\ui.datepick.css" />
+    <Content Include="Content\custimeclander\img\calendar-blue.gif" />
+    <Content Include="Content\custimeclander\img\calendar-green.gif" />
+    <Content Include="Content\custimeclander\img\calendar.gif" />
+    <Content Include="Content\custimeclander\index.html" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-af.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-am.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ar-DZ.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ar-EG.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ar.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-az.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-bg.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-bs.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ca.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-cs.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-da.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-de-CH.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-de.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-el.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-en-AU.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-en-GB.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-en-NZ.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-eo.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-es-AR.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-es-PE.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-es.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-et.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-eu.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-fa.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-fi.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-fo.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-fr-CH.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-fr.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-gl.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-gu.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-he.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-hi-IN.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-hi.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-hr.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-hu.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-hy.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-id.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-is.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-it.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ja.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ka.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-km.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ko.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-lt.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-lv.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-me-ME.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-me.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-mk.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ml.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ms.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-mt.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-nl-BE.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-nl.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-no.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-pl.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-pt-BR.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-pt.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-rm.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ro.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ru.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-sk.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-sl.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-sq.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-sr-SR.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-sr.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-sv.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ta.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-th.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-tr.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-tt.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-uk.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-ur.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-vi.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-zh-CN.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-zh-HK.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick-zh-TW.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.ext.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.ext.min.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.lang.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.lang.min.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.min.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.validation.js" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.validation.min.js" />
+    <Content Include="Content\custimeclander\js\jquery.plugin.js" />
+    <Content Include="Content\custimeclander\js\jquery.plugin.min.js" />
+    <Content Include="Content\ffff.png" />
+    <Content Include="Content\Mystyle.css" />
+    <Content Include="Content\SizeA4.css" />
+    <Content Include="Content\PrintA4.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\21161441261599627997.png" />
+    <Content Include="Images\2933245.png" />
+    <Content Include="Images\373457.png" />
+    <Content Include="Images\43842.png" />
+    <Content Include="Images\620x354-51560428878185.jpg" />
+    <Content Include="Images\add-folder--v2.png" />
+    <Content Include="Images\add-user.png" />
+    <Content Include="Images\book_key.png" />
+    <Content Include="Images\book_PNG2105.png" />
+    <Content Include="Images\computer-png.png" />
+    <Content Include="Images\download.png" />
+    <Content Include="Images\fold.png" />
+    <Content Include="Images\folder-icon.png" />
+    <Content Include="Images\folder_PNG100457.png" />
+    <Content Include="Images\KSA.jpg" />
+    <Content Include="Images\ksae.jpg" />
+    <Content Include="Images\laptop-and-books.png" />
+    <Content Include="Images\laptop-book-15-1168529.png" />
+    <Content Include="Images\print.png" />
+    <Content Include="Images\software.jpg" />
+    <Content Include="Images\unnamed.png" />
+    <Content Include="Images\user.png" />
+    <Content Include="Images\users.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\custimeclander\js\jquery.datepick.ext.min.map" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.lang.min.map" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.min.map" />
+    <Content Include="Content\custimeclander\js\jquery.datepick.validation.min.map" />
+    <Content Include="Content\custimeclander\js\jquery.plugin.min.map" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Coursedistributions\Delete.cshtml" />
+    <Content Include="Views\Coursedistributions\Details.cshtml" />
+    <Content Include="Views\Coursedistributions\Edit.cshtml" />
+    <Content Include="Views\Coursedistributions\IndexTuplePratical.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\Delete.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\Edit.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\Index.cshtml" />
+    <Content Include="Views\teachers\Delete.cshtml" />
+    <Content Include="Views\teachers\Details.cshtml" />
+    <Content Include="Views\teachers\Edit.cshtml" />
+    <Content Include="Views\teachers\Index.cshtml" />
+    <Content Include="Views\Degrees\Create.cshtml" />
+    <Content Include="Views\Degrees\Delete.cshtml" />
+    <Content Include="Views\Degrees\Details.cshtml" />
+    <Content Include="Views\Degrees\Edit.cshtml" />
+    <Content Include="Views\Degrees\Index.cshtml" />
+    <Content Include="Views\Ratings\Create.cshtml" />
+    <Content Include="Views\Ratings\Delete.cshtml" />
+    <Content Include="Views\Ratings\Details.cshtml" />
+    <Content Include="Views\Ratings\Edit.cshtml" />
+    <Content Include="Views\Ratings\Index.cshtml" />
+    <Content Include="Views\Ratings\Indexll.cshtml" />
+    <Content Include="Views\Coursedistributions\IndexTuplePraticalTheoretical.cshtml" />
+    <Content Include="Views\UserRolesVM\Index.cshtml" />
+    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\CoursesPracticalList.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\PracticalDetails.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\CoursesPraticalTheoreticalList.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\CoursesListTheoretical.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\DetailsPraticalTheoretical.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\TheoreticalDetails.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\CreateTheoretical.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\CreatePraticalTheoretical.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\CreatePratical.cshtml" />
+    <Content Include="Views\Coursedistributions\IndexTupleTheoretical.cshtml" />
+    <Content Include="Views\Evaluations\CreatePractical.cshtml" />
+    <Content Include="Views\Evaluations\Delete.cshtml" />
+    <Content Include="Views\Evaluations\Details.cshtml" />
+    <Content Include="Views\Evaluations\Edit.cshtml" />
+    <Content Include="Views\Evaluations\Index.cshtml" />
+    <Content Include="Views\Evaluations\CreateTheoretical.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\Details.cshtml" />
+    <Content Include="Views\Supervisors\Details.cshtml" />
+    <Content Include="Views\Supervisors\Edit.cshtml" />
+    <Content Include="Views\Supervisors\Index.cshtml" />
+    <Content Include="Views\TheoreticalDegrees\Create.cshtml" />
+    <Content Include="Views\TheoreticalDegrees\Delete.cshtml" />
+    <Content Include="Views\TheoreticalDegrees\Details.cshtml" />
+    <Content Include="Views\TheoreticalDegrees\Edit.cshtml" />
+    <Content Include="Views\TheoreticalDegrees\Index.cshtml" />
+    <Content Include="Views\PracticalDegrees\Create.cshtml" />
+    <Content Include="Views\PracticalDegrees\Delete.cshtml" />
+    <Content Include="Views\PracticalDegrees\Details.cshtml" />
+    <Content Include="Views\PracticalDegrees\Edit.cshtml" />
+    <Content Include="Views\PracticalDegrees\Index.cshtml" />
+    <Content Include="Views\Home\SubjectIndex.cshtml" />
+    <Content Include="Views\Home\DaleelIndex.cshtml" />
+    <Content Include="Views\Home\addSubjectIndex.cshtml" />
+    <Content Include="Views\teachers\Create.cshtml" />
+    <Content Include="Views\Supervisors\Create.cshtml" />
+    <Content Include="Views\Supervisors\Delete.cshtml" />
+    <Content Include="Views\Coursedistributions\Create.cshtml" />
+    <Content Include="Views\DaleelPracticalTrainings\NotAdded.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50379</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50379/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

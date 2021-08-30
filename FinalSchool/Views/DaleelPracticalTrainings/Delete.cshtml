@@ -1,0 +1,111 @@
+﻿@model FinalSchool.Models.DaleelPracticalTraining
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>الحذف</h2>
+
+<h3>هل انت متأكد من الحذف ؟</h3>
+<div style="direction:rtl">
+    <h4>DaleelPracticalTraining</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>القسم</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            <b>التخصص</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialty)
+        </dd>
+
+        <dt>
+            <b>العام التدريبي</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearOfTraining)
+        </dd>
+
+        <dt>
+            <b>الساعات المعتمدة</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreditHours)
+        </dd>
+
+        <dt>
+            <b>الساعات النظرية</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TheoreticalHours)
+        </dd>
+
+        <dt>
+            <b>الساعات العملية</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PracticalHours)
+        </dd>
+        <dt>
+            <b> الفصل التدريبي</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Term)
+        </dd>
+
+        <dt>
+            <b>رمز / اسم المقرر</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseName)
+        </dd>
+
+        <dt>
+            <b>الشعب التدريبية</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TraningDepartmentName)
+        </dd>
+
+        <dt>
+            <b>الهدف من المقرر</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TheOverallGoalIsFromTraning)
+        </dd>
+
+        <dt>
+            <b>عملي / نظري</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Practical)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+        </div>
+    }
+</div>

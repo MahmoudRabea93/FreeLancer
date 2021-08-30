@@ -1,0 +1,1485 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>jQuery Calendars Datepicker Reference</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" type="image/ico" href="favicon.ico">
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/south-street/jquery-ui.css">
+<link rel="stylesheet" href="css/jquery.bookmark.css">
+<link rel="stylesheet" href="css/demo.css">
+<script src="js/modernizr-2.6.2.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="js/jquery.bookmark.js"></script>
+<script src="js/jquery.chili-2.2.js"></script>
+<script src="js/demo.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body class="doc">
+<header role="banner">
+	<h1>jQuery Calendars Datepicker Reference</h1>
+</header>
+<section>
+<!-- Ad top -->
+<ins class="adsbygoogle top" style="width:234px;height:60px" data-ad-client="ca-pub-1555315548255079" data-ad-slot="1375936143"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>A <a href="http://jquery.com">jQuery</a> <a href="http://plugins.jquery.com/kbw.calendars/">plugin</a>
+	that provides implementations of various world calendars and additional functionality
+	such as conversion between calendars, parsing and formatting dates, and a datepicker.</p>
+<p>This page provides a documentation reference for working
+	with the datepicker module of the plugin <span class="version">v2.0.2</span>.
+	Documentation on the <a href="calendarsRef.html">underlying calendars</a>
+	is available separately.
+	<a href="zip/jquery.calendars.doc-2.0.2.zip" onclick="pageTracker._trackPageview('/downloads/calendars.doc-2.0.2');">
+	Download a copy</a> for your own reference -
+	just add jQuery JavaScript for full functionality.</p>
+<p>See a <a href="calendarsPicker.html">demonstration</a> of the datepicker plugin or the
+	associated <a href="calendars.html">calendars</a> and download the code from there.
+	Or see a <a href="calendarsPickerBasics.html">minimal page</a> that you could
+	use as a basis for your own investigations.</p>
+<p style="text-align: center;"><span id="bookmark"></span></p>
+</section>
+<section id="tabs" role="main">
+	<ul>
+		<li><a href="#modules"><span>Modules</span></a></li>
+		<li><a href="#settings"><span>Settings</span></a></li>
+		<li><a href="#commandsobj"><span>Commands</span></a></li>
+		<li><a href="#l10n"><span>Localisation</span></a></li>
+		<li><a href="#renderers"><span>Renderers</span></a></li>
+		<li><a href="#functions"><span>Functions</span></a></li>
+		<li><a href="#extend"><span>Extensions</span></a></li>
+		<li><a href="#validation"><span>Validation</span></a></li>
+	</ul>
+	<article id="modules" class="feature">
+		<header id="modulesall">Calendar Modules</header>
+		<p>The calendars plugin provides generic support for a number of world calendars.
+			In general a calendar defines a series of years, each of which consists of
+			a number of months that are then broken down into days. Days may also be
+			grouped into weeks.</p>
+		<p>Each calendar implementation defines what the year sequence is (many have
+			no year zero), how many months per year (varies in the Hebrew calendar),
+			and how many days per month. Alongside this are the month and day names
+			and localised values such as date format and start of the week.</p>
+		<p>Since JavaScript only supports the Gregorian calendar in its native
+			<code>Date</code> object, a new date object with more generic calendar
+			support is included within the plugin.</p>
+		<p>The calendars plugin is broken up into a series of modules to allow you to
+			choose just the functionality you require.</p>
+		<table>
+			<thead>
+				<tr><th>Module</th><th>Purpose</th><th>Dependencies</th></tr>
+			</thead>
+			<tbody>
+				<tr><td>jquery.calendars.js</td>
+					<td>Base calendar support, including custom
+						<a href="calendarsRef.html#cdate"><code>CDate</code></a> object and
+						<a href="http://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a>.
+						See <a href="calendarsRef.html">separate documentation</a>.</td>
+					<td>-</td></tr>
+				<tr><td>jquery.calendars.taiwan.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Minguo_calendar">Taiwanese calendar</a>
+						support - also known as the Minguo calendar.<br>
+						<span class="version">Since 1.1.0</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.thai.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Thai_solar_calendar">Thai calendar</a>
+						support.<br>
+						<span class="version">Since 1.1.0</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.julian.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Julian_calendar">Julian calendar</a>
+						implementation.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.persian.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Iranian_calendar">Persian calendar</a>
+						implementation - also known as Iranian or Jalali calendar.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.islamic.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Islamic_calendar">Islamic calendar</a>
+						implementation - the 'civil 16' version, also known as Hijri calendar.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.ummalqura.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Islamic_calendar#Saudi_Arabia.27s_Umm_al-Qura_calendar">Umm al-Qura calendar</a>
+						support - also known as the Saudi calendar. Written by Amro Osama.<br>
+						<span class="version">Since 1.2.1</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.hebrew.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Hebrew_calendar">Hebrew (civil) calendar</a>
+						implementation.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.ethiopian.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Ethiopian_calendar">Ethiopian calendar</a>
+						support.<br>
+						<span class="version">Since 1.1.0</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.coptic.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Coptic_calendar">Coptic calendar</a>
+						support.<br>
+						<span class="version">Since 1.1.0</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.nepali.js</td>
+					<td><a href="https://en.wikipedia.org/wiki/Vikram_Samvat">Nepali calendar</a>
+						support - also known as Vikram Samvat. Written by Artur Neumann.<br>
+						<span class="version">Since 1.2.1</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.nanakshahi.js</td>
+					<td><a href="https://en.wikipedia.org/wiki/Nanakshahi_calendar">Nanakshahi calendar</a>
+						support.<br>
+						<span class="version">Since 2.0.2</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.mayan.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Mayan_calendar">Mayan (Long Count) calendar</a>
+						implementation.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.discworld.js</td>
+					<td><a href="http://wiki.lspace.org/mediawiki/Discworld_calendar">Discworld calendar</a>
+						support.<br>
+						<span class="version">Since 2.0.2</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.plus.js</td>
+					<td>Additional calendar functionality, such as parsing and formatting dates.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.picker.js</td>
+					<td>A datepicker with full calendar support and localisation.</td>
+					<td>Base, Plus</td></tr>
+				<tr><td>jquery.calendars.picker.ext.js</td>
+					<td>Datepicker extensions with alternate renderers and added functionality.</td>
+					<td>Base, Plus, Picker</td></tr>
+				<tr><td>jquery.calendars.all.js</td>
+					<td>Combines the base, plus, and datepicker modules into one.</td>
+					<td>-</td></tr>
+				<tr><td>jquery.calendars.validation.js</td>
+					<td>Validation plugin extensions for datepicker fields.</td>
+					<td>Base, Plus, Picker</td></tr>
+			</tbody>
+		</table>
+	</article>
+	<article id="settings" class="feature">
+		<header id="settingsall">Datepicker Settings</header>
+		<p>Customise each targetted field with the settings below (all are optional):</p>
+		<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({dateFormat: 'yyyy-mm-dd'});</code></span></pre>
+		<p class="quickref ui-state-highlight">
+			<a href="#alignment">alignment</a> |
+			<a href="#altField">altField</a> |
+			<a href="#altFormat">altFormat</a> |
+			<a href="#autoSize">autoSize</a> |
+			<a href="#calculateWeek">calculateWeek</a> |
+			<a href="#calendar">calendar</a> |
+			<a href="#changeMonth">changeMonth</a> |
+			<a href="#commands">commands</a> |
+			<a href="#commandsAsDateFormat">commandsAsDateFormat</a> |
+			<a href="#constrainInput">constrainInput</a> |
+			<a href="#dateFormat">dateFormat</a> |
+			<a href="#defaultDate">defaultDate</a> |
+			<a href="#firstDay">firstDay</a> |
+			<a href="#fixedWeeks">fixedWeeks</a> |
+			<a href="#localNumbers">localNumbers</a> |
+			<a href="#maxDate">maxDate</a> |
+			<a href="#minDate">minDate</a> |
+			<a href="#monthsOffset">monthsOffset</a> |
+			<a href="#monthsToJump">monthsToJump</a> |
+			<a href="#monthsToShow">monthsToShow</a> |
+			<a href="#monthsToStep">monthsToStep</a> |
+			<a href="#multiSelect">multiSelect</a> |
+			<a href="#multiSeparator">multiSeparator</a> |
+			<a href="#onChangeMonthYear">onChangeMonthYear</a> |
+			<a href="#onClose">onClose</a> |
+			<a href="#onDate">onDate</a> |
+			<a href="#onSelect">onSelect</a> |
+			<a href="#onShow">onShow</a> |
+			<a href="#pickerclass">pickerclass</a> |
+			<a href="#popupContainer">popupContainer</a> |
+			<a href="#rangeSelect">rangeSelect</a> |
+			<a href="#rangeSeparator">rangeSeparator</a> |
+			<a href="#selectDefaultDate">selectDefaultDate</a> |
+			<a href="#selectOtherMonths">selectOtherMonths</a> |
+			<a href="#showAnim">showAnim</a> |
+			<a href="#showOnFocus">showOnFocus</a> |
+			<a href="#showOptions">showOptions</a> |
+			<a href="#showOtherMonths">showOtherMonths</a> |
+			<a href="#showSpeed">showSpeed</a> |
+			<a href="#showTrigger">showTrigger</a> |
+			<a href="#useMouseWheel">useMouseWheel</a> |
+			<a href="#yearRange">yearRange</a>
+		</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Default</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="calendar">calendar</td>
+			<td><a href="calendarsRef.html#calendar1">*Calendar</a></td>
+			<td><a href="calendarsRef.html#access">$.calendars.instance</a></td>
+			<td>The calendar implementation that backs this datepicker.
+				Current implementations are Gregorian (default), Taiwan, Thai, Julian, Persian,
+				Islamic, Umm al-Qura, Hebrew, Ethiopian, Coptic, Nepali, Nanakshahi, Mayan, and Discworld.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({calendar:
+	$.calendars.instance('persian', 'fa')});</code></span></pre></td></tr>
+		<tr><td id="pickerclass">pickerclass</td><td>string</td><td>''</td>
+			<td>Any extra CSS class(es) to add to this datepicker instance.
+				By specifying a unique class you can individually target
+				datepicker instances with special styling.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({pickerclass: 'my-picker'});</code></span></pre></td></tr>
+		<tr><td id="showOnFocus">showOnFocus</td><td>boolean</td><td>true</td>
+			<td>When <code>true</code> a popup datepicker appears for an input
+				field when it gains focus. When <code>false</code> you should
+				specify a <a href="#showTrigger"><code>showTrigger</code></a> instead.</td></tr>
+		<tr><td id="showTrigger">showTrigger</td><td>string or element or jQuery</td><td>null</td>
+			<td>The element(s) that will trigger a popup datepicker to appear
+				when they are clicked. You can provide either the element itself,
+				a jQuery collection containing the element, a string selector for
+				the desired element, or a string version of the element.
+				The trigger is cloned and placed after the input field (taking
+				<a href="#" onclick="jumpTo('l10n', 'isRTL');">
+				right-to-left</a> languages into account).<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({showTrigger:
+	'&lt;img src="img/calendar.gif" alt="Popup" class="trigger">'});
+$(selector).calendarsPicker({showTrigger: '#myicon'});</code></span></pre></td></tr>
+		<tr><td id="showAnim">showAnim</td><td>string</td><td>'show'</td>
+			<td>The name of the animation to use when a popup datepicker appears
+				and disappears. The value can be one of the standard animations -
+				'show', 'fadeIn', or 'slideDown' - or any of the
+				<a href="http://docs.jquery.com/UI/Effects">jQuery UI effects</a>
+				(provided you have included the appropriate plugin).
+				Set this to '' for no animation.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({showAnim: 'fadeIn'});
+$(selector).calendarsPicker({showAnim: 'clip'});
+$(selector).calendarsPicker({showAnim: ''}); // Immediate</code></span></pre></td></tr>
+		<tr><td id="showOptions">showOptions</td><td>object</td><td>{}</td>
+			<td>For jQuery UI animations you can specify any additional options
+				with this setting. For example, the clip animation can
+				be set to run horizontally instead of vertically.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	showAnim: 'clip', showOptions: {direction: 'horizontal'}});</code></span></pre></td></tr>
+		<tr><td id="showSpeed">showSpeed</td><td>string or number</td><td>'normal'</td>
+			<td>The speed at which the animation runs. Use one of the standard
+				speeds - 'slow', 'normal', or 'fast' - or specify the duration
+				in milliseconds.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({showSpeed: 'fast'});
+$(selector).calendarsPicker({showSpeed: 1500});</code></span></pre></td></tr>
+		<tr><td id="popupContainer">popupContainer</td>
+			<td>string or element or jQuery</td><td>null</td>
+			<td>The container for the popup datepicker, allowing you to control
+				where in the DOM the datepicker is appended. You can provide either
+				the element itself, a jQuery collection containing the element,
+				or a string selector for the desired element. It defaults to
+				the document body.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({popupContainer: '#mydiv'});</code></span></pre></td></tr>
+		<tr><td id="alignment">alignment</td><td>string</td><td>'bottom'</td>
+			<td>Control the alignment of a popup datepicker with respect to its input field.
+				Use one of the following values: 'bottom' for below or 'top' for above,
+				both of which are left- or right- aligned depending on the localisation
+				preference, or 'topLeft', 'topRight', 'bottomLeft', or 'bottomLeft'.
+				The first two options will reposition the datepicker if it does not
+				fit in the requested space.</td></tr>
+		<tr><td id="fixedWeeks">fixedWeeks</td><td>boolean</td><td>false</td>
+			<td>Set to <code>true</code> to always have six weeks shown, or
+				<code>false</code> to only show as many weeks as are needed.
+				This setting only applies to a datepicker for a single month as all
+				<a href="#monthsToShow">multi-month</a> datepickers are always fixed.</td></tr>
+		<tr><td id="firstDay">firstDay</td><td>number</td><td>null</td>
+			<td>The number of the first day of the week shown in the datepicker,
+				with 0 being Sunday, 1 being Monday, etc.
+				If set to <code>null</code> the first day from the underlying
+				<a href="#calendar">calendar</a> is used.</td></tr>
+		<tr><td id="calculateWeek">calculateWeek</td><td>function</td><td>null</td>
+			<td>A function to calculate the week of the year for a given date.
+				The date (<a href="calendarsRef.html#cdate">CDate</a>) is passed as a
+				parameter and the function returns a number indicating the
+				corresponding week of the year.
+				If set to <code>null</code> the week calculation from the
+				underlying <a href="#calendar">calendar</a> is used.
+				You should use the <a href="#" onclick="jumpTo('renderers', 'weekOfYearRenderer');">
+				<code>weekOfYearRenderer</code></a> to actually display the value.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({calculateWeek: myWeek,
+	renderer: $.calendars.picker.weekOfYearRenderer});
+	
+function myWeek(date) {
+	return Math.floor((date.dayOfYear() - 1) / 7) + 1;
+}</code></span></pre></td></tr>
+		<tr><td id="localNumbers">localNumbers</td><td>boolean</td><td>false</td>
+			<td>Set to <code>true</code> to use localised characters for date numbers (where available -
+				see the <a href="calendarsRef.html#calendar2">Calendar <code>digits</code> setting</a>),
+				or <code>false</code> to always use standard Arabic numerals.<br><br>
+				<span class="version">Since 2.0.2</span>.</td></tr>
+		<tr><td id="monthsToShow">monthsToShow</td><td>number or number[2]</td><td>1</td>
+			<td>The number of months to show in the datepicker. It may be expressed
+				as a single number of columns, or as an array of rows and columns.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({monthsToShow: 3});
+$(selector).calendarsPicker({monthsToShow: [2, 3]});</code></span></pre></td></tr>
+		<tr><td id="monthsOffset">monthsOffset</td><td>number</td><td>0</td>
+			<td>When showing multiple months, this setting indicates at which
+				position the current month is shown, starting from zero. The example
+				below shows three months with the current one in the middle.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	monthsToShow: 3, monthsOffset: 1});</code></span></pre></td></tr>
+		<tr><td id="monthsToStep">monthsToStep</td><td>number</td><td>1</td>
+			<td>The number of months to move when the <a href="#" onclick="jumpTo('commandsobj', 'prev');">
+				previous</a> or <a href="#" onclick="jumpTo('commandsobj', 'next');">next</a>
+				month commands are invoked.</td></tr>
+		<tr><td id="monthsToJump">monthsToJump</td><td>number</td><td>12</td>
+			<td>The number of months to move when the <a href="#" onclick="jumpTo('commandsobj', 'prevJump');">
+				previous</a> or <a href="#" onclick="jumpTo('commandsobj', 'nextJump');">next</a>
+				year commands are invoked.</td></tr>
+		<tr><td id="useMouseWheel">useMouseWheel</td><td>boolean</td><td>true</td>
+			<td>If the <a href="http://jquery.com/plugins/project/mousewheel">MouseWheel plugin</a>
+				is available and this setting is <code>true</code> then you can use the mouse
+				wheel to step through the months or years (with the <em>Ctrl</em> key).
+				If this setting is <code>false</code> then the mouse wheel has no effect
+				within the datepicker, even if the plugin is available.<br><br>
+				<span class="version">Since 1.1.2</span>.</td></tr>
+		<tr><td id="changeMonth">changeMonth</td><td>boolean</td><td>true</td>
+			<td>Set to <code>true</code> to allow the month and year to be changed
+				via a drop-down selection on the first month shown in the datepicker.
+				Set to <code>false</code> to only allow changes via the various
+				<a href="#" onclick="jumpTo('commandsobj', 'prev');">previous</a> and
+				<a href="#" onclick="jumpTo('commandsobj', 'next');">next</a> commands.</td></tr>
+		<tr><td id="yearRange">yearRange</td><td>string</td><td>'c-10:c+10'</td>
+			<td>Specify the range of years shown in the year drop-down.
+				The setting contains the start and end of the range separated by a colon (:).
+				Each limit may be an absolute year ('1980'), an offset from today ('-10' or '+10'),
+				or an offset from the currently selected date ('c-5' or 'c+5').
+				Place the maximum value first to have the list appear in descending order.
+				Set to 'any' to allow direct input of the year without selection
+				from a drop-down list. The default is to show 10 years before and
+				after the currently selected date.<br><br>
+				Note that this setting does not restrict the dates that may be selected.
+				You should use the <a href="#minDate"><code>minDate</code></a> and
+				<a href="#maxDate"><code>maxDate</code></a> settings to impose limits
+				on the dates that may be selected.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({yearRange: '1980:2000'});
+$(selector).calendarsPicker({yearRange: '1960:-18'});
+$(selector).calendarsPicker({yearRange: 'c+10:c-10'}); // Descending
+$(selector).calendarsPicker({yearRange: 'any'});</code></span></pre><br>
+				<span class="version">Since 1.1.2</span> - descending ranges.</td></tr>
+		<tr><td id="showOtherMonths">showOtherMonths</td><td>boolean</td><td>false</td>
+			<td>Set to <code>true</code> to show the days in other months that
+				appear in the partial weeks before or after the current month.</td></tr>
+		<tr><td id="selectOtherMonths">selectOtherMonths</td><td>boolean</td><td>false</td>
+			<td>Set to <code>true</code> to allow the days in other months that
+				appear in the partial weeks before or after the current month to be selected.
+				This setting only applies if <a href="#showOtherMonths"><code>
+				showOtherMonths</code></a> is <code>true</code>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	showOtherMonths: true, selectOtherMonths: true});</code></span></pre></td></tr>
+		<tr><td id="defaultDate">defaultDate</td>
+			<td><a href="calendarsRef.html#cdate">CDate</a> or number or string</td><td>null</td>
+			<td>Specify the date to show if no other date has been selected.
+				This may be specified as an actual date (CDate), as a date string in the
+				current <a href="#dateFormat">dateFormat</a>, as a number of days relative
+				to today, or as a string of offsets and periods relative to today.
+				For the last use 'y' for years, 'm' for months, 'w' for weeks, or 'd' for days.
+				Multiple offsets may be combined in the one string.
+				Set to <code>null</code> for a default date of today.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	defaultDate: calendar.newDate(2009, 1, 26)});
+$(selector).calendarsPicker({defaultDate: '01/26/2009'});
+$(selector).calendarsPicker({defaultDate: +7});
+$(selector).calendarsPicker({defaultDate: '+1m -1d'});</code></span></pre></td></tr>
+		<tr><td id="selectDefaultDate">selectDefaultDate</td><td>boolean</td><td>false</td>
+			<td>Set to <code>true</code> to automatically select the
+				<a href="#defaultDate">defaultDate</a> when no other date has been selected.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	defaultDate: '01/26/2009', selectDefaultDate: true});</code></span></pre></td></tr>
+		<tr><td id="minDate">minDate</td>
+			<td><a href="calendarsRef.html#cdate">CDate</a> or number or string</td><td>null</td>
+			<td>Specify the minimum date allowed to be selected.
+				This may be specified as an actual date (CDate), as a date string in the
+				current <a href="#dateFormat">dateFormat</a>, as a number of days relative
+				to today, or as a string of offsets and periods relative to today.
+				For the last use 'y' for years, 'm' for months, 'w' for weeks, or 'd' for days.
+				Multiple offsets may be combined in the one string.
+				Set to <code>null</code> for no minimum.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	minDate: calendar.newDate(2008, 12, 25)});
+$(selector).calendarsPicker({minDate: '12/25/2008'});
+$(selector).calendarsPicker({minDate: -10});
+$(selector).calendarsPicker({minDate: '-1m -15d'});</code></span></pre></td></tr>
+		<tr><td id="maxDate">maxDate</td>
+			<td><a href="calendarsRef.html#cdate">CDate</a> or number or string</td><td>null</td>
+			<td>Specify the maximum date allowed to be selected.
+				This may be specified as an actual date (CDate), as a date string in the
+				current <a href="#dateFormat">dateFormat</a>, as a number of days relative
+				to today, or as a string of offsets and periods relative to today.
+				For the last use 'y' for years, 'm' for months, 'w' for weeks, or 'd' for days.
+				Multiple offsets may be combined in the one string.
+				Set to <code>null</code> for no maximum.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	maxDate: calendar.newDate(2009, 12, 25)});
+$(selector).calendarsPicker({maxDate: '12/25/2009'});
+$(selector).calendarsPicker({maxDate: +10});
+$(selector).calendarsPicker({maxDate: '+1m +15d'});</code></span></pre></td></tr>
+		<tr><td id="dateFormat">dateFormat</td><td>string</td><td>null</td>
+			<td>Specify the format applied to the selected dates. This may be any combination
+				of the values below. To use any of these characters without substitution
+				you must surround them in single quotes ('). If set to <code>null</code>
+				the default date format specified by the <a href="#calendar">calendar</a>
+				is used instead.<br><br>
+				<ul>
+					<li>d - day of the month (no leading zero)</li>
+					<li>dd - day of the month (two digit)</li>
+					<li>D - day name short</li>
+					<li>DD - day name long</li>
+					<li>o - day of the year (no leading zeros)</li>
+					<li>oo - day of the year (three digits)</li>
+					<li>w  - week of year (no leading zero)</li>
+					<li>ww - week of year (two digit)</li>
+					<li>m - month of the year (no leading zero)</li>
+					<li>mm - month of the year (two digit)</li>
+					<li>M - month name short</li>
+					<li>MM - month name long</li>
+					<li>yy - year (two digit)</li>
+					<li>yyyy - year (four digit)</li>
+					<li>YYYY - formatted year (depends on calendar)</li>
+					<li>J - Julian date</li>
+					<li>@ - Unix timestamp (ms since 01/01/1970)</li>
+					<li>! - Windows ticks (100ns since 01/01/0001)</li>
+					<li>'...' - literal text</li>
+					<li>'' - single quote</li>
+				</ul>
+				<p>Or you can use one of the predefined formats from the calendar:</p>
+				<ul>
+					<li>ATOM - 'yyyy-mm-dd'</li>
+					<li>COOKIE - 'D, dd M yyyy'</li>
+					<li>FULL - 'DD, MM d, yyyy'</li>
+					<li>ISO_8601 - 'yyyy-mm-dd'</li>
+					<li>JULIAN - 'J'</li>
+					<li>RFC_822 - 'D, d M yy'</li>
+					<li>RFC_850 - 'DD, dd-M-yy'</li>
+					<li>RFC_1036 - 'D, d M yy'</li>
+					<li>RFC_1123 - 'D, d M yyyy'</li>
+					<li>RFC_2822 - 'D, d M yyyy'</li>
+					<li>RSS - 'D, d M yy'</li>
+					<li>TICKS - '!'</li>
+					<li>TIMESTAMP - '@'</li>
+					<li>W3C - 'yyyy-mm-dd'</li>
+				</ul><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({dateFormat: 'yyyy-mm-dd'});
+$(selector).calendarsPicker({dateFormat: 'dd-M-yyyy'});
+$(selector).calendarsPicker({dateFormat: calendar.FULL});</code></span></pre></td></tr>
+		<tr><td id="autoSize">autoSize</td><td>boolean</td><td>false</td>
+			<td>Set to <code>true</code> to resize the input field based on the maximum
+				length of a date in the current <a href="#dateFormat">dateFormat</a>.
+				Set to <code>false</code> to not change the field length.</td></tr>
+		<tr><td id="rangeSelect">rangeSelect</td><td>boolean</td><td>false</td>
+			<td>Set to <code>true</code> to allow the selection of a date range in the
+				datepicker. The first selected date is the start of the range and the
+				second selected date is the end of the range.
+				A popup datepicker closes automatically on selection of the range end.
+				Set to <code>false</code> to select a single date.</td></tr>
+		<tr><td id="rangeSeparator">rangeSeparator</td><td>string</td><td>' - '</td>
+			<td>Specify the separator shown between the two dates in a
+				<a href="#rangeSelect">date range</a>.</td></tr>
+		<tr><td id="multiSelect">multiSelect</td><td>number</td><td>0</td>
+			<td>Specify the maximum number of individual separate dates that may be selected
+				in the datepicker. Dates may be de-selected by clicked on them a second time.
+				A popup datepicker closes automatically on selection of the maximum number allowed.
+				Set to <code>0</code> to select a single date.</td></tr>
+		<tr><td id="multiSeparator">multiSeparator</td><td>string</td><td>','</td>
+			<td>Specify the separator shown between the dates selected in a
+				<a href="#multiSelect">multiple date</a> datepicker.</td></tr>
+		<tr><td id="onDate">onDate</td><td>function</td><td>null</td>
+			<td>Specify a callback function to provide additonal details about individual
+				dates shown in the datepicker. The function is called for each date displayed
+				and receives the date as a parameter (<a href="calendarsRef.html#cdate">CDate</a>),
+				while <code>this</code> refers to the associated control.
+				It returns an object with the following attributes (all optional):<br><br>
+				<code>selectable</code> (boolean) true if the date is selectable, false if not;<br><br>
+				<code>dateclass</code> (string) any CSS class(es) to apply to this date;<br><br>
+				<code>title</code> (string) a tooltip for this date;<br><br>
+				<code>content</code> (string) content for this date to replace the basic day number.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onDate: function(date) {
+	    return {content: date.day() + '&lt;br>&lt;sub>' +
+			date.dayOfYear() + '&lt;/sub>',
+			dateclass: 'showDoY'};
+	}
+});</code></span></pre></td></tr>
+		<tr><td id="onShow">onShow</td><td>function</td><td>null</td>
+			<td>Specify a callback function to provide additonal functionality to a datepicker.
+				The function is called just before the datepicker is shown and receives the
+				completed datepicker division as a jQuery object, the underlying
+				<a href="#calendar">calendar</a> implementation, and the current instance
+				settings as parameters, while <code>this</code> refers to the associated
+				control. It should update the datepicker division as necessary.
+				See the various examples in the <a href="#" onclick="jumpTo('extend', 'extendall');">
+				<code>picker.ext</code></a> module.
+				If you need multiple <code>onShow</code> callbacks, use the
+				<a href="#" onclick="jumpTo('functions', 'multipleEvents');"><code>multipleEvents</code></a>
+				function and pass the relevant handlers to it.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onShow: function(picker, calendar, inst) {
+	    picker.find('td:even').addclass('alternate-dates');
+	}
+});</code></span></pre></td></tr>
+		<tr><td id="onChangeMonthYear">onChangeMonthYear</td><td>function</td><td>null</td>
+			<td>Specify a callback function to be notified of changes to the month and year shown
+				in a datepicker. The function is called when the month/year changes and receives the
+				year and month as parameters, while <code>this</code> refers to the associated control.
+				If you need multiple <code>onChangeMonthYear</code> callbacks, use the
+				<a href="#" onclick="jumpTo('functions', 'multipleEvents');"><code>multipleEvents</code></a>
+				function and pass the relevant handlers to it.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onChangeMonthYear: function(year, month) {
+	    $('#monthYear').text(month + '/' + year);
+	}
+});</code></span></pre></td></tr>
+		<tr><td id="onSelect">onSelect</td><td>function</td><td>null</td>
+			<td>Specify a callback function to be notified of date selection in a datepicker.
+				The function is called when each date is selected and receives the
+				currently selected dates (<a href="calendarsRef.html#cdate">CDate</a>[]) as
+				the parameter, while <code>this</code> refers to the associated control.
+				The array is empty if no dates have been selected.
+				Note that when the start of a range is selected the dates array
+				contains two entries, with both being that starting date.
+				If you need multiple <code>onSelect</code> callbacks, use the
+				<a href="#" onclick="jumpTo('functions', 'multipleEvents');"><code>multipleEvents</code></a>
+				function and pass the relevant handlers to it.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onSelect: function(dates) {
+	    $('#count').text('Selected ' + dates.length + ' date(s)');
+		var minDate = dates[0];
+		for (var i = 1; i &lt; dates.length; i++) {
+			if (dates[i].compareTo(minDate) == -1) {
+				minDate = dates[i];
+			}
+		}
+		$('#minDate').text(minDate.formatDate());
+	}
+});</code></span></pre></td></tr>
+		<tr><td id="onClose">onClose</td><td>function</td><td>null</td>
+			<td>Specify a callback function to be notified of a popup datepicker closing.
+				The function is called when the datepicker is closed (by any means) and
+				receives the currently selected dates (<a href="calendarsRef.html#cdate">CDate</a>[])
+				as the parameter, while <code>this</code> refers to the associated control.
+				The array is empty if no dates have been selected.
+				Note that range selections always have two entries,
+				with both being the starting date if no end date has been selected.
+				If you need multiple <code>onClose</code> callbacks, use the
+				<a href="#" onclick="jumpTo('global', 'multipleEvents');"><code>multipleEvents</code></a>
+				function and pass the relevant handlers to it.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onClose: function(dates) {
+		var selected = '';
+		for (var i = 0; i &lt; dates.length; i++) {
+			selected += ',' + dates[i].formatDate();
+		}
+	    alert('Selected dates are: ' + selected.substring(1));
+	}
+});</code></span></pre></td></tr>
+		<tr><td id="altField">altField</td><td>string or element or jQuery</td><td>null</td>
+			<td>Specify another field to be updated in sync with the datepicker selections.
+				This and the following setting allow you to automatically show selected dates
+				in one format for the user, while maintaining a second field with a more
+				useful format for further processing. The alternate field may be specified
+				as either the element itself, a jQuery collection containing the element,
+				or a string selector for the desired element.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({dateFormat: 'DD, MM d, yyyy',
+	altField: '#isoDate', altFormat: 'yyyy-mm-dd'});</code></span></pre></td></tr>
+		<tr><td id="altFormat">altFormat</td><td>string</td><td>null</td>
+			<td>Use in conjunction with the <a href="#altField"><code>altField</code></a>
+				setting to automatically maintain two different views of the selected date(s).
+				See the <a href="#dateFormat"><code>dateFormat</code></a> setting for
+				the list of possible values.</td></tr>
+		<tr><td id="constrainInput">constrainInput</td><td>boolean</td><td>true</td>
+			<td>Set to <code>true</code> to only allow the entry of characters
+				specified by the <a href="#dateFormat"><code>dateFormat</code></a>,
+				or <code>false</code> to allow any characters.</td></tr>
+		<tr><td id="commandsAsDateFormat">commandsAsDateFormat</td><td>boolean</td><td>false</td>
+			<td>Set to <code>true</code> to apply the <a href="calendarsRef.html#plus"><code>formatDate</code></a>
+				function to all command <a href="#" onclick="jumpTo('l10n', 'l10nall');">
+				display text</a>. This allows you to label commands
+				with the dates to which they refer, for example the
+				<a href="#" onclick="jumpTo('commandsobj', 'prev');">previous</a> and
+				<a href="#" onclick="jumpTo('commandsobj', 'next');">next</a> links
+				could show the month to which they move.
+				Remember to quote (') any command text you do not want substituted.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({commandsAsDateFormat: true,
+	prevText: '&lt; M', currentText: 'M y', nextText: 'M &gt;'});</code></span></pre></td></tr>
+		<tr><td id="commands">commands</td><td>object</td><td>$.calendars.picker.commands</td>
+			<td>See the <a href="#" onclick="jumpTo('commandsobj', 'commandsobjall');"><em>
+				Commands</em></a> tab for more details.</td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="commandsobj" class="feature">
+		<header id="commandsobjall">Datepicker Commands</header>
+		<p>The datepicker contains a series of commands that operate upon it, allowing these to
+			be customised or new commands added. Each command consists of an object with the
+			attributes shown below, and is added to the
+			<a href="#" onclick="jumpTo('settings', 'commands');"><code>commands</code></a> setting.
+			The <a href="#commandsstd">standard commands</a> are listed below.</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="text">text</td><td>string</td>
+			<td>The name of the <a href="#" onclick="jumpTo('l10n', 'l10nall');">localisation setting</a>
+				that provides the text value for this command.</td></tr>
+		<tr><td id="status">status</td><td>string</td>
+			<td>The name of the <a href="#" onclick="jumpTo('l10n', 'l10nall');">localisation setting</a>
+				that provides the tooltip (status) value for this command.</td></tr>
+		<tr><td id="keystroke">keystroke</td><td>object</td>
+			<td>The keystroke that triggers this command. The object's attributes are:<br><br>
+				<code>keyCode</code> (number) the numeric code for the keystroke;<br><br>
+				<code>ctrlKey</code> (boolean, optional) <code>true</code> if the <em>Ctrl</em>
+				key must be used in conjunction with the above <code>keyCode</code>;<br><br>
+				<code>altKey</code> (boolean, optional) <code>true</code> if the <em>Alt</em>
+				key must be used in conjunction with the above <code>keyCode</code>;<br><br>
+				<code>shiftKey</code> (boolean, optional) <code>true</code> if the <em>Shift</em>
+				key must be used in conjunction with the above <code>keyCode</code>.</td></tr>
+		<tr><td id="enabled">enabled</td><td>function</td>
+			<td>The function that indicates whether the command can be invoked at present.
+				It takes the current instance settings as a parameter,
+				while <code>this</code> is the associated target control.
+				It returns <code>true</code> if the command may be executed
+				or <code>false</code> if it may not.</td></tr>
+		<tr><td id="date">date</td><td>function</td>
+			<td>The function that provides a target date for this command. For example,
+				the target date for the <a href="#prev">previous</a> command is the first day
+				of the previous month. It takes the current instance settings as a parameter,
+				while <code>this</code> is the associated target control.
+				It returns a <a href="calendarsRef.html#cdate">CDate</a> if an appropriate
+				date can be determined or <code>null</code> if not.</td></tr>
+		<tr><td id="action">action</td><td>function</td>
+			<td>The function that implements the action for this command.
+				It takes the current instance settings as a parameter,
+				while <code>this</code> is the associated target control.</td></tr>
+		</tbody>
+		</table>
+		<h3 id="commandsstd">Standard Commands</h3>
+		<p>The standard commands defined by the datepicker are shown below
+			and are available as <code>$.calendars.picker.commands</code>.
+			These may be positioned in the datepicker by including the
+			'{link:<em>name</em>}' or '{button:<em>name</em>}' substitution points in the
+			<a href="#" onclick="jumpTo('renderers', 'renderersall');">renderer</a> values,
+			where <em>name</em> is the command name below.</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Text</th><th>Status</th><th>Keystroke</th>
+			<th>Enabled</th><th>Date</th><th>Action</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="prev">prev</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'prevText');">prevText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'prevStatus');">prevStatus</a></td><td>Page Up</td>
+			<td>If not at the <a href="#" onclick="jumpTo('settings', 'minDate');">minDate</a></td>
+			<td>First day of previous month</td>
+			<td>Move to the previous month (depending on the
+				<a href="#" onclick="jumpTo('settings', 'monthsToStep');">monthsToStep</a> setting)</td></tr>
+		<tr><td id="prevJump">prevJump</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'prevJumpText');">prevJumpText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'prevJumpStatus');">prevJumpStatus</a></td><td>Ctrl+Page Up</td>
+			<td>If not at the <a href="#" onclick="jumpTo('settings', 'minDate');">minDate</a></td>
+			<td>First day of 12 months ago</td>
+			<td>Move to 12 months ago (depending on the
+				<a href="#" onclick="jumpTo('settings', 'monthsToJump');">monthsToJump</a> setting)</td></tr>
+		<tr><td id="next">next</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'nextText');">nextText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'nextStatus');">nextStatus</a></td><td>Page Down</td>
+			<td>If not at the <a href="#" onclick="jumpTo('settings', 'maxDate');">maxDate</a></td>
+			<td>First day of next month</td>
+			<td>Move to the next month (depending on the
+				<a href="#" onclick="jumpTo('settings', 'monthsToStep');">monthsToStep</a> setting)</td></tr>
+		<tr><td id="nextJump">nextJump</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'nextJumpText');">nextJumpText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'nextJumpStatus');">nextJumpStatus</a></td><td>Ctrl+Page Down</td>
+			<td>If not at the <a href="#" onclick="jumpTo('settings', 'maxDate');">maxDate</a></td>
+			<td>First day of 12 months ahead</td>
+			<td>Move to 12 months ahead (depending on the
+				<a href="#" onclick="jumpTo('settings', 'monthsToJump');">monthsToJump</a> setting)</td></tr>
+		<tr><td id="current">current</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'currentText');">currentText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'currentStatus');">currentStatus</a></td><td>Ctrl+Home</td>
+			<td>If not outside <a href="#" onclick="jumpTo('settings', 'minDate');">minDate</a>
+				to <a href="#" onclick="jumpTo('settings', 'maxDate');">maxDate</a></td>
+			<td>First selected date or today</td>
+			<td>Move to the month of the first selected date, or today if no date has been selected</td></tr>
+		<tr><td id="today">today</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'todayText');">todayText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'todayStatus');">todayStatus</a></td><td>Ctrl+Home</td>
+			<td>If not outside <a href="#" onclick="jumpTo('settings', 'minDate');">minDate</a>
+				to <a href="#" onclick="jumpTo('settings', 'maxDate');">maxDate</a></td>
+			<td>Today</td><td>Move to today's month</td></tr>
+		<tr><td id="clear">clear</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'clearText');">clearText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'clearStatus');">clearStatus</a></td><td>Ctrl+End</td>
+			<td>Always</td>
+			<td>-</td><td>Clear any selected dates and close a popup datepicker</td></tr>
+		<tr><td id="close">close</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'closeText');">closeText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'closeStatus');">closeStatus</a></td><td>Esc</td>
+			<td>Always</td>
+			<td>-</td><td>Close a popup datepicker</td></tr>
+		<tr><td id="prevWeek">prevWeek</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'prevWeekText');">prevWeekText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'prevWeekStatus');">prevWeekStatus</a></td><td>Ctrl+Up</td>
+			<td>If not at the <a href="#" onclick="jumpTo('settings', 'minDate');">minDate</a></td>
+			<td>One week ago</td><td>Move to the previous week</td></tr>
+		<tr><td id="prevDay">prevDay</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'prevDayText');">prevDayText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'prevDayStatus');">prevDayStatus</a></td><td>Ctrl+Left</td>
+			<td>If not at the <a href="#" onclick="jumpTo('settings', 'minDate');">minDate</a></td>
+			<td>One day ago</td><td>Move to the previous day</td></tr>
+		<tr><td id="nextDay">nextDay</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'nextDayText');">nextDayText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'nextDayStatus');">nextDayStatus</a></td><td>Ctrl+Right</td>
+			<td>If not at the <a href="#" onclick="jumpTo('settings', 'maxDate');">maxDate</a></td>
+			<td>One day ahead</td><td>Move to the next day</td></tr>
+		<tr><td id="nextWeek">nextWeek</td>
+			<td><a href="#" onclick="jumpTo('l10n', 'nextWeekText');">nextWeekText</a></td>
+			<td><a href="#" onclick="jumpTo('l10n', 'nextWeekStatus');">nextWeekStatus</a></td><td>Ctrl+Down</td>
+			<td>If not at the <a href="#" onclick="jumpTo('settings', 'maxDate');">maxDate</a></td>
+			<td>One week ahead</td><td>Move to the next week</td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="l10n" class="feature">
+		<header id="l10nall">Datepicker Localisation</header>
+		<p>These settings comprise the <a href="#" onclick="jumpTo('functions', 'regional');">
+			regional settings</a> that may be localised by a
+			<a href="calendarsPicker.html#l10nPkgs">language package</a>.
+			They can be overridden for individual instances:</p>
+		<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({prevText: '&lt;'});</code></span></pre>
+		<p class="quickref ui-state-highlight">
+			<a href="#clearStatus">clearStatus</a> |
+			<a href="#clearText">clearText</a> |
+			<a href="#closeStatus">closeStatus</a> |
+			<a href="#closeText">closeText</a> |
+			<a href="#currentStatus">currentStatus</a> |
+			<a href="#currentText">currentText</a> |
+			<a href="#dayStatus">dayStatus</a> |
+			<a href="#defaultStatus">defaultStatus</a> |
+			<a href="#earlierText">earlierText</a> |
+			<a href="#isRTL">isRTL</a> |
+			<a href="#laterText">laterText</a> |
+			<a href="#monthStatus">monthStatus</a> |
+			<a href="#nextJumpStatus">nextJumpStatus</a> |
+			<a href="#nextJumpText">nextJumpText</a> |
+			<a href="#nextStatus">nextStatus</a> |
+			<a href="#nextText">nextText</a> |
+			<a href="#prevJumpStatus">prevJumpStatus</a> |
+			<a href="#prevJumpText">prevJumpText</a> |
+			<a href="#prevStatus">prevStatus</a> |
+			<a href="#prevText">prevText</a> |
+			<a href="#renderer">renderer</a> |
+			<a href="#todayStatus">todayStatus</a> |
+			<a href="#todayText">todayText</a> |
+			<a href="#weekStatus">weekStatus</a> |
+			<a href="#weekText">weekText</a> |
+			<a href="#yearStatus">yearStatus</a>
+		</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Default</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="renderer">renderer</td><td>object</td>
+			<td><a href="#" onclick="jumpTo('renderers', 'defaultRenderer');">$.calendars.picker. defaultRenderer</a></td>
+			<td>The renderer used to generate the datepicker.
+				You can use one of the predefined renderers, define your own,
+				or extend an existing one with minor changes.
+				See the <a href="#" onclick="jumpTo('renderers', 'renderersall');"><em>Renderers</em></a>
+				tab for more details.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	renderer: $.calendars.picker.weekOfYearRenderer});
+$(selector).calendarsPicker({
+	renderer: $.extend({}, $.calendars.picker.defaultRenderer,
+		{picker: $.calendars.picker.defaultRenderer.picker.
+			replace(/\{link:clear\}/, '{button:clear}').
+			replace(/\{link:close\}/, '{button:close}')})});</code></span></pre></td></tr>
+		<tr><td id="prevText">prevText</td><td>string</td><td>'&lt;Prev'</td>
+			<td>The display text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'prev');">prev</a> command.
+				Use the <a href="#" onclick="jumpTo('settings', 'commandsAsDateFormat');">
+				<code>commandsAsDateFormat</code></a> setting to format
+				the text to show date information.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	prevText: '&lt; M', commandsAsDateFormat: true});</code></span></pre></td></tr>
+		<tr><td id="prevStatus">prevStatus</td><td>string</td><td>'Show the previous month'</td>
+			<td>The tooltip text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'prev');">prev</a> command.</td></tr>
+		<tr><td id="prevJumpText">prevJumpText</td><td>string</td><td>'&lt;&lt;'</td>
+			<td>The display text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'prevJump');">prevJump</a> command.
+				Use the <a href="#" onclick="jumpTo('settings', 'commandsAsDateFormat');">
+				<code>commandsAsDateFormat</code></a> setting to format
+				the text to show date information.</td></tr>
+		<tr><td id="prevJumpStatus">prevJumpStatus</td><td>string</td><td>'Show the previous year'</td>
+			<td>The tooltip text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'prevJump');">prevJump</a> command.</td></tr>
+		<tr><td id="nextText">nextText</td><td>string</td><td>'Next>'</td>
+			<td>The display text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'next');">next</a> command.
+				Use the <a href="#" onclick="jumpTo('settings', 'commandsAsDateFormat');">
+				<code>commandsAsDateFormat</code></a> setting to format
+				the text to show date information.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	nextText: 'M >', commandsAsDateFormat: true});</code></span></pre></td></tr>
+		<tr><td id="nextStatus">nextStatus</td><td>string</td><td>'Show the next month'</td>
+			<td>The tooltip text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'next');">next</a> command.</td></tr>
+		<tr><td id="nextJumpText">nextJumpText</td><td>string</td><td>'&gt;&gt;'</td>
+			<td>The display text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'nextJump');">nextJump</a> command.
+				Use the <a href="#" onclick="jumpTo('settings', 'commandsAsDateFormat');">
+				<code>commandsAsDateFormat</code></a> setting to format
+				the text to show date information.</td></tr>
+		<tr><td id="nextJumpStatus">nextJumpStatus</td><td>string</td><td>'Show the next year'</td>
+			<td>The tooltip text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'nextJump');">nextJump</a> command.</td></tr>
+		<tr><td id="currentText">currentText</td><td>string</td><td>'Current'</td>
+			<td>The display text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'current');">current</a> command.
+				Use the <a href="#" onclick="jumpTo('settings', 'commandsAsDateFormat');">
+				<code>commandsAsDateFormat</code></a> setting to format
+				the text to show date information.</td></tr>
+		<tr><td id="currentStatus">currentStatus</td><td>string</td><td>'Show the current month'</td>
+			<td>The tooltip text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'current');">current</a> command.</td></tr>
+		<tr><td id="todayText">todayText</td><td>string</td><td>'Today'</td>
+			<td>The display text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'today');">today</a> command.
+				Use the <a href="#" onclick="jumpTo('settings', 'commandsAsDateFormat');">
+				<code>commandsAsDateFormat</code></a> setting to format
+				the text to show date information.</td></tr>
+		<tr><td id="todayStatus">todayStatus</td><td>string</td><td>'Show today\'s month'</td>
+			<td>The tooltip text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'today');">today</a> command.</td></tr>
+		<tr><td id="clearText">clearText</td><td>string</td><td>'Clear'</td>
+			<td>The display text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'clear');">clear</a> command.</td></tr>
+		<tr><td id="clearStatus">clearStatus</td><td>string</td><td>'Clear all the dates'</td>
+			<td>The tooltip text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'clear');">clear</a> command.</td></tr>
+		<tr><td id="closeText">closeText</td><td>string</td><td>'Close'</td>
+			<td>The display text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'close');">close</a> command.</td></tr>
+		<tr><td id="closeStatus">closeStatus</td><td>string</td><td>'Close the datepicker'</td>
+			<td>The tooltip text for the
+				<a href="#" onclick="jumpTo('commandsobj', 'close');">close</a> command.</td></tr>
+		<tr><td id="yearStatus">yearStatus</td><td>string</td><td>'Change the year'</td>
+			<td>The tooltip text for the year drop-down.</td></tr>
+		<tr><td id="earlierText">earlierText</td><td>string</td><td>'&amp;#160;&amp;#160;▲'</td>
+			<td>The display text for previous years in the year drop-down.<br><br>
+				<span class="version">Since 2.0.1</span>.</td></tr>
+		<tr><td id="laterText">laterText</td><td>string</td><td>'&amp;#160;&amp;#160;▼'</td>
+			<td>The display text for following years in the year drop-down.<br><br>
+				<span class="version">Since 2.0.1</span>.</td></tr>
+		<tr><td id="monthStatus">monthStatus</td><td>string</td><td>'Change the month'</td>
+			<td>The tooltip text for the month drop-down.</td></tr>
+		<tr><td id="weekText">weekText</td><td>string</td><td>'Wk'</td>
+			<td>The display text for the week of the year column header.</td></tr>
+		<tr><td id="weekStatus">weekStatus</td><td>string</td><td>'Week of the year'</td>
+			<td>The tooltip text for the week of the year column header.</td></tr>
+		<tr><td id="dayStatus">dayStatus</td><td>string</td><td>'Select DD, M d, yyyy'</td>
+			<td>The tooltip text for selectable days. The
+				<a href="calendarsRef.html#plus"><code>formatDate</code></a>
+				function is applied to the value before use.</td></tr>
+		<tr><td id="defaultStatus">defaultStatus</td><td>string</td><td>'Select a date'</td>
+			<td>The tooltip text for areas of the datepicker not covered by one of the other statuses above.</td></tr>
+		<tr><td id="isRTL">isRTL</td><td>boolean</td><td>false</td>
+			<td>Set to <code>true</code> to indicate that this language runs right-to-left.</td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="renderers" class="feature">
+		<header id="renderersall">Datepicker Renderers</header>
+		<p>Renderers allow you to use a templating mechanism to construct the datepicker
+			for display. They are assigned to a datepicker instance as the
+			<a href="#" onclick="jumpTo('l10n', 'renderer');"><code>renderer</code></a>
+			setting, one of the localisation settings.</p>
+		<p>You control the structure of the datepicker, the placement
+			of controls within it, and the CSS styling that is applied to it.
+			Substitution points of the form '{xxx}' indicate where standard content
+			should be inserted.</p>
+		<p>There is a default renderer defined in the <code>picker</code> module
+			and several alternative renderers in the <code>picker.ext</code> module.
+			These are all described <a href="#renderersstd">below</a>.</p>
+		<p>If you define your own custom render it must contain all of the attributes
+			described below. Alternatively you can tweak an existing renderer:</p>
+		<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({renderer: $.extend(
+	{}, $.calendars.picker.defaultRenderer,
+	{picker: $.calendars.picker.defaultRenderer.picker.
+		replace(/\{link:today\}/, '{link:current}')})});</code></span></pre>
+		<p class="quickref ui-state-highlight">
+			<a href="#commandButtonclass">commandButtonclass</a> |
+			<a href="#commandclass">commandclass</a> |
+			<a href="#commandLinkclass">commandLinkclass</a> |
+			<a href="#day">day</a> |
+			<a href="#dayHeader">dayHeader</a> |
+			<a href="#daySelector">daySelector</a> |
+			<a href="#defaultclass">defaultclass</a> |
+			<a href="#disabledclass">disabledclass</a> |
+			<a href="#highlightedclass">highlightedclass</a> |
+			<a href="#month">month</a> |
+			<a href="#monthSelector">monthSelector</a> |
+			<a href="#monthRow">monthRow</a> |
+			<a href="#multiclass">multiclass</a> |
+			<a href="#otherMonthclass">otherMonthclass</a> |
+			<a href="#picker">picker</a> |
+			<a href="#rtlclass">rtlclass</a> |
+			<a href="#selectedclass">selectedclass</a> |
+			<a href="#todayclass">todayclass</a> |
+			<a href="#week">week</a> |
+			<a href="#weekHeader">weekHeader</a> |
+			<a href="#weekendclass">weekendclass</a>
+		</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td></td>
+			<td></td>
+			<td>The following substitution points may be used anywhere within
+				the renderer structure:<br><br>
+				'{l10n:<em>name</em>}' to insert the localised value for <em>name</em>;<br><br>
+				'{link:<em>name</em>}' to insert a link for command <em>name</em>;<br><br>
+				'{button:<em>name</em>}' to insert a button for command <em>name</em>;<br><br>
+				'{popup:start}...{popup:end}' to delimit sections that only
+				appear in a popup datepicker;<br><br>
+				'{inline:start}...{inline:end}'  to delimit sections that only
+				appear in an inline datepicker.</td></tr>
+		<tr><td id="picker">picker</td>
+			<td>string</td>
+			<td>The overall structure of the datepicker. Use:<br><br>
+				'{months}' to insert the generated content for
+				all of the shown months.</td></tr>
+		<tr><td id="monthRow">monthRow</td>
+			<td>string</td>
+			<td>The structure of a single row of months in the datepicker. Use:<br><br>
+				'{months}' to insert the generated content for
+				all of the months in that row.</td></tr>
+		<tr><td id="month">month</td>
+			<td>string</td>
+			<td>The structure of a single month in the datepicker. Use:<br><br>
+				'{monthHeader:<em>dateFormat</em>}' to insert the header for that month
+				using the specified <a href="#" onclick="jumpTo('settings', 'dateFormat');">
+				<em>dateFormat</em></a>, which is optional and defaults to 'MM yyyy';<br><br>
+				'{weekHeader}' to insert the list of days in a week;<br><br>
+				'{weeks}' to insert the generated content for
+				all of the weeks in the month.</td></tr>
+		<tr><td id="weekHeader">weekHeader</td>
+			<td>string</td>
+			<td>The structure of a single list of days in a week. Use:<br><br>
+				'{days}' to insert the generated content for
+				all of the days in the week.</td></tr>
+		<tr><td id="dayHeader">dayHeader</td>
+			<td>string</td>
+			<td>The structure of a single day header. Use:<br><br>
+				'{day}' to insert the generated content for
+				the name of the day.</td></tr>
+		<tr><td id="week">week</td>
+			<td>string</td>
+			<td>The structure of a single week in a month. Use:<br><br>
+				'{days}' to insert the generated content for
+				all of the days in that week;<br><br>
+				'{weekOfYear}' to insert the generated content for
+				the week of the year number.</td></tr>
+		<tr><td id="day">day</td>
+			<td>string</td>
+			<td>The structure of a single day in a month. Use:<br><br>
+				'{day}' to insert the generated content for the number of the day.
+				Selectable days are enclosed in a link (<code>a</code>) while
+				non-selectable days are wrapped in a <code>span</code>.</td></tr>
+		<tr><td id="monthSelector">monthSelector</td>
+			<td>string</td>
+			<td>The jQuery selector, relative to a wrapper around
+				<a href="#picker"><code>picker</code></a>, for a single
+				<a href="#month"><code>month</code></a>.</td></tr>
+		<tr><td id="daySelector">daySelector</td>
+			<td>string</td>
+			<td>The jQuery selector, relative to a wrapper around
+				<a href="#picker"><code>picker</code></a>, for a single
+				<a href="#day"><code>day</code></a>.</td></tr>
+		<tr><td id="rtlclass">rtlclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to a datepicker using a right-to-left language.</td></tr>
+		<tr><td id="multiclass">multiclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to a datepicker showing more than one month.</td></tr>
+		<tr><td id="defaultclass">defaultclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to selectable days.</td></tr>
+		<tr><td id="selectedclass">selectedclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to selected days.</td></tr>
+		<tr><td id="highlightedclass">highlightedclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to the cursor day.</td></tr>
+		<tr><td id="todayclass">todayclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to today.</td></tr>
+		<tr><td id="otherMonthclass">otherMonthclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to days from other months.</td></tr>
+		<tr><td id="weekendclass">weekendclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to days on weekends.</td></tr>
+		<tr><td id="commandclass">commandclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to command links or buttons.
+				It is also used as a prefix (followed by '-') for an
+				additional class based on the command name.</td></tr>
+		<tr><td id="commandButtonclass">commandButtonclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to command buttons only.</td></tr>
+		<tr><td id="commandLinkclass">commandLinkclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to command links only.</td></tr>
+		<tr><td id="disabledclass">disabledclass</td>
+			<td>string</td>
+			<td>Any CSS class(es) to apply to disabled command links or buttons.</td></tr>
+		</tbody>
+		</table>
+		<h3 id="renderersstd">Standard Renderers</h3>
+		<p>The standard renderers are listed below. Each is accessible within
+			the <code>$.calendars.picker</code> object via the given name.</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Module</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="defaultRenderer">defaultRenderer</td><td>picker</td>
+			<td>The standard renderer. Match it with the standard datepicker CSS.</td></tr>
+		<tr><td id="weekOfYearRenderer">weekOfYearRenderer</td><td>picker.ext</td>
+			<td>The standard renderer enhanced to include
+				a column for week of the year.
+				Match it with the standard datepicker CSS.</td></tr>
+		<tr><td id="themeRollerRenderer">themeRollerRenderer</td><td>picker.ext</td>
+			<td>A renderer using a similar structure to the default one,
+				but with the standard <a href="http://jqueryui.com/themeroller">
+				ThemeRoller</a> classes for styling.
+				Match it with one of the ThemeRoller CSS themes.</td></tr>
+		<tr><td id="themeRollerWeekOfYearRenderer">themeRollerWeekOfYearRenderer</td><td>picker.ext</td>
+			<td>The ThemeRoller renderer enhanced to include
+				a column for week of the year.
+				Match it with one of the ThemeRoller CSS themes.</td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="functions" class="feature">
+		<header id="globals">Datepicker Globals</header>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Default</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="commandsG">commands</td><td>object[]</td>
+			<td>See <a href="#" onclick="jumpTo('commandsobj', 'commandsall');"><em>Commands</em></a> tab</td>
+			<td>The set of commands for the datepicker and the default value for the
+				<a href="#" onclick="jumpTo('settings', 'commands');"><code>commands</code></a> setting.
+				Entries are indexed by the command name.
+				Each entry is an object with the properties shown on the
+				<a href="#" onclick="jumpTo('commandsobj', 'commandsall');"><em>Commands</em></a> tab.<br><br>
+				You could, for example, change the keystrokes assigned to certain commands:<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var altCommands = $.extend(true, {}, $.calendars.picker.commands);
+altCommands.prevJump.keystroke = {keyCode: 33, altKey: true}; // Alt+PageUp
+altCommands.nextJump.keystroke = {keyCode: 34, altKey: true}; // Alt+PageDown
+
+$('#keystrokePicker').calendarsPicker({commands: altCommands,
+	showTrigger: '&lt;img src="img/calendar.gif" alt="Popup" class="trigger">'});</code></span></pre></td></tr>
+		<tr><td id="regional">regional</td><td>object[]</td>
+			<td>See <a href="#" onclick="jumpTo('l10n', 'l10nall');"><em>Localisation</em></a> tab</td>
+			<td>The set of regional settings for the datepicker fields. Entries are indexed
+				by the country/region code with '' providing the default (English) settings.
+				Each entry is an object with the properties shown on the
+				<a href="#" onclick="jumpTo('l10n', 'l10nall');"><em>Localisation</em></a> tab.
+				Language packages load new entries into this array and 
+				automatically apply them as global defaults.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="html">&lt;script type="text/javascript"
+	src="jquery.calendars.picker-fr.js"&gt;&lt;/script&gt;</code></span></pre><br>
+				If necessary, you can then revert to the default language settings with<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$.calendars.picker.setDefaults($.calendars.picker.regional['']);</code></span></pre><br>
+				and apply the language settings to individual fields with code like
+				the following, including localising the underlying calendar.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$('#frenchCalendar').calendarsPicker($.extend(
+	{calendar: $.calendars.instance('gregorian', 'fr')},
+	$.calendars.picker.regional['fr']));</code></span></pre><br>
+				Check out the list of available <a href="calendarsPicker.html#l10nPkgs">
+				localisation packages</a>.</td></tr>
+		</tbody>
+		</table>
+		<header>Functions and Commands</header>
+		<p class="quickref ui-state-highlight">
+			<a href="#changeDay">changeDay</a> |
+			<a href="#changeMonthC">changeMonth</a> |
+			<a href="#clearC">clear</a> |
+			<a href="#destroy">destroy</a> |
+			<a href="#disable">disable</a> |
+			<a href="#enable">enable</a> |
+			<a href="#errorPlacement">errorPlacement</a> |
+			<a href="#getDate">getDate</a> |
+			<a href="#hide">hide</a> |
+			<a href="#isDisabled">isDisabled</a> |
+			<a href="#isSelectable">isSelectable</a> |
+			<a href="#multipleEvents">multipleEvents</a> |
+			<a href="#optionget">option (get)</a> |
+			<a href="#optionset">option (set)</a> |
+			<a href="#performAction">performAction</a> |
+			<a href="#retrieveDate">retrieveDate</a> |
+			<a href="#selectDate">selectDate</a> |
+			<a href="#setDate">setDate</a> |
+			<a href="#setDefaults">setDefaults</a> |
+			<a href="#show">show</a> |
+			<a href="#showMonth">showMonth</a>
+		</p>
+		<table>
+		<thead>
+		<tr><th>Signature</th><th>Returns</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="setDefaults">$.calendars.picker.setDefaults(settings)</td><td>CalendarsPicker object</td>
+			<td>Update the default <a href="#" onclick="jumpTo('settings', 'settingsall');">
+				instance settings</a> to use with all datepicker instances.<br><br>
+				<code>settings</code> (object) is the collection of new settings.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$.calendars.picker.setDefaults({dateFormat: 'yyyy-mm-dd'});</code></span></pre></td></tr>
+		<tr><td id="optionset">$(selector).calendarsPicker('option', settings)</td><td>jQuery object</td>
+			<td>Update the <a href="#" onclick="jumpTo('settings', 'settingsall');">instance settings</a>
+				for the datepicker instance(s) attached to the given field(s).<br><br>
+				<code>settings</code> (object) is the collection of new settings.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker('option', {firstDay: 1});</code></span></pre></td></tr>
+		<tr><td>$(selector).calendarsPicker('option', name, value)</td><td>jQuery object</td>
+			<td>Update a <a href="#" onclick="jumpTo('settings', 'settingsall');">setting</a>
+				for the datepicker instance(s) attached to the given field(s).<br><br>
+				<code>name</code> (string) is the name of the setting;<br><br>
+				<code>value</code> (any) is the new value, or <code>null</code> to reset to the default.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker('option', 'firstDay', 1);</code></span></pre></td></tr>
+		<tr><td id="optionget">$(selector).calendarsPicker('option', name)</td><td>object or any</td>
+			<td>Retrieve one or all of the current
+				<a href="#" onclick="jumpTo('settings', 'settingsall');">settings</a>
+				for the first datepicker instance attached to the given field(s).<br><br>
+				<code>name</code> (string, optional) the name of the setting to retrieve;
+				omit for all settings.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var settings = $(selector).calendarsPicker('option');
+var firstDay = $(selector).calendarsPicker('option', 'firstDay');</code></span></pre><br>
+				<span class="version">Since 1.2.0</span> - previously you used the 'options' command.</td></tr>
+		<tr><td id="destroy">$(selector).calendarsPicker('destroy')</td><td>jQuery object</td>
+			<td>Remove the datepicker functionality from the given field(s).</td></tr>
+		<tr><td id="enable">$(selector).calendarsPicker('enable')</td><td>jQuery object</td>
+			<td>Enable the datepicker for the given field(s) as well as the field itself.</td></tr>
+		<tr><td id="disable">$(selector).calendarsPicker('disable')</td><td>jQuery object</td>
+			<td>Disable the datepicker for the given field(s) as well as the field itself.</td></tr>
+		<tr><td id="isDisabled">$(selector).calendarsPicker('isDisabled')</td><td>boolean</td>
+			<td>Determine whether the datepicker functionality has been disabled
+				for the first of the given field(s).</td></tr>
+		<tr><td id="show">$(selector).calendarsPicker('show')</td><td>jQuery object</td>
+			<td>Pop up the datepicker for the given field.</td></tr>
+		<tr><td id="hide">$(selector).calendarsPicker('hide')</td><td>jQuery object</td>
+			<td>Hide the datepicker for the given field.</td></tr>
+		<tr><td id="getDate">$(selector).calendarsPicker('getDate')</td>
+			<td><a href="calendarsRef.html#cdate">CDate</a>[]</td>
+			<td>Retrieve the currently selected date(s) from the datepicker for the first given field.
+				An empty array is returned if no dates are selected.
+				A <a href="#" onclick="jumpTo('settings', 'rangeSelect');">date range</a>
+				datepicker always returns two dates, being the start and end of the range.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var dates = $(selector).calendarsPicker('getDate');</code></span></pre></td></tr>
+		<tr><td id="setDate">$(selector).calendarsPicker('setDate', dates)</td><td>jQuery object</td>
+			<td>Set the currently selected dates for the given field(s).<br><br>
+				<code>dates</code> (<a href="calendarsRef.html#cdate">CDate</a>) is the new date,
+				or (string) the date in the current
+				<a href="#" onclick="jumpTo('settings', 'dateFormat');">date format</a>,
+				or (number) the number of days from today, or (string) a series of 
+				amounts and periods from today,
+				or ([]) a collection of any of these formats. Provide an empty array
+				to clear all dates or use the <a href="#clearC">clear</a> command.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker('setDate', calendar.newDate(2009, 1, 26));
+$(selector).calendarsPicker('setDate', '01/26/2009');
+$(selector).calendarsPicker('setDate', '+1m'); // Today + 1 month
+$(selector).calendarsPicker('setDate', 7); // Today + 7 days
+$(selector).calendarsPicker('setDate',
+	[calendar.newDate(2009, 1, 26), '+1m', 7]);</code></span></pre></td></tr>
+		<tr><td>$(selector).calendarsPicker('setDate', startDate, endDate)</td><td>jQuery object</td>
+			<td>Set the currently selected <a href="#" onclick="jumpTo('settings', 'rangeSelect');">
+				date range</a> for the given field(s).<br><br>
+				<code>startDate</code> (see above)
+				is the starting date for the date range.<br><br>
+				<code>endDate</code> (see above) is the ending date for the date range.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker('setDate',
+	calendar.newDate(2009, 1, 26), calendar.newDate(2010, 1, 26));
+$(selector).calendarsPicker('setDate', 7, '+1m');</code></span></pre></td></tr>
+		<tr><td id="clearC">$(selector).calendarsPicker('clear')</td><td>jQuery object</td>
+			<td>Clear the currently selected dates for the given field(s).</td></tr>
+		<tr><td id="isSelectable">$(selector).calendarsPicker('isSelectable', date)</td><td>boolean</td>
+			<td>Determine whether a date is selectable for this datepicker.
+				It checks against any <a href="#" onclick="jumpTo('settings', 'minDate');">
+				<code>minDate</code></a>, <a href="#" onclick="jumpTo('settings', 'maxDate');">
+				<code>maxDate</code></a>, and/or <a href="#" onclick="jumpTo('settings', 'onDate');">
+				<code>onDate</code></a> options that have been set.<br><br>
+				<code>date</code> (<a href="calendarsRef.html#cdate">CDate</a> or string or number,
+				optional) the date to check. This may be specified as an actual date (CDate),
+				as a date string in the current <a href="#" onclick="jumpTo('settings', 'dateFormat');">
+				<code>dateFormat</code></a>, as a number of days relative to today,
+				or as a string of offsets and periods relative to today.
+				For the last use 'y' for years, 'm' for months, 'w' for weeks, or 'd' for days.
+				Multiple offsets may be combined in the one string.
+				Omit to use the currently selected date, or today if none selected.<br><br>
+				<span class="version">Since 1.1.2</span>.</td></tr>
+		<tr><td id="performAction">$(selector).calendarsPicker('performAction', name)</td><td>jQuery object</td>
+			<td>Execute a named <a href="#" onclick="jumpTo('commandsobj', 'commandsobjall');">
+				command</a> for a datepicker.<br><br>
+				<code>name</code> (string) the name of the command.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker('performAction', 'today');</code></span></pre></td></tr>
+		<tr><td id="showMonth">$(selector).calendarsPicker('showMonth', year, month, day)</td><td>jQuery object</td>
+			<td>Change the displayed month to a specified month and year.
+				If no month and year are given, today's month is shown.<br><br>
+				<code>year</code> (number, optional) the year to show.<br><br>
+				<code>month</code> (number, optional) the month to show.<br><br>
+				<code>day</code> (number, optional) the day to highlight initially -
+				if omitted it defaults to the previously highlighted day.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker('showMonth', 2009, 1);</code></span></pre></td></tr>
+		<tr><td id="changeMonthC">$(selector).calendarsPicker('changeMonth', offset)</td><td>jQuery object</td>
+			<td>Change the displayed month by moving a number of months ahead or behind.<br><br>
+				<code>offset</code> (number) the number of months to move.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker('changeMonth', -6);</code></span></pre></td></tr>
+		<tr><td id="changeDay">$(selector).calendarsPicker('changeDay', offset)</td><td>jQuery object</td>
+			<td>Change the cursor day by moving a number of days ahead or behind.<br><br>
+				<code>offset</code> (number) the number of days to move.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker('changeDay', -14);</code></span></pre></td></tr>
+		<tr><td id="retrieveDate">$(selector).calendarsPicker('retrieveDate', element)</td>
+			<td><a href="calendarsRef.html#cdate">CDate</a></td>
+			<td>Retrieve the date associated with a particular day element
+				(<code>a</code> or <code>span</code>) within a datepicker.<br><br>
+				<code>element</code> (element) the day element to extract the date from.</td></tr>
+		<tr><td id="selectDate">$(selector).calendarsPicker('selectDate', element)</td><td>jQuery object</td>
+			<td>Select the date associated with a particular day element
+				(<code>a</code> or <code>span</code>) within a datepicker.<br><br>
+				<code>element</code> (element) the day element to extract the date from.</td></tr>
+		<tr><td id="multipleEvents">$.calendars.picker.multipleEvents(fns)</td><td>function</td>
+			<td>Allow multiple event handlers to be triggered by a single callback.
+				The handlers are called in the order specified.<br><br>
+				<code>fns</code> (function...) is the collection of event handlers.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onShow: $.calendars.picker.multipleEvents(
+		$.calendars.picker.changeFirstDay, $.calendars.picker.showStatus)});</code></span></pre></td></tr>
+		<tr><td id="errorPlacement">$.calendars.picker.errorPlacement(error, element)</td><td>-</td>
+			<td>Correctly places a validation error message after any trigger button or icon
+				(or before it if using a right-to-left localisation). 
+				It should be assigned as the <code>errorPlacement</code> setting for the
+				<a href="#" onclick="jumpTo('validation', 'validate')"><code>validate</code></a> call.
+				Only available with the validation extension.</td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="extend" class="feature">
+		<header id="extendall">Datepicker Extensions</header>
+		<p>The functions shown below are available through the <code>picker.ext</code> module.
+			There are also several <a href="#" onclick="jumpTo('renderers', 'renderersstd');">
+			renderers</a> available from this module.</p>
+		<p class="quickref ui-state-highlight">
+			<a href="#changeFirstDay">changeFirstDay</a> |
+			<a href="#highlightWeek">highlightWeek</a> |
+			<a href="#hoverCallback">hoverCallback</a> |
+			<a href="#monthNavigation">monthNavigation</a> |
+			<a href="#monthOnly">monthOnly</a> |
+			<a href="#noWeekends">noWeekends</a> |
+			<a href="#selectMonth">selectMonth</a> |
+			<a href="#selectWeek">selectWeek</a> |
+			<a href="#showStatus">showStatus</a>
+		</p>
+		<table>
+		<thead>
+		<tr><th>Signature</th><th>Returns</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="noWeekends">$.calendars.picker.noWeekends</td><td>object</td>
+			<td>Attach this function to the <a href="#" onclick="jumpTo('settings', 'onDate');">
+				onDate</a> setting to not allow the selection of days on weekends.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onDate: $.calendars.picker.noWeekends});</code></span></pre></td></tr>
+		<tr><td id="changeFirstDay">$.calendars.picker.changeFirstDay</td><td>-</td>
+			<td>Attach this function to the <a href="#" onclick="jumpTo('settings', 'onShow');">
+				onShow</a> setting to allow the first day of the week to be changed
+				by clicking on the day column headers.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onShow: $.calendars.picker.changeFirstDay});</code></span></pre></td></tr>
+		<tr><td id="hoverCallback">$.calendars.picker.hoverCallback(onHover)</td><td>-</td>
+			<td>Attach this function to the <a href="#" onclick="jumpTo('settings', 'onShow');">
+				onShow</a> setting to provide a callback when hovering over a day.<br><br>
+				<code>onHover</code> (function) is the callback function that receives the 
+				current date (<a href="calendarsRef.html#cdate">CDate</a>) and a flag (boolean)
+				indicating selectability as parameters on entry, and no parameters on exit,
+				while <code>this</code> refers to the target input or division/span.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onShow: $.calendars.picker.hoverCallback(showHover)});
+	
+function showHover(date, selectable) {
+	$('#hoverOutput').text(
+		(selectable ? date.formatDate() : null) || 'nothing');
+}</code></span></pre></td></tr>
+		<tr><td id="highlightWeek">$.calendars.picker.highlightWeek</td><td>-</td>
+			<td>Attach this function to the <a href="#" onclick="jumpTo('settings', 'onShow');">
+				onShow</a> setting to highlight the entire week when hovering over a day.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onShow: $.calendars.picker.highlightWeek});</code></span></pre></td></tr>
+		<tr><td id="monthOnly">$.calendars.picker.monthOnly</td><td>-</td>
+			<td>Attach this function to the <a href="#" onclick="jumpTo('settings', 'onShow');">
+				onShow</a> setting to only allow selection of a month as a whole.
+				The date returned is the first day of the chosen month.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onShow: $.calendars.picker.monthOnly});</code></span></pre><br><br>
+				<span class="version">Since 1.0.1</span>.</td></tr>
+		<tr><td id="showStatus">$.calendars.picker.showStatus</td><td>-</td>
+			<td>Attach this function to the <a href="#" onclick="jumpTo('settings', 'onShow');">
+				onShow</a> setting to show a status bar beneath the month(s)
+				and to redirect tooltip information to that area.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+	onShow: $.calendars.picker.showStatus});</code></span></pre></td></tr>
+		<tr><td id="monthNavigation">$.calendars.picker.monthNavigation</td><td>-</td>
+			<td>Attach this function to the <a href="#" onclick="jumpTo('settings', 'onShow');">
+				onShow</a> setting to include links for each month above the month header
+				to simplify navigation within a year.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({
+    onShow: $.datepick.monthNavigation});</code></span></pre><br>
+				<span class="version">Since 1.1.1</span>.</td></tr>
+		<tr><td id="selectWeek">$.calendars.picker.selectWeek</td><td>-</td>
+			<td>Attach this function to the <a href="#" onclick="jumpTo('settings', 'onShow');">
+				onShow</a> setting to select the entire week when the associated
+				week of the year entry is selected. You must use the
+				<a href="#" onclick="jumpTo('renderers', 'weekOfYearRenderer');">
+				<code>weekOfYearRenderer</code></a> for this to work,
+				and the datepicker should be set as a
+				<a href="#" onclick="jumpTo('settings', 'rangeSelect');">date range</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({rangeSelect: true,
+	renderer: $.calendars.picker.weekOfYearRenderer,
+	onShow: $.calendars.picker.selectWeek});</code></span></pre></td></tr>
+		<tr><td id="selectMonth">$.calendars.picker.selectMonth</td><td>-</td>
+			<td>Attach this function to the <a href="#" onclick="jumpTo('settings', 'onShow');">
+				onShow</a> setting to select the entire month when the
+				week of the year column header is selected. You must use the
+				<a href="#" onclick="jumpTo('renderers', 'weekOfYearRenderer');">
+				<code>weekOfYearRenderer</code></a> for this to work,
+				and the datepicker should be set as a
+				<a href="#" onclick="jumpTo('settings', 'rangeSelect');">date range</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$(selector).calendarsPicker({rangeSelect: true,
+	renderer: $.calendars.picker.weekOfYearRenderer,
+	onShow: $.calendars.picker.selectMonth});</code></span></pre></td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="validation" class="feature">
+		<header id="validate">Validation Integration</header>
+		<p>The datepicker can be integrated with Jörn Zaefferer's
+			<a href="http://plugins.jquery.com/project/validate">validation plugin</a> by
+			adding the <code>jquery.calendars.validation.js</code> extension to your page.</p>
+		<p><span class="version">Since 1.1.3</span> - combined validation rules into <code>cpDate</code>;
+			previously there were also <code>cpMinDate</code>, <code>cpMaxDate</code>,
+			and <code>cpMinMaxDate</code>, added <code>cpCompareDate</code> rule.</p>
+		<p>One new validation is defined (<code>cpDate</code>) for basic date validation.
+			It automatically handles date ranges (including checking that the start date
+			is not after the end date) and multiple dates,
+			checks against any <code>minDate</code> and/or <code>maxDate</code> settings,
+			and calls any <code>onDate</code> callback to verify selectability.
+			It may be added as a class to your datepicker fields, or may
+			be defined in the <code>validate</code> settings.</p>
+		<p>A second validation rule (<code>cpCompareDate</code>) lets you compare one date
+			field with another date. This rule must be specified in the <code>rules</code>
+			section of the <code>validate</code> call and be provided with a parameter to
+			indicate the required comparison and the target date. Specify the comparison
+			with any of the following: 'equal', 'eq', 'same', 'notEqual', 'ne', 'notSame',
+			'lessThan', 'lt', 'before', 'greaterThan', 'gt', 'after', 'notLessThan', 'ge',
+			'notBefore', 'notGreaterThan', 'le', 'notAfter'. Specify the target date as either
+			the actual date (as a string in the current date format or a <code>CDate</code>
+			object), as 'today', or as another datepicker field (as a jQuery selector,
+			jQuery collection, or DOM element). The two parameters can be combined into one
+			string (if the latter is a string), be given as items in an array, or be given
+			as an object with a single attribute named for the comparison and with a value
+			of the target.</p>
+		<pre class="showCode"><span class="ui-state-active"><code class="js">$('form').validate({
+	rules: {
+		field1: {
+			cpCompareDate: 'before 12/25/2010'
+		},
+		field2: {
+			cpCompareDate: ['ne', $.calendars.instance().newDate(2010, 12, 25)]
+		},
+		field3: {
+			cpCompareDate: {notLessThan: '#otherField'}
+		}
+	});</code></span></pre>
+		<p>There is also a custom <code>errorPlacement</code> function defined so that
+			the error messages appear after any trigger button or icon
+			(or before it if using a right-to-left localisation).</p>
+		<p>You can customise the error messages via the datepicker defaults:
+			<code>$.calendars.picker.<a href="#" onclick="jumpTo('global', 'setDefaults')">setDefaults</a>({...})</code>.
+			The message fields are <code>validateDate</code>, <code>validateDateMin</code>,
+			<code>validateDateMax</code>, <code>validateDateMinMax</code>,
+			<code>validateDateCompare</code>, <code>validateDateToday</code>, <code>validateDateOther</code>,
+			<code>validateDateEQ</code>, <code>validateDateNE</code>, <code>validateDateLT</code>,
+			<code>validateDateGT</code>, <code>validateDateLE</code>, and <code>validateDateGE</code>.
+			Within these messages '{<em>n</em>}' mark substitution points.</p>
+		<p>The sample page below show how the validations would be used.
+			It defines three datepicker fields: one plain, one a date range, and
+			one with a maximum limit. The validations are applied to the first and
+			last by including the <code>cpDate</code> class on the fields.
+			For the middle one the validation is defined in the <code>validate</code>
+			call on the form, along with a <code>required</code> setting.
+			Also note that a custom message is defined for the date range field.</p>
+		<pre class="showCode"><span class="ui-state-active"><code class="html">&lt;head&gt;
+&lt;style type="text/css"&gt;@import "jquery.calendars.picker.css";&lt;/style&gt;
+&lt;script type="text/javascript" src="js/jquery-1.4.4.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/jquery.validate.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/jquery.calendars.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/jquery.calendars.plus.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/jquery.calendars.picker.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/jquery.calendars.validation.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+$(function() {
+	$('#favDate').calendarsPicker();
+	$('#holidayDates').calendarsPicker({rangeSelect: true});
+	$('#birthDate').calendarsPicker({maxDate: 0});
+
+	$('#validateForm').validate({
+		errorPlacement: $.calendars.picker.errorPlacement,
+		rules: {
+			holidayDates: {
+				required: true,
+				cpDate: true
+			}
+		},
+		messages: {
+			holidayDates: 'Please enter a valid date range'
+		}
+	});
+});
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form id="validateForm"&gt;
+		&lt;p&gt;Favourite date: &lt;input type="text" id="favDate"
+			name="favDate" size="10" class="cpDate"/&gt;&lt;/p&gt;
+		&lt;p&gt;Period of last holiday: &lt;input type="text" id="holidayDates"
+			name="holidayDates" size="24"/&gt;&lt;/p&gt;
+		&lt;p&gt;Date of birth: &lt;input type="text" id="birthDate"
+			name="birthDate" size="10" class="cpDate"/&gt;&lt;/p&gt;
+	&lt;/form&gt;
+&lt;/body&gt;</code></span></pre>
+	</article>
+</section>
+<!-- Ad mid -->
+<ins class="adsbygoogle mid" style="width:728px;height:90px" data-ad-client="ca-pub-1555315548255079" data-ad-slot="5806135743"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<footer>
+<p>Contact <a href="index.html">Keith Wood</a> at kbwood{at}iinet.com.au 
+	with comments or suggestions.</p>
+<hr>
+<p>
+	&copy; 2009-16, Keith Wood
+	<a id="valid" href="http://validator.w3.org/check?uri=http://keith-wood.name/calendarsPickerRef.html">
+		<img src="img/html5-small.png" alt="Valid HTML 5"></a>
+</p>
+</footer>
+</body>
+</html>

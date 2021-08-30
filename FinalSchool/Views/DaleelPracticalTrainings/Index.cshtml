@@ -1,0 +1,69 @@
+﻿@model IEnumerable<FinalSchool.Models.DaleelPracticalTraining>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specialty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YearOfTraining)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TraningDepartmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TheOverallGoalIsFromTraning)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Practical)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specialty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.YearOfTraining)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TraningDepartmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TheOverallGoalIsFromTraning)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Practical)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

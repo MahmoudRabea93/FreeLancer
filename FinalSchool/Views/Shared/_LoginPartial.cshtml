@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNet.Identity
+<style>
+    .navbar-inverse {
+        background-color: #0a58a2;
+    }
+
+    .navbar-right {
+        color: white;
+    }
+
+    element.style {
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: white;
+        font-weight:bold;
+    }
+    .navbar-inverse .navbar-nav > li > a:hover {
+        color: gray;
+    }
+    .navbar-inverse .navbar-brand {
+        color: white;
+        font-weight: bold;
+    }
+    .navbar-inverse .navbar-brand:hover {
+        color: gray;
+    }
+</style>
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+<ul class="nav navbar-nav navbar-right">
+    @*@if (User.IsInRole("Admin") || User.IsInRole("Manger"))
+    {
+        <li>
+            <a href="/UserRolesVM/Index">
+                قائمة المستخدمين
+            </a>
+        </li>
+    }
+        <li>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("اضافة مستخدم", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            }
+        </li>*@
+        <li>
+            @Html.ActionLink("مرحبا  " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+
+
+        </li>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li>
+                <img src="~/Images/user.png" width="35" height="35" style="margin-bottom: -30px;" />
+            </li>
+        }
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">خروج</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @if (User.IsInRole("Admin"))
+        {
+            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        }
+        <li>@Html.ActionLink("تسجيل دخول", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

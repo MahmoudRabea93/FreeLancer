@@ -1,0 +1,190 @@
+﻿@model IEnumerable<FinalSchool.Models.Rating>
+
+@{
+    ViewBag.Title = "Index";
+}
+@*<style>
+    .rotated {
+        writing-mode: tb-rl;
+        transform: rotate(270deg);
+    }
+</style>*@
+<h2>Index</h2>
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="/Ratings/Create" class="btn btn-primary">أضافــة</a>
+    }
+</p>
+
+<table class="table table-hover table-bordered ">
+
+    <thead style="background-color:#28a745;text-align:center">
+
+        <tr style="color: aliceblue; font-size: larger;text-align:center">
+            <th></th>
+            <th scope="row" style="text-align:center;font-size:larger">
+                الاسبوع
+            </th>
+            <th> 1 </th>
+            <th> 2 </th>
+            <th> 3 </th>
+            <th> 4 </th>
+            <th> 5 </th>
+            <th> 6 </th>
+            <th> 7 </th>
+            <th> 8 </th>
+            <th> 9 </th>
+            <th> 10 </th>
+            <th> 11 </th>
+            <th> 12 </th>
+            <th> 13 </th>
+            <th> 14 </th>
+            <th> 15 </th>
+            <th> 16 </th>
+            <th> 17 </th>
+            <th> 18 </th>
+        </tr>
+    </thead>
+
+
+    <tr>
+        <th  scope="row" style="text-align:center;font-size:larger;" rowspan="2">
+            الجزء النظري
+
+        </th>
+        <td><b>طريقة التقييم</b></td>
+        @foreach (var item in Model.Where(s => s.Practical == false))
+        {
+            if (int.Parse(item.CellCount.ToString()) == 6 || int.Parse(item.CellCount.ToString()) == 11 || int.Parse(item.CellCount.ToString()) == 12 || int.Parse(item.CellCount.ToString()) == 13 || int.Parse(item.CellCount.ToString()) == 14)
+            {
+                <td colspan="2" style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.RatingType)
+                </td>
+            }
+            else
+            {
+                <td  scope="row">
+                    @Html.DisplayFor(modelItem => item.RatingType)
+                </td>
+            }
+        }
+    </tr>
+
+    <tr>
+
+        <td> <b>الدرجــــة</b></td>
+        @foreach (var item in Model.Where(s => s.Practical == false))
+        {
+            if (int.Parse(item.CellCount.ToString()) == 6 || int.Parse(item.CellCount.ToString()) == 11 || int.Parse(item.CellCount.ToString()) == 12 || int.Parse(item.CellCount.ToString()) == 13 || int.Parse(item.CellCount.ToString()) == 14)
+            {
+                <td colspan="2" style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.DegreeRating)
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.DegreeRating)
+                </td>
+            }
+        }
+    </tr>
+    @if (User.IsInRole("Admin"))
+    {
+        <tr>
+            <td></td>
+            <td></td>
+            @foreach (var item in Model.Where(s => s.Practical == false))
+            {
+                if (int.Parse(item.CellCount.ToString()) == 6 || int.Parse(item.CellCount.ToString()) == 11 || int.Parse(item.CellCount.ToString()) == 12 || int.Parse(item.CellCount.ToString()) == 13 || int.Parse(item.CellCount.ToString()) == 14)
+                {
+                    <td colspan="2" style="text-align:center">
+                        <a href="/Ratings/Edit?id=@item.ID" class="btn btn-success">تعديل</a>
+                        <a href="/Ratings/Delete?id=@item.ID" class="btn btn-danger">حذف</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a href="/Ratings/Edit?id=@item.ID" class="btn btn-success">تعديل</a>
+                        <a href="/Ratings/Delete?id=@item.ID" class="btn btn-danger">حذف</a>
+
+                    </td>
+                }
+            }
+        </tr>
+    }
+    @*----------------------------------------------*@
+    
+        <tr>
+            <th  scope="row" style="text-align:center;font-size:larger;" rowspan="2">
+                <b>
+                    الجزء العملي
+                </b>
+            </th>
+            <td><b>طريقة التقييم</b></td>
+            @foreach (var item in Model.Where(s => s.Practical == true))
+            {
+                if (int.Parse(item.CellCount.ToString()) == 1 || int.Parse(item.CellCount.ToString()) == 2 || int.Parse(item.CellCount.ToString()) == 3)
+                {
+                    <td colspan="5" style="text-align:center"  scope="row">
+                        @Html.DisplayFor(modelItem => item.RatingType)
+                    </td>
+                }
+                else
+                {
+                    <td  scope="row">
+                        @Html.DisplayFor(modelItem => item.RatingType)
+                    </td>
+                }
+            }
+        </tr>
+    <tr>
+
+        <td> <b>الدرجـــة</b></td>
+        @foreach (var item in Model.Where(s => s.Practical == true))
+        {
+            if (int.Parse(item.CellCount.ToString()) == 1 || int.Parse(item.CellCount.ToString()) == 2 || int.Parse(item.CellCount.ToString()) == 3)
+            {
+                <td colspan="5" style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.DegreeRating)
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.DegreeRating)
+                </td>
+            }
+        }
+    </tr>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <tr>
+            <td></td>
+            <td></td>
+            @foreach (var item in Model.Where(s => s.Practical == true))
+            {
+                if (int.Parse(item.CellCount.ToString()) == 1 || int.Parse(item.CellCount.ToString()) == 2 || int.Parse(item.CellCount.ToString()) == 3)
+                {
+                    <td colspan="5" style="text-align:center">
+                        <a href="/Ratings/Edit?id=@item.ID" class="btn btn-success">تعديل</a>
+                        <a href="/Ratings/Delete?id=@item.ID" class="btn btn-danger">حذف</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+
+                        <a href="/Ratings/Edit?id=@item.ID" class="btn btn-success">تعديل</a>
+                        <a href="/Ratings/Delete?id=@item.ID" class="btn btn-danger">حذف</a>
+                    </td>
+                }
+            }
+        </tr>
+    }
+
+</table>

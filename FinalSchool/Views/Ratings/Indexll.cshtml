@@ -1,0 +1,88 @@
+﻿@model IEnumerable<FinalSchool.Models.Rating>
+
+@{
+    ViewBag.Title = "Indexll";
+}
+
+<h2>Indexll</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CellCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DegreeRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RatingType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Practical)
+        </th>
+        <th></th>
+    </tr>
+    <thead style="background-color:#28a745;text-align:center">
+        <tr style="color: aliceblue; font-size: larger;text-align:center">
+            <td></td>
+            <th scope="row" style="text-align:center;font-size:larger">
+                الاسبوع
+            </th>
+            @foreach (var item in Model)
+            {
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CellCount)
+                </td>
+
+
+            }
+        </tr>
+    </thead>
+    <tr>
+        <td></td>
+        <td>طريقة التقييم</td>
+        @foreach (var item in Model)
+        {
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DegreeRating)
+            </td>
+        }
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+        {
+
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingType)
+            </td>
+        }
+    </tr>
+    <tr>
+        @foreach (var item in Model)
+        {
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Practical)
+            </td>
+        }
+    </tr>
+    <tr>
+    @foreach (var item in Model)
+    {
+
+        <td>
+        
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+    }
+        </tr>
+    }
+
+</table>

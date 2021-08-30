@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/ico" href="~/Content/ffff.png">
+    <title>@ViewBag.Title - الكلية التقنية بتبوك</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .Ancor {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none !important;
+            display: block;
+            font-weight: bolder;
+            background-color: transparent
+        }
+
+        .navbar-inverse {
+            background-color: #0a58a2;
+        }
+
+        .navbar-right {
+            color: white;
+        }
+
+        .navbar-nav > li > a {
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Jquery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <!--Date Picker-->
+    <script src="~/Content/Calendar/jquery.plugin.js"></script>
+    <!--<script src="jquery.calendars.all.js"></script><!-- Use instead of calendars, plus, and picker below -->
+
+    <script src="~/Content/Calendar/jquery.calendars.js"></script>
+    <script src="~/Content/Calendar/jquery.calendars.plus.js"></script>
+    <script src="~/Content/Calendar/jquery.calendars.picker.js"></script>
+    <script src="~/Content/Calendar/jquery.calendars.ummalqura.js"></script>
+    <script src="~/Content/Calendar/jquery.calendars.ummalqura-ar.js"></script>
+    <script src="~/Content/Calendar/jquery.calendars-ar.js" type="text/javascript"></script>
+    <script src="~/Content/Calendar/jquery.calendars.picker-ar.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="~/Content/Calendar/jquery.calendars.picker.css">
+    <!-- Toggle Boostrap -->
+    <script src="~/Content/Calendar/BootstrapToggle/bootstrap-toggle.min.js"></script>
+    <link href="~/Content/Calendar/BootstrapToggle/bootstrap-toggle.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("الرئيسية ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>
+                        <div class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="background-color:#222222;color:#999d9d;margin:8px">
+                                <i class="fa fa-caret-down"></i> دليل المقرر التدريبي
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="Ancor" href="/Coursedistributions/IndexTupleTheoretical">
+                                    دليل المقرر التدريبي (نظري)
+                                </a>
+
+                                <a class="Ancor" href="/Coursedistributions/IndexTuplePratical">
+                                    دليل المقرر التدريبي (عملي)
+                                </a>
+
+                                <a class="Ancor" href="/Coursedistributions/IndexTuplePraticalTheoretical">
+                                    دليل المقرر التدريبي (نظري/عملي)
+
+                                </a>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+            <a href="/Coursedistributions/IndexTuplePractical">
+                دليل المقرر التدريبي (نظري/عملي)
+
+            </a>
+        </li>
+        <li>
+            <a href="/Coursedistributions/IndexTuple">
+                دليل المقرر التدريبي (عملي)
+            </a>
+        </li>
+
+                    <li>
+            <a href=" /DaleelPracticalTrainings/CoursesList">
+                المواد العملي
+            </a>
+        </li>
+        <li>
+            <a href=" /DaleelPracticalTrainings/CoursesPracticalList">
+                المواد العملي / النظري
+            </a>
+        </li>
+                    <li>
+                        <div class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="background-color:#222222;color:#999d9d;margin:8px">
+                                <i class="fa fa-caret-down"></i> قائمــة المــواد
+                            </button>
+                            <div class="dropdown-menu">
+
+                                <a class="Ancor" href=" /DaleelPracticalTrainings/CoursesListTheoretical">
+                                    المواد النظري
+                                </a>
+
+                                <a class="Ancor" href=" /DaleelPracticalTrainings/CoursesPracticalList">
+                                    المواد العملي
+                                </a>
+                                <a class="Ancor" href=" /DaleelPracticalTrainings/CoursesPraticalTheoreticalList">
+                                    المواد العملي / النظري
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <div class="dropdown">
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="background-color:#222222;color:#999d9d;margin:8px">
+                                    <i class="fa fa-caret-down"></i> إضافة مقرر
+                                </button>
+                                <div class="dropdown-menu">
+
+                                    <a class="Ancor" href="/DaleelPracticalTrainings/CreateTheoretical">أضافة مقرر نظري</a>
+                                    <a class="Ancor" href="/DaleelPracticalTrainings/CreatePratical">أضافة مقرر عملي </a>
+                                    <a class="Ancor" href="/DaleelPracticalTrainings/CreatePraticalTheoretical">أضافة مقرر نظري / عملي </a>
+
+
+                                </div>
+                            </div>
+                        </li>
+                    }
+                    @if (User.IsInRole("Manger"))
+                    {
+                        <li>
+                            <div class="dropdown">
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="background-color:#222222;color:#999d9d;margin:8px">
+                                    <i class="fa fa-caret-down"></i> إضافة مقرر
+                                </button>
+                                <div class="dropdown-menu">
+
+                                    <a class="Ancor" href="/DaleelPracticalTrainings/CreateTheoretical">أضافة مقرر نظري</a>
+                                    <a class="Ancor" href="/DaleelPracticalTrainings/CreatePratical">أضافة مقرر عملي </a>
+                                    <a class="Ancor" href="/DaleelPracticalTrainings/CreatePraticalTheoretical">أضافة مقرر نظري / عملي </a>
+
+
+                                </div>
+                            </div>
+                        </li>
+                    }*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content page" style="direction:rtl">
+        @RenderBody()
+       
+       
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿@model FinalSchool.Models.Evaluation
+
+@{
+    ViewBag.Title = "أضافة تقييم";
+}
+
+<h2>أضافة تقييم</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>تقييم نظري</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <b>عدد الخانات التي تريد دمجها </b>
+        <div class="col-md-10">
+            <input type="number" min="1" value="1" name="CellCount" class="form-control" />
+            @Html.ValidationMessageFor(model => model.CellCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>درجة التقييم  </b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DegreeRating, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DegreeRating, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>طريقة التقييم  </b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RatingType, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RatingType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <b> المادة</b>
+        <div class="col-md-10">
+            <input readonly="readonly" value="@ViewData["CourseNameTheoretical"]" class="form-control" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="أضافة الي النظري" class="btn btn-primary" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+        </div>
+    </div>
+</div>
+}
+
+

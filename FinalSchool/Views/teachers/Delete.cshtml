@@ -1,0 +1,64 @@
+﻿@model FinalSchool.Models.teacher
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متأكد من الحذف ؟</h3>
+<div>
+    <h4>مدرب</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>المسلسل</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serial)
+        </dd>
+
+        <dt>
+            <b>اسم المدرب</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teacherName)
+        </dd>
+
+        <dt>
+            <b>الشعب التدريبية</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrainingDivision)
+        </dd>
+
+        <dt>
+            <b>التوقيع</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Signature)
+        </dd>
+
+        <dt>
+            <b>عملي / نظري</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Practical)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="حـــذف" class="btn btn-danger" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+
+    </div>
+    }
+</div>

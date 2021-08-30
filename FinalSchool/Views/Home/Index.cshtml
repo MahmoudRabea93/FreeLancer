@@ -1,0 +1,180 @@
+﻿@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    .navbar-inverse {
+        background-color: #0a58a2;
+    }
+
+    .navbar-right {
+        color: white;
+    }
+
+    body {
+        color: #fff;
+        background-image: linear-gradient(to right,#783777,#202976);
+    }
+
+    .imge {
+        margin-bottom: 10px;
+        width: 300px;
+        height: 250px
+    }
+
+    .Ancor {
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none !important;
+        display: block;
+        font-weight: bolder;
+        background-color: transparent;
+        direction: rtl;
+    }
+
+    a:focus {
+        color: white !important;
+    }
+
+    a:hover {
+        color: gold;
+        transition: 1s;
+    }
+
+    .right {
+        float: right !important;
+    }
+
+    .folderImg {
+        width: 60%;
+        height: 150px;
+        transform: scaleX(-1);
+    }
+
+    .classdiv {
+        /*background: #2b2929;*/
+        background-image: linear-gradient(to right,#202976,#783777);
+        border-radius: 25px;
+        border: 2px solid black;
+        padding: 20px;
+        box-shadow: 5px 8px 20px black;
+        display: inline-block;
+        margin-bottom: 20px
+    }
+
+    .classdiv:hover {
+        background-image: linear-gradient(to right,#202976,#783777);
+        border-radius: 25px;
+        border: 2px solid #783777;
+        padding: 20px;
+        box-shadow: 5px 8px 20px #202976;
+        display: inline-block;
+        transition: 1s;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Mystyle.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/SizeA4.css" />
+@Html.Partial("_HeaderPartial")
+<h1 style="text-align:center">الكلية التقنية بتبوك</h1>
+<hr />
+<h3 style="line-height: inherit;">الكلية التقنية بتبوك إحدى الكليات التقنية التابعة للمؤسسة العامة للتدريب التقني والمهني في المملكة العربية السعودية. تأسست عام 1421. ترتكز مهمتها العلمية على إعداد متدربين لسوق العمل، و تستقطب في برامجها خريجي وخريجات الثانوية العامة والحاصلين على دبلوم المعاهد الصناعية الثانوية.</h3>
+<br />
+<br />
+@if (User.IsInRole("Supervisor"))
+{
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+            <img src="~/Images/folder_PNG100457.png" class="folderImg" />
+            <br />
+            <h2><a href="/Home/SubjectIndex" class="Ancor" style="display: inline-block;">قائمة المواد </a></h2>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+
+            <img src="~/Images/unnamed.png" class="folderImg" />
+
+            <br />
+            <h2><a href="/Home/DaleelIndex" class="Ancor">دليل المقرر التدريبي </a></h2>
+        </div>
+    </div>
+}
+@if (User.IsInRole("Admin"))
+{
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+            <img src="~/Images/folder_PNG100457.png" class="folderImg" />
+            <br />
+            <h2><a href="/Home/SubjectIndex" class="Ancor" style="display: inline-block;">قائمة المواد </a></h2>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+
+            <img src="~/Images/unnamed.png" class="folderImg" />
+
+            <br />
+            <h2><a href="/Home/DaleelIndex" class="Ancor">دليل المقرر التدريبي </a></h2>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+            <img src="~/Images/21161441261599627997.png" class="folderImg" />
+            <h2><a href="/Home/addSubjectIndex" class="Ancor">أضافة مقرر جديد  </a></h2>
+        </div>
+    </div>
+
+    //------------------------------------------------
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+            <img src="~/Images/add-user.png" class="folderImg" />
+            <h2><a href="/Account/Register" class="Ancor">أضافة مستخدم جديد  </a></h2>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6" >
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+            <img src="~/Images/users.png" class="folderImg" />
+
+            <h2><a href="/UserRolesVM/Index" class="Ancor"> قائمة المستخدمين  </a></h2>
+        </div>
+    </div>
+
+}
+@if (User.IsInRole("Manger"))
+{
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+            <img src="~/Images/folder_PNG100457.png" class="folderImg" />
+            <br />
+            <h2><a href="/Home/SubjectIndex" class="Ancor" style="display: inline-block;">قائمة المواد </a></h2>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+
+            <img src="~/Images/unnamed.png" class="folderImg" />
+
+            <br />
+            <h2><a href="/Home/DaleelIndex" class="Ancor">دليل المقرر التدريبي </a></h2>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-12 col-md-12 col-sm-12 classdiv">
+            <img src="~/Images/21161441261599627997.png" class="folderImg" />
+            <h2><a href="/Home/addSubjectIndex" class="Ancor">أضافة مقرر جديد  </a></h2>
+        </div>
+    </div>
+}
+
+

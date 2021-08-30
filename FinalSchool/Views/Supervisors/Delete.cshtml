@@ -1,0 +1,66 @@
+﻿@model FinalSchool.Models.Supervisors
+
+<h3>هل انت متأكد من الحذف ؟؟</h3>
+<div>
+    <h4>Supervisors</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>اسم رئيس القسم</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupervisorsName)
+        </dd>
+
+        <dt>
+            <b>اسم وكيل الكلية للتدريب</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepresentativeName)
+        </dd>
+
+        <dt>
+            <b>اسم منسق المقرر</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoordinatorName)
+        </dd>
+
+        <dt>
+            <b>توقيع رئيس القسم</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SupervisorsSignature)
+        </dd>
+
+        <dt>
+            <b>توقيع وكيل الكلية للتدريب</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepresentativSignature)
+        </dd>
+
+        <dt>
+            <b>توقيع  منسق المقرر</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoordinatorSignature)
+        </dd>
+
+   
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="حذف" class="btn btn-danger" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+    </div>
+    }
+</div>

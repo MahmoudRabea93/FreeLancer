@@ -1,0 +1,49 @@
+﻿@model FinalSchool.Models.PracticalDegree
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>حذف</h2>
+
+<h3>هل متاكد من الحذف؟؟</h3>
+<div>
+  
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>إختبار نظري</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TheoreticalTest)
+        </dd>
+
+        <dt>
+            <b>إختبار عملي</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PracticalTest)
+        </dd>
+
+        <dt class="hidden">
+            <b>id</b>
+        </dt>
+
+        <dd class="hidden">
+            @Html.DisplayFor(model => model.CourseID)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="حذف" class="btn btn-danger" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+
+    </div>
+    }
+</div>

@@ -1,0 +1,36 @@
+﻿@model FinalSchool.Models.TheoreticalDegree
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متأكد من الحذف ؟؟</h3>
+<div>
+    <h4>الدرجات نظري</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           <b>مجموع النظري</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Theoreticaltotal)
+        </dd>
+
+        <dt>
+           <b>الاختبار النهائي</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinalDegree)
+        </dd>
+
+   
+        </dl>
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>          
+        </div>
+    }
+</div>

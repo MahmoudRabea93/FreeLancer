@@ -1,0 +1,103 @@
+﻿@model FinalSchool.Models.Evaluation
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Evaluation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CellCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CellCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DegreeRating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DegreeRating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RatingType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RatingType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Practical)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Practical)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+    </div>
+    }
+</div>

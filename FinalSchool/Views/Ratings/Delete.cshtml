@@ -1,0 +1,55 @@
+﻿@model FinalSchool.Models.Rating
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متأكد من الحذف</h3>
+<div>
+    <h4>التقييم</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>عدد الخانات التي تريد دمجها </b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CellCount)
+        </dd>
+
+        <dt>
+            <b>درجة التقييم  </b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DegreeRating)
+        </dd>
+
+        <dt>
+            <b>طريقة التقييم  </b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RatingType)
+        </dd>
+
+        <dt>
+            <b>جزء عملي</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Practical)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="حـــذف" class="btn btn-danger" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+    </div>
+    }
+</div>

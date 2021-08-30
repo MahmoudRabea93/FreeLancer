@@ -1,0 +1,18 @@
+﻿@model FinalSchool.Models.PracticalDegree
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    b {
+        color: red;
+    }
+</style>
+<div>
+    <h4>تقرير </h4>
+    <hr />
+    <p style="font-size:17px;font-weight:bold">قام المستخدم <b>@ViewData["CreateName"] </b>باضافة الدرجات  بتاريخ  <b>@Html.DisplayFor(model => model.CreationDate) </b>ثم قام المستخدم  <b>@ViewData["UpdatedName"] </b>بالتعديل عليها بتاريخ  <b>@Html.DisplayFor(model => model.UpdateDate) </b>.</p>
+
+</div>
+<a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>

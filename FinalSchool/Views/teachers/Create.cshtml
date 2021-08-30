@@ -1,0 +1,74 @@
+﻿@model FinalSchool.Models.teacher
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>أضافة مدرب  </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>مدرب</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <b>المسلسل</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Serial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Serial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>اسم المدرب</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.teacherName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.teacherName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>الشعب التدريبية</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TrainingDivision, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TrainingDivision, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>التوقيع</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Signature, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Signature, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <b> المادة</b>
+            <div class="col-md-10">
+                <input readonly="readonly" value="@ViewData["CourseNamePractical"]" class="form-control " />
+            </div>
+        </div>
+        @*<div class="form-group">
+                <b> أضافة الي (عملي / نظري)</b>
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Practical)
+                        @Html.ValidationMessageFor(model => model.Practical, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="أضافــة" class="btn btn-primary" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@

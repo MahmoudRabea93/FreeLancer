@@ -1,0 +1,138 @@
+﻿@model FinalSchool.Models.Coursedistribution
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>تعديل</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>توزيع المقرر على الفصل التدريبي</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="form-group">
+        <b>الاسبوع</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Week, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <b>التاريخ</b>
+        <div class="col-md-10">
+            @Html.TextBox("HjrDateTextBox", @ViewData["HjrDate"], new { autocomplete = "off", @class = "form-control", @readonly = "readonly" })
+            @Html.TextBox("hijriDateTextBox", "", new { autocomplete = "off", @class = "form-control hidden", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Weekdate)
+        </div>
+    </div>
+    @*<div class="form-group">
+            <b>التاريخ</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Weekdate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.Weekdate, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <b>المحتوي</b>
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <b> المادة</b>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.CourseID, ViewBag.CoursesName as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreationUserId, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    @*<div class="form-group">
+            <b> أضافة الي عملي / نظري</b>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Practical)
+                    @Html.ValidationMessageFor(model => model.Practical, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="تعديل" class="btn btn-success" /> |
+            <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    // $('#popupDatepicker').datepick();
+
+
+    jQuery(function ($) {
+        // For show current page in menu
+        // this will remove the active class from previously active menu item
+        $(".nav-list li").removeClass("active open");
+        $('#Customers-Menu').addClass('active open');
+        $('#RecievePayment-Menu-Item').addClass('active');
+    })
+
+    var calendarHijri = $.calendars.instance('ummalqura', 'ar');
+    var calendarGreg = $.calendars.instance('', 'ar');
+
+    $('#HjrDateTextBox').calendarsPicker({
+        calendar: calendarHijri, onSelect: function (dateText, inst) {
+            $("#date").val(dateText);
+        }
+    });
+
+    $('#hijriDateTextBox').calendarsPicker({
+        calendar: calendarGreg, onSelect: function (dateText, inst) {
+            $("#date").val(dateText);
+        }
+    });
+
+    $("#calendar_is_hijri").prop('checked', true);
+    $("#dateIsHijriCheckbox").on('change', function () {
+        if (this.checked) {
+            $("#HjrDateTextBox").removeClass('hidden');
+            $("#hijriDateTextBox").addClass('hidden');
+
+            $("#calendar_is_hijri").prop('checked', true);
+            $("#date").val($("#HjrDateTextBox").val());
+        } else {
+            $("#HjrDateTextBox").addClass('hidden');
+            $("#hijriDateTextBox").removeClass('hidden');
+
+            $("#calendar_is_hijri").prop('checked', false);
+            $("#date").val($("#hijriDateTextBox").val());
+        }
+    });</script>

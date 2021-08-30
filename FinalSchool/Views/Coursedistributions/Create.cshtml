@@ -1,0 +1,146 @@
+﻿@model FinalSchool.Models.Coursedistribution
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>أضافـــة أسبوع  </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>
+            توزيع المقرر على الفصل التدريبي
+        </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <b style="color:red">ملحوظة : </b>
+        <p style="color:gray;font-weight:bold">اذا كنت تريد أضافة عدد معين من الاسابيع اكتب عدد الاسابيع  وعند ترك خانة عدد الاسابيع من = 0 والي = 0 يمكنك اضافة اسبوع 1 واضافة تفاصيله.</p>
+        <div class="form-group">
+            <b>الاسبوع</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Week, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Week, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                <b>التاريخ</b>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.date, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.date, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="form-group">
+            <b>التاريخ</b>
+            <div class="col-md-10">
+                @Html.TextBox("HjrDateTextBox", "", new { autocomplete = "off", @class = "form-control", @readonly = "readonly" })
+                @Html.TextBox("hijriDateTextBox", "", new { autocomplete = "off", @class = "form-control hidden", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.Weekdate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>المحتوي</b>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <b style="text-align:center">عدد الأسابيع</b>
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    <b style="margin: 10px;">   من  </b>  <input name="WeekFrom" type="number" value="0" min="0" class="form-control" style="width:50%; display:inline" />
+                    <b style="margin: 10px;">   الي   </b> <input name="WeekTo" type="number" value="0" min="0" class="form-control" style="width:50%; display:inline" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b> المادة</b>
+            <div class="col-md-10">
+                <input readonly="readonly" value="@ViewData["CourseNamePractical"]" class="form-control" />
+            </div>
+        </div>
+
+
+        @*<div class="row" style="" dir="rtl">
+                <label class=" ">
+                    التاريخ
+                </label>
+                <div class="col-sm-10">
+                    <div class="col-sm-9">
+                        @Html.TextBox("gregDateTextBox", "", new { autocomplete = "off", @class = "form-control", @readonly = "readonly" })
+                        @Html.TextBox("hijriDateTextBox", "", new { autocomplete = "off", @class = "form-control hidden", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.date)
+                    </div>
+                    <div class="col-sm-1">
+                        <input id="dateIsHijriCheckbox" type="checkbox" data-toggle="toggle" data-on="هجري" data-off="ميلادي">
+                    </div>
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="أضافــة" class="btn btn-primary" /> | 
+                <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+
+               
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    // $('#popupDatepicker').datepick();
+
+
+    jQuery(function ($) {
+        // For show current page in menu
+        // this will remove the active class from previously active menu item
+        $(".nav-list li").removeClass("active open");
+        $('#Customers-Menu').addClass('active open');
+        $('#RecievePayment-Menu-Item').addClass('active');
+    })
+
+    var calendarHijri = $.calendars.instance('ummalqura', 'ar');
+    var calendarGreg = $.calendars.instance('', 'ar');
+
+    $('#HjrDateTextBox').calendarsPicker({
+        calendar: calendarHijri, onSelect: function (dateText, inst) {
+            $("#date").val(dateText);
+        }
+    });
+
+    $('#hijriDateTextBox').calendarsPicker({
+        calendar: calendarGreg, onSelect: function (dateText, inst) {
+            $("#date").val(dateText);
+        }
+    });
+
+    $("#calendar_is_hijri").prop('checked', true);
+    $("#dateIsHijriCheckbox").on('change', function () {
+        if (this.checked) {
+            $("#HjrDateTextBox").removeClass('hidden');
+            $("#hijriDateTextBox").addClass('hidden');
+
+            $("#calendar_is_hijri").prop('checked', true);
+            $("#date").val($("#HjrDateTextBox").val());
+        } else {
+            $("#HjrDateTextBox").addClass('hidden');
+            $("#hijriDateTextBox").removeClass('hidden');
+
+            $("#calendar_is_hijri").prop('checked', false);
+            $("#date").val($("#hijriDateTextBox").val());
+        }
+    });</script>

@@ -1,0 +1,106 @@
+﻿@model FinalSchool.Models.Degree
+
+@{
+    ViewBag.Title = "تعديل الدرجات";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h3>
+        <b>
+            درجات الاعمال الفصلية
+        </b>
+    </h3>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.QuarterlyDegree, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuarterlyDegree, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuarterlyDegree, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <b>مجموع النظري الفصلي</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TheoreticalQuarterlyDegree, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TheoreticalQuarterlyDegree, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>مجموع النظري العملي</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PracticalQuarterlyDegree, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PracticalQuarterlyDegree, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>
+        <b>
+            درجات الاختبار النهائي
+        </b>
+    </h3>
+    <hr />
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.FinalyDegree, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FinalyDegree, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FinalyDegree, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <b>أختبار نظري نهائي</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TheoreticalFinalyDegree, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TheoreticalFinalyDegree, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>أختبار عملي نهائي</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PracticalFinalyDegree, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PracticalFinalyDegree, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreationUserId, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    <div class="form-group">
+        <b> المادة</b>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.CourseID, ViewBag.CoursesName as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="تعديل" class="btn btn-default" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+
+        </div>
+    </div>
+</div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@

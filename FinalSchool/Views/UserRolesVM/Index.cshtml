@@ -1,0 +1,72 @@
+﻿@model IEnumerable<FinalSchool.Models.UserRolesVM>
+<style>
+    body {
+        color: #fff;
+        background-image: linear-gradient(to right,#783777,#202976);
+    }
+</style>
+<h2>المستخدمين المسجلين بالموقع</h2>
+
+
+<table class="table table-bordered table-dark" style=" direction:rtl;text-align:center">
+    <tr style="background-color:#28a745;color:antiquewhite;font-size:larger">
+        <th style=" direction:rtl;text-align:center">
+            <b style=" direction:rtl;text-align:center">البريد الالكتروني</b>
+        </th>
+
+
+        <th style=" direction:rtl;text-align:center">
+            <b> رقم الجوال</b>
+        </th>
+
+
+        <th style=" direction:rtl;text-align:center">
+            <b>اسم المستخدم </b>
+        </th>
+
+        <th style=" direction:rtl;text-align:center">
+            <b>الوظيفة  </b>
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <b>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </b>
+            </td>
+
+
+
+            <td>
+                <b>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </b>
+            </td>
+
+
+            <td>
+                <b>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </b>
+            </td>
+
+            <td>
+                <b>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </b>
+            </td>
+
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>*@
+        </tr>
+    }
+
+</table>
+<a href=" /Home/Index" class="btn btn-danger">العودة للصفحة السابقة</a>

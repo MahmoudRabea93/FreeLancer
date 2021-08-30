@@ -1,0 +1,79 @@
+﻿@model FinalSchool.Models.Rating
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>تعديـــل</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>التقييم</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="form-group">
+        <b>عدد الخانات التي تريد دمجها </b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CellCount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CellCount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>درجة التقييم  </b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DegreeRating, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DegreeRating, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>طريقة التقييم  </b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RatingType, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RatingType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b> المادة</b>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.CourseID, ViewBag.CoursesName as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <b>اضافه الي جزء العملي بجدول التقييم ؟ </b>
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Practical)
+                @Html.ValidationMessageFor(model => model.Practical, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreationUserId, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="تعديــل" class="btn btn-success" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+        </div>
+    </div>
+</div>
+}
+

@@ -1,0 +1,72 @@
+﻿@model FinalSchool.Models.TheoreticalDegree
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>تعديل درجات النظري</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            <b>مجموع النظري</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Theoreticaltotal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Theoreticaltotal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <b>الاختبار النهائي</b>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FinalDegree, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FinalDegree, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.CourseID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CourseID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CourseID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+     
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.CreationUserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreationUserId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreationUserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+
+        <div class="form-group hidden">
+            @Html.LabelFor(model => model.CreationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreationDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="تعديــل" class="btn btn-success" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+            </div>
+        </div>
+    </div>
+}
+
+

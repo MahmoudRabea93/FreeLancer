@@ -1,0 +1,87 @@
+﻿@model IEnumerable<FinalSchool.Models.Evaluation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CellCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DegreeRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RatingType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Practical)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationUserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateUserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CellCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DegreeRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RatingType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Practical)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationUserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateUserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

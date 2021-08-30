@@ -1,0 +1,71 @@
+﻿@model FinalSchool.Models.RegisterViewModel
+@{
+                /**/
+
+                ViewBag.Title = "Register";
+}
+
+<style>
+    body {
+        color: #fff;
+        background-image: linear-gradient(to right,#783777,#202976);
+    }
+</style>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h3><b>اضافة مستخدم</b></h3>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        <b>اسم المستخدم</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b> رقم الجوال</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <b>البريد الالكتروني</b>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <b> كلمة المرور</b>
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" }) <b style="color:gray">EX:Abcde12#</b>
+        </div>
+    </div>
+    <div class="form-group">
+        <b> تأكيد كلمة المرور</b>
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+
+        </div>
+    </div>
+    <div class="form-group">
+        <b> الوظيفة</b>
+        <div class="col-md-10">
+            @*@Html.DropDownList("Name")*@
+            @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="تسجيل" />
+        </div>
+    </div>
+}
+    <a href=" /Home/Index" class="btn btn-danger">العودة للصفحة السابقة</a>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

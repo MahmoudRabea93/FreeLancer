@@ -1,0 +1,1362 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>jQuery Calendars Reference</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" type="image/ico" href="favicon.ico">
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/south-street/jquery-ui.css">
+<link rel="stylesheet" href="css/jquery.bookmark.css">
+<link rel="stylesheet" href="css/demo.css">
+<script src="js/modernizr-2.6.2.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="js/jquery.bookmark.js"></script>
+<script src="js/jquery.chili-2.2.js"></script>
+<script src="js/demo.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body class="doc">
+<header role="banner">
+	<h1>jQuery Calendars Reference</h1>
+</header>
+<section>
+<!-- Ad top -->
+<ins class="adsbygoogle top" style="width:234px;height:60px" data-ad-client="ca-pub-1555315548255079" data-ad-slot="1375936143"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<p>A <a href="http://jquery.com">jQuery</a> <a href="http://plugins.jquery.com/kbw.calendars/">plugin</a>
+	that provides implementations of various world calendars and additional functionality
+	such as conversion between calendars, parsing and formatting dates, and a datepicker.</p>
+<p>This page provides a documentation reference for working
+	with the plugin <span class="version">v2.0.2</span>.
+	Documentation on the <a href="calendarsPickerRef.html">datepicker</a>
+	is available separately.
+	<a href="zip/jquery.calendars.doc-2.0.2.zip" onclick="pageTracker._trackPageview('/downloads/calendars.doc-2.0.2');">
+	Download a copy</a> for your own reference -
+	just add jQuery JavaScript for full functionality.</p>
+<p>See a <a href="calendars.html">demonstration</a> of the calendars plugin or the
+	associated <a href="calendarsPicker.html">datepicker</a> and download the code from there.
+	Or see a <a href="calendarsBasics.html">minimal page</a> that you could
+	use as a basis for your own investigations.</p>
+<p style="text-align: center;"><span id="bookmark"></span></p>
+</section>
+<section id="tabs" role="main">
+	<ul>
+		<li><a href="#modules"><span>Modules</span></a></li>
+		<li><a href="#access"><span>Access</span></a></li>
+		<li><a href="#cdate"><span>CDate</span></a></li>
+		<li><a href="#calendar1"><span>Calendar 1</span></a></li>
+		<li><a href="#calendar2"><span>Calendar 2</span></a></li>
+		<li><a href="#impl"><span>Implementations</span></a></li>
+		<li><a href="#plus"><span>Plus Module</span></a></li>
+	</ul>
+	<article id="modules" class="feature">
+		<header id="modulesall">Calendar Modules</header>
+		<p>The calendars plugin provides generic support for a number of world calendars.
+			In general a calendar defines a series of years, each of which consists of
+			a number of months that are then broken down into days. Days may also be
+			grouped into weeks.</p>
+		<p>Each calendar implementation defines what the year sequence is (many have
+			no year zero), how many months per year (varies in the Hebrew calendar),
+			and how many days per month. Alongside this are the month and day names
+			and localised values such as date format and start of the week.</p>
+		<p>Since JavaScript only supports the Gregorian calendar in its native <code>Date</code>
+			object, a new <a href="#" onclick="jumpTo('cdate', 'cdateall');">date object</a>
+			with more generic calendar support is included within the plugin.</p>
+		<p>The calendars plugin is broken up into a series of modules to allow you to
+			choose just the functionality you require.</p>
+		<table>
+			<thead>
+				<tr><th>Module</th><th>Purpose</th><th>Dependencies</th></tr>
+			</thead>
+			<tbody>
+				<tr><td>jquery.calendars.js</td>
+					<td>Base calendar support, including custom
+						<a href="#" onclick="jumpTo('cdate', 'cdateall');"><code>CDate</code></a> object and
+						<a href="http://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a>.</td>
+					<td>-</td></tr>
+				<tr><td>jquery.calendars.taiwan.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Minguo_calendar">Taiwanese calendar</a>
+						support - also known as the Minguo calendar.<br>
+						<span class="version">Since 1.1.0</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.thai.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Thai_solar_calendar">Thai calendar</a>
+						support.<br>
+						<span class="version">Since 1.1.0</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.julian.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Julian_calendar">Julian calendar</a>
+						implementation.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.persian.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Iranian_calendar">Persian calendar</a>
+						implementation - also known as Iranian or Jalali calendar.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.islamic.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Islamic_calendar">Islamic calendar</a>
+						implementation - the 'civil 16' version, also known as Hijri calendar.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.ummalqura.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Islamic_calendar#Saudi_Arabia.27s_Umm_al-Qura_calendar">Umm al-Qura calendar</a>
+						support - also known as the Saudi calendar. Written by Amro Osama.<br>
+						<span class="version">Since 1.2.1</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.hebrew.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Hebrew_calendar">Hebrew (civil) calendar</a>
+						implementation.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.ethiopian.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Ethiopian_calendar">Ethiopian calendar</a>
+						support.<br>
+						<span class="version">Since 1.1.0</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.coptic.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Coptic_calendar">Coptic calendar</a>
+						support.<br>
+						<span class="version">Since 1.1.0</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.nepali.js</td>
+					<td><a href="https://en.wikipedia.org/wiki/Vikram_Samvat">Nepali calendar</a>
+						support - also known as Vikram Samvat. Written by Artur Neumann.<br>
+						<span class="version">Since 1.2.1</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.nanakshahi.js</td>
+					<td><a href="https://en.wikipedia.org/wiki/Nanakshahi_calendar">Nanakshahi calendar</a>
+						support.<br>
+						<span class="version">Since 2.0.2</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.mayan.js</td>
+					<td><a href="http://en.wikipedia.org/wiki/Mayan_calendar">Mayan (Long Count) calendar</a>
+						implementation.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.discworld.js</td>
+					<td><a href="http://wiki.lspace.org/mediawiki/Discworld_calendar">Discworld calendar</a>
+						support.<br>
+						<span class="version">Since 2.0.2</span>.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.plus.js</td>
+					<td>Additional calendar functionality, such as parsing and formatting dates.</td>
+					<td>Base</td></tr>
+				<tr><td>jquery.calendars.picker.js</td>
+					<td>A datepicker with full calendar support and localisation.
+						See <a href="calendarsPickerRef.html">separate documentation</a>.</td>
+					<td>Base, Plus</td></tr>
+				<tr><td>jquery.calendars.picker.ext.js</td>
+					<td>Datepicker extensions with alternate renderers and added functionality.</td>
+					<td>Base, Plus, Picker</td></tr>
+				<tr><td>jquery.calendars.all.js</td>
+					<td>Combines the base, plus, and datepicker modules into one.</td>
+					<td>-</td></tr>
+			</tbody>
+		</table>
+	</article>
+	<article id="access" class="feature">
+		<header id="accessall">Calendars Access</header>
+		<p>The base module provides basic date and calendar support and includes an
+			implementation of the Gregorian calendar.</p>
+		<p>Initial access is via the <code>$.calendars</code> variable.
+			It offers the following functions:</p>
+		<table>
+		<thead>
+		<tr><th>Signature</th><th>Returns</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="cs_instance">$.calendars.instance(name, language)</td>
+			<td><a href="#" onclick="jumpTo('calendar1', 'calendar1all');">*Calendar</a> object</td>
+			<td>Retrieve a specific calendar implementation.<br><br>
+				<code>name</code> (string, optional) is the name of the calendar to find.
+				Implementations for the following calendars are available by including the 
+				appropriate <a href="#" onclick="jumpTo('impl', 'implall');">calendars module</a>:
+				'gregorian', 'julian', 'persian', 'islamic', 'ummalqura', 'hebrew', 'ethiopian',
+				'coptic', 'nepali', 'nanakshahi', 'mayan', 'discworld'.
+				If not specified a Gregorian calendar is returned.<br><br>
+				<code>language</code> (string, optional) is the language code for
+				a localisation pack for this calendar. It defaults to English.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var gc = $.calendars.instance();
+var pc_fa = $.calendars.instance('persian', 'fa');</code></span></pre></td></tr>
+		<tr><td id="cs_newDate">$.calendars.newDate(year, month, day, calendar, language)</td>
+			<td><a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a> object</td>
+			<td>Create a new date object.
+				An error is thrown if the date is not valid for the calendar.
+				You can also create dates from a
+				<a href="#" onclick="jumpTo('calendar1', 'c_newDate');">calendar</a> or from
+				another <a href="#" onclick="jumpTo('cdate', 'cd_newDate');">date</a>.<br><br>
+				<code>year</code> (CDate) is a date to clone or
+				(number) is the year for the date.<br><br>
+				<code>month</code> (number) is the month for the date.
+				Omit if <code>year</code> is a date object.<br><br>
+				<code>day</code> (number) is the day for the date.
+				Omit if <code>year</code> is a date object.<br><br>
+				<code>calendar</code> (<a href="#" onclick="jumpTo('calendar1', 'calendar1all');">*Calendar</a>,
+				optional) is the calendar to use for this date, or (string) the name of
+				the calendar (see above). If not specified a Gregorian calendar is used.
+				If <code>year</code> is a date object its calendar is used instead.<br><br>
+				<code>language</code> (string, optional) is the language code for
+				a localisation pack for this calendar. It defaults to English.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var d = $.calendars.newDate(2009, 1, 26);
+var d = $.calendars.newDate(1388, 1, 1, 'persian', 'fa');
+var d = $.calendars.newDate(1388, 1, 1, pc_fa);</code></span></pre></td></tr>
+		<tr><td id="cs_substituteDigits">$.calendars.substituteDigits(digits)</td>
+			<td>function</td>
+			<td>Create a number localisation function for use with the
+				<a href="#" onclick="jumpTo('calendar2', 'c_digits');">digits</a> option.
+				The returned function accepts a numeric value and substitutes local numerals
+				for those in the value provided.<br><br>
+				<code>digits</code> (string[]) is an array of 10 characters to be substituted
+				for the digits 0 through 9.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">digits: $.calendars.substituteDigits(
+	['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩']),</code></span></pre><br>
+				<span class="version">Since 2.0.2</span>.</td></tr>
+		<tr><td id="cs_substituteChineseDigits">$.calendars.substituteChineseDigits(digits, powers)</td>
+			<td>function</td>
+			<td>Create a number localisation function for use with the
+				<a href="#" onclick="jumpTo('calendar2', 'c_digits');">digits</a> option.
+				The returned function accepts a numeric value and generates local numerals
+				for those in the value provided.<br><br>
+				<code>digits</code> (string[]) is an array of 10 characters to be substituted
+				for the digits 0 through 9.<br><br>
+				<code>powers</code> (string[]) is an array of characters to denote powers of 10,
+				being for units, tens, hundred, thousands, etc.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">digits: $.calendars.substituteChineseDigits(
+	['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九'],
+	['', '十', '百', '千']),</code></span></pre><br>
+				<span class="version">Since 2.0.2</span>.</td></tr>
+		</tbody>
+		</table>
+		<p>The following attributes are defined:</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Default</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="cs_calendars">calendars</td>
+			<td>object</td>
+			<td>-</td>
+			<td>This attribute provides direct access to the various
+				<a href="#" onclick="jumpTo('impl', 'implall');">calendar implementations</a>.
+				Each calendar adds its implementation "class" to this object under its given name.
+				It is only used internally to register and construct particular calendars.
+				Use the <a href="#cs_instance">instance</a> function instead to retrieve calendars.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$.calendars.calendars.gregorian = GregorianCalendar;</code></span></pre></td></tr>
+		<tr><td id="cs_baseCalendar">baseCalendar</td>
+			<td>BaseCalendar</td>
+			<td>BaseCalendar</td>
+			<td>This attribute provides access to the base "class" from which other
+				calendar implementations inherit. It contains common code used by
+				all calendars. It is only used internally to implement new
+				<a href="#" onclick="jumpTo('calendar1', 'calendar1all');">calendars</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">JulianCalendar.prototype = new $.calendars.baseCalendar;</code></span></pre></td></tr>
+		<tr><td id="cs_regional">regional</td>
+			<td>object[]</td>
+			<td>See <a href="#l10n">below</a></td>
+			<td>The base calendar processing may be localised by adding entries to this attribute,
+				and then referring to them with the <code>local</code> attribute.
+				Each entry is indexed by its language code and its value is an object
+				with the <a href="#l10n">regional fields</a> shown below.<br><br>
+				Within these values use '{n}', where <em>n</em> is a number starting from zero,
+				to indicate insertion points for message-specific details.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$.calendars.regional['fr'] = {
+	invalidCalendar: 'Le calendrier {0} n\'a pas trouvé',
+	invalidDate: 'Date {0} inadmissible',
+	invalidMonth: 'Mois {0} inadmissible',
+	invalidMonth: 'Année {0} inadmissible',
+	differentCalendars: 'Ne peut pas utiliser {0} avec {1}'};</code></span></pre></td></tr>
+		<tr><td id="cs_local">local</td>
+			<td>object</td>
+			<td>$.calendars.regional['']</td>
+			<td>The regional settings that are currently in use are referenced by this attribute.
+				You would only change this to localise the standard error messages generated
+				by calendar implementations.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">$.calendars.local = $.calendars.regional['fr'];</code></span></pre></td></tr>
+		</tbody>
+		</table>
+		<h3 id="l10n">Regional Settings</h3>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Default</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="c_invalidCalendar">invalidCalendar</td><td>string</td>
+			<td>'Calendar {0} not found'</td>
+			<td>The eror message when a requested calendar implementation cannot be found.
+				 '{0}' is the calendar name.</td></tr>
+		<tr><td id="c_invalidDate">invalidDate</td><td>string</td>
+			<td>'Invalid {0} date'</td>
+			<td>The error message when a requested date is invalid for a calendar,
+				e.g. Gregorian 02/29/2009. '{0}' is the calendar name.</td></tr>
+		<tr><td id="c_invalidMonth">invalidMonth</td><td>string</td>
+			<td>'Invalid {0} month'</td>
+			<td>The eror message when a requested month is invalid for a calendar,
+				e.g. Gregorian 13/2009. '{0}' is the calendar name.</td></tr>
+		<tr><td id="c_invalidYear">invalidYear</td><td>string</td>
+			<td>'Invalid {0} year'</td>
+			<td>The error message when a requested year is invalid for a calendar,
+				e.g. Gregorian 0000. '{0}' is the calendar name.</td></tr>
+		<tr><td id="c_differentCalendars">differentCalendars</td><td>string</td>
+			<td>'Cannot mix {0} and {1} dates'</td>
+			<td>The error message when trying to use dates from two different calendars.
+				 '{0}' and '{1}' are the calendar names.</td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="cdate" class="feature">
+		<header id="cdateall">Calendars Dates</header>
+		<p>Since JavaScript only supports the Gregorian calendar in its native <code>Date</code>
+			object, a new date object with more generic calendar support is included
+			within the base module: CDate.</p>
+		<p>This date object is always associated with a particular calendar and is generally
+			<a href="#" onclick="jumpTo('calendar1', 'c_newDate');">created</a> through it.</p>
+		<p>Many of the date functions return the date itself so that further calls
+			can be chained together. It offers the following functions:</p>
+		<p class="quickref ui-state-highlight">
+			<a href="#cd_add">add</a> |
+			<a href="#cd_calendar">calendar</a> |
+			<a href="#cd_compareTo">compareTo</a> |
+			<a href="#cd_date">date</a> |
+			<a href="#cd_day">day</a> |
+			<a href="#cd_dayOfWeek">dayOfWeek</a> |
+			<a href="#cd_dayOfYear">dayOfYear</a> |
+			<a href="#cd_daysInMonth">daysInMonth</a> |
+			<a href="#cd_daysInYear">daysInYear</a> |
+			<a href="#cd_epoch">epoch</a> |
+			<a href="#cd_extraInfo">extraInfo</a> |
+			<a href="#cd_formatYear">formatYear</a> |
+			<a href="#cd_fromJD">fromJD</a> |
+			<a href="#cd_fromJSDate">fromJSDate</a> |
+			<a href="#cd_leapYear">leapYear</a> |
+			<a href="#cd_month">month</a> |
+			<a href="#cd_monthOfYear">monthOfYear</a> |
+			<a href="#cd_newDate">newDate</a> |
+			<a href="#cd_set">set</a> |
+			<a href="#cd_toJD">toJD</a> |
+			<a href="#cd_toJSDate">toJSDate</a> |
+			<a href="#cd_toString">toString</a> |
+			<a href="#cd_weekDay">weekDay</a> |
+			<a href="#cd_weekOfYear">weekOfYear</a> |
+			<a href="#cd_year">year</a>
+		</p>
+		<table>
+		<thead>
+		<tr><th>Signature</th><th>Returns</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="cd_newDate">newDate(year, month, day)</td>
+			<td>CDate object</td>
+			<td>Create a new date using this date's calendar.
+				You can also create dates <a href="#" onclick="jumpTo('access', 'cs_newDate');">directly</a>
+				and from a <a href="#" onclick="jumpTo('calendar1', 'c_newDate');">calendar</a>.
+				An error is thrown if the requested date is invalid.<br><br>
+				<code>year</code> (number, optional) is the year for the new date.
+				If no parameters are specified the current date is cloned.<br><br>
+				<code>month</code> (number, optional) is the month for the new date.<br><br>
+				<code>day</code> (number, optional) is the day for the new date.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var date1 = date.newDate(); // Clone
+var date2 = date.newDate(2010, 1, 26);</code></span></pre></td></tr>
+		<tr><td id="cd_year">year(year)</td>
+			<td>this CDate or number</td>
+			<td>Set or retrieve the year for this date. If no parameter is supplied
+				the current year is returned. Otherwise the year for the date is
+				changed and the date object is returned. Use negative values for
+				years before the current epoch. This is equivalent to
+				<a href="#cd_set">set(year, 'y')</a>. To change all the periods,
+				use the <a href="#cd_date">date()</a> function.
+				An error is thrown if the requested date is invalid.<br><br>
+				<code>year</code> (number, optional) is the new year for the date.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var y = date.year();
+date.year(2008);</code></span></pre></td></tr>
+		<tr><td id="cd_month">month(month)</td>
+			<td>this CDate or number</td>
+			<td>Set or retrieve the month for this date. If no parameter is supplied
+				the current month is returned. Otherwise the month for the date is
+				changed and the date object is returned. This is equivalent to
+				<a href="#cd_set">set(month, 'm')</a>. To change all the periods,
+				use the <a href="#cd_date">date()</a> function.
+				An error is thrown if the requested date is invalid.<br><br>
+				<code>month</code> (number, optional) is the new month for the date.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var m = date.month();
+date.month(2);</code></span></pre></td></tr>
+		<tr><td id="cd_day">day(day)</td>
+			<td>this CDate or number</td>
+			<td>Set or retrieve the day for this date. If no parameter is supplied
+				the current day is returned. Otherwise the day for the date is
+				changed and the date object is returned. This is equivalent to
+				<a href="#cd_set">set(day, 'd')</a>. To change all the periods,
+				use the <a href="#cd_date">date()</a> function.
+				An error is thrown if the requested date is invalid.<br><br>
+				<code>day</code> (number, optional) is the new day for the date.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var d = date.day();
+date.day(29);</code></span></pre></td></tr>
+		<tr><td id="cd_date">date(year, month, day)</td>
+			<td>this CDate</td>
+			<td>Set this date's values. To change individual periods,
+				use the <a href="#cd_year">year()</a>, <a href="#cd_month">month()</a>,
+				<a href="#cd_day">day()</a>, or <a href="#cd_set">set()</a> functions.
+				An error is thrown if the requested date is invalid.<br><br>
+				<code>year</code> (number) is the new year for this date.<br><br>
+				<code>month</code> (number) is the new month for this date.<br><br>
+				<code>day</code> (number) is the new day for this date.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">date.date(2004, 1, 26);</code></span></pre></td></tr>
+		<tr><td id="cd_leapYear">leapYear()</td>
+			<td>boolean</td>
+			<td>Determine whether or not this date is in a leap year. It returns
+				<code>true</code> if it is, or <code>false</code> if it is not.
+				You can also determine a leap year from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_leapYear');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">if (date.leapYear()) ...</code></span></pre></td></tr>
+		<tr><td id="cd_epoch">epoch()</td>
+			<td>string</td>
+			<td>Retrieve the epoch designator for this date. For the Gregorian
+				calendar this is 'BCE' for negative years or 'CE' for positive years.
+				You can also find the epoch from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_epoch');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var e = date.epoch();</code></span></pre></td></tr>
+		<tr><td id="cd_formatYear">formatYear()</td>
+			<td>string</td>
+			<td>Retrieve the formatted year for this date. Typically this is
+				the same as the normal year, padded to four digits.
+				For the Mayan calendar it is the long count year in the
+				format: <em>b'ak'tun.k'atun.tun</em>.
+				You can also find the formatted year from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_formatYear');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var fy = date.formatYear();</code></span></pre></td></tr>
+		<tr><td id="cd_monthOfYear">monthOfYear()</td>
+			<td>number</td>
+			<td>Retrieve the ordinal month number for this date, i.e. the number of
+				the month within a numbered year as opposed to its number within the
+				list of months. This is only different in the Hebrew calendar
+				where the year numbering changes on month 7.
+				You can also find the month of the year from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_monthOfYear');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var moy = date.monthOfYear();</code></span></pre></td></tr>
+		<tr><td id="cd_weekOfYear">weekOfYear();</td>
+			<td>number</td>
+			<td>Retrieve the number of the week within the year in which this date
+				is located. By default this uses the ISO 8601 definition of a week:
+				weeks start on Monday, the first week of the year contains the first
+				Thursday of the year. This means that some dates at the start and end
+				of some years will appear in weeks from other years.
+				You can also find the week of the year from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_weekOfYear');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var woy = date.weekOfYear();</code></span></pre></td></tr>
+		<tr><td id="cd_daysInYear">daysInYear()</td>
+			<td>number</td>
+			<td>Retrieve the number of days in this date's year.
+				You can also find the days in a year from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_daysInYear');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var diy = date.daysInYear();</code></span></pre></td></tr>
+		<tr><td id="cd_dayOfYear">dayOfYear()</td>
+			<td>number</td>
+			<td>Retrieve this date's position within the year.
+				It returns 1 through the number of
+				<a href="#" onclick="jumpTo('calendar1', 'c_daysInYear');">days in the year</a>.
+				You can also find the day of the year from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_dayOfYear');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var doy = date.dayOfYear()</code></span></pre></td></tr>
+		<tr><td id="cd_daysInMonth">daysInMonth()</td>
+			<td>number</td>
+			<td>Retrieve the number of days in this date's month.
+				You can also find the days in a month from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_daysInMonth');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var dim = date.daysInMonth();</code></span></pre></td></tr>
+		<tr><td id="cd_dayOfWeek">dayOfWeek()</td>
+			<td>number</td>
+			<td>Determine this date's day of the week. The returned value ranges from
+				zero to one less than the number of
+				<a href="#" onclick="jumpTo('calendar1', 'c_daysInWeek');">days in the week</a>,
+				with 0 being Sunday (or equivalent), 1 being Monday, etc.
+				You can also find the day of the week from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_dayOfWeek');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var dow = date.dayOfWeek();</code></span></pre></td></tr>
+		<tr><td id="cd_weekDay">weekDay()</td>
+			<td>boolean</td>
+			<td>Determine whether or not this date is a normal week day.
+				It returns <code>true</code> if it is (Monday through Friday in the
+				Gregorian calendar), or <code>false</code> if it is not.
+				You can also determine week days from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_weekDay');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">if (date.weekDay()) ...</code></span></pre></td></tr>
+		<tr><td id="cd_extraInfo">extraInfo()</td>
+			<td>object</td>
+			<td>Retrieve extra information about this date - the returned
+				object's attributes depend on the calendar implementation.
+				For example, the Mayan calendar returns the corresponding
+				Tzolkin and Haab dates.
+				You can also find the extra information about a day from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_extraInfo');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var ei = date.extraInfo();
+alert(ei.tzolkinDayName);</code></span></pre></td></tr>
+		<tr><td id="cd_add">add(offset, period)</td>
+			<td>this CDate</td>
+			<td>Add a number of periods to this date. If changing by month or year
+				and the new month has fewer days, the day is adjusted to the end
+				of that new month. You can also add periods from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_add');">calendar</a>.<br><br>
+				<code>offset</code> (number) is the amount of change, which may be negative.<br><br>
+				<code>period</code> (string) is the unit of change: 'y' for years,
+				'm' for months, 'w' for weeks, 'd' for days.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">date.add(1, 'w');
+date.add(-18, 'm');
+date.add(1, 'y').add(1, 'd');</code></span></pre></td></tr>
+		<tr><td id="cd_set">set(value, period)</td>
+			<td>this CDate</td>
+			<td>Set a period for this date. An error is thrown if the
+				requested date is invalid. Alternately, use the
+				<a href="#cd_year">year()</a>, <a href="#cd_month">month()</a>, or
+				<a href="#cd_day">day()</a> functions. To change all the periods,
+				use the <a href="#cd_date">date()</a> function. You can also set periods from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_set');">calendar</a>.<br><br>
+				<code>value</code> (number) is the new period value.<br><br>
+				<code>period</code> (string) is the period designator:
+				'y' for year, 'm' for month, 'd' for day.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">date.set(2010, 'y');
+date.set(1, 'm').set(16, 'd');</code></span></pre></td></tr>
+		<tr><td id="cd_compareTo">compareTo(date)</td>
+			<td>number</td>
+			<td>Compare this date to another date. It returns -1 if this date is
+				before the other date, 0 if they are equal, or +1 if this date
+				is after the other date. An error is thrown if the two dates
+				belong to different calendars.<br><br>
+				<code>date</code> (CDate) is the other date to compare.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">if (date.compareTo(date2) == -1) ...</code></span></pre></td></tr>
+		<tr><td id="cd_calendar">calendar()</td>
+			<td><a href="#" onclick="jumpTo('calendar1', 'calendar1all');">*Calendar</a></td>
+			<td>Retrieve the calendar implementation backing this date.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var c = date.calendar();</code></span></pre></td></tr>
+		<tr><td id="cd_toJD">toJD()</td>
+			<td>number</td>
+			<td>Retrieve the Julian date for this date. This is the
+				number of days since 1 January, 4713 BCE, Greenwich noon.
+				You can also convert to a Julian date from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_toJD');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var jd = date.toJD();</code></span></pre></td></tr>
+		<tr><td id="cd_fromJD">fromJD(jd)</td>
+			<td>CDate</td>
+			<td>Create a new date for a given Julian date.<br><br>
+				<code>jd</code> (number) is the Julian date to convert.
+				Typically it would end in .5, e.g. 2454857.5.
+				You can also convert from a Julian date from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_fromJD');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var date2 = date.fromJD(jd);</code></span></pre></td></tr>
+		<tr><td id="cd_toJSDate">toJSDate()</td>
+			<td>Date</td>
+			<td>Convert this date into the equivalent JavaScript Date.
+				You can also convert to a JavaScript Date from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_toJSDate');">calendar</a>.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var jsd = date.toJSDate();</code></span></pre></td></tr>
+		<tr><td id="cd_fromJSDate">fromJSDate(jsd)</td>
+			<td>CDate</td>
+			<td>Convert a JavaScript Date into the equivalent CDate.
+				You can also convert from a JavaScript date from the
+				<a href="#" onclick="jumpTo('calendar1', 'c_fromJSDate');">calendar</a>.<br><br>
+				<code>jsd</code> (Date) is the JavaScript date to convert.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var date2 = date.fromJSDate(jsd);</code></span></pre></td></tr>
+		<tr><td id="cd_toString">toString()</td>
+			<td>string</td>
+			<td>Retrieve a string representation of this date.
+				Usually this would be for debugging purposes only. You should use the
+				<a href="#" onclick="jumpTo('plus', 'c_formatDate');">formatDate</a>
+				function for more flexible formatting.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">alert(date.toString());</code></span></pre></td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="calendar1" class="feature">
+		<header id="calendar1all">Generic Calendar Functions</header>
+		<p>All the calendar implementations within this plugin offer the same
+			functionality, providing basic information about the calendar
+			and generating and manipulating dates from that calendar.</p>
+		<p class="quickref ui-state-highlight">
+			<a href="#c_add">add</a> |
+			<a href="#c_dayOfWeek">dayOfWeek</a> |
+			<a href="#c_dayOfYear">dayOfYear</a> |
+			<a href="#c_daysInMonth">daysInMonth</a> |
+			<a href="#c_daysInWeek">daysInWeek</a> |
+			<a href="#c_daysInYear">daysInYear</a> |
+			<a href="#c_epoch">epoch</a> |
+			<a href="#c_extraInfo">extraInfo</a> |
+			<a href="#c_formatYear">formatYear</a> |
+			<a href="#c_fromJD">fromJD</a> |
+			<a href="#c_fromJSDate">fromJSDate</a> |
+			<a href="#c_fromMonthOfYear">fromMonthOfYear</a> |
+			<a href="#c_isValid">isValid</a> |
+			<a href="#c_leapYear">leapYear</a> |
+			<a href="#c_monthsInYear">monthsInYear</a> |
+			<a href="#c_monthOfYear">monthOfYear</a> |
+			<a href="#c_newDate">newDate</a> |
+			<a href="#c_set">set</a> |
+			<a href="#c_toJD">toJD</a> |
+			<a href="#c_toJSDate">toJSDate</a> |
+			<a href="#c_today">today</a> |
+			<a href="#c_weekDay">weekDay</a> |
+			<a href="#c_weekOfYear">weekOfYear</a>
+		</p>
+		<table>
+		<thead>
+		<tr><th>Signature</th><th>Returns</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="c_newDate">newDate(year, month, day)</td>
+			<td><a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a></td>
+			<td>Create a new date object within this calendar. You can also create
+				dates <a href="#" onclick="jumpTo('access', 'cs_newDate');">directly</a>
+				or from another <a href="#" onclick="jumpTo('cdate', 'cd_newDate');">date</a>.
+				An error is thrown if the requested date is not valid.<br><br>
+				<code>year</code> (CDate) is a date to clone or
+				(number) is the year for the new date.<br><br>
+				<code>month</code> (number, optional) is the month for the date.<br><br>
+				<code>day</code> (number, optional) is the day for the date.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var d = gc.newDate(2009, 1, 26);
+var d2 = gc.newDate(d);
+var d = pc.newDate(1388, 1, 1);</code></span></pre></td></tr>
+		<tr><td id="c_today">today()</td>
+			<td><a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a></td>
+			<td>Create a new date object representing today within this calendar.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var d = gc.today();</code></span></pre></td></tr>
+		<tr><td id="c_leapYear">leapYear(year)</td>
+			<td>boolean</td>
+			<td>Determine whether or not this date is in a leap year. It returns
+				<code>true</code> if it is, or <code>false</code> if it is not.
+				You can also determine a leap year from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_leapYear');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to get the year from or
+				(number) is the year to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">if (gc.leapYear(d)) ...
+if (hc.leapYear(5768)) ...</code></span></pre></td></tr>
+		<tr><td id="c_epoch">epoch(year)</td>
+			<td>string</td>
+			<td>Retrieve the epoch designator for this date. For the Gregorian calendar
+				this is 'BCE' for negative years or 'CE' for positive years.
+				You can also find the epoch from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_epoch');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to get the year from or
+				(number) is the year to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var e = gc.epoch(d);
+var e = pc.epoch(1388);</code></span></pre></td></tr>
+		<tr><td id="c_formatYear">formatYear(year)</td>
+			<td>string</td>
+			<td>Retrieve the formatted year for this date. Typically this is
+				the same as the normal year, padded to four digits.
+				For the Mayan calendar it is the long count year in the
+				format: <em>baktun.katun.tun</em>.
+				You can also find the formatted year from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_formatYear');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to get the year from or
+				(number) is the year to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var fy = gc.formatYear(d);
+var fy = mc.newDate(5160);</code></span></pre></td></tr>
+		<tr><td id="c_monthsInYear">monthsInYear(year)</td>
+			<td>number</td>
+			<td>Retrieve the number of months in a given year for this calendar.<br><br>
+				<code>year</code> (CDate) is a date to get the year from or
+				(number) is the year to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var m = gc.monthsInYear(d);
+var m = hc.monthsInYear(5768); // = 13</code></span></pre></td></tr>
+		<tr><td id="c_monthOfYear">monthOfYear(year, month)</td>
+			<td>number</td>
+			<td>Retrieve the ordinal month number for a given month, i.e. the number of
+				the month within a numbered year as opposed to its number within the
+				list of months. This is only different in the Hebrew calendar
+				where the year numbering changes on month 7.
+				You can also find the month of the year from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_monthOfYear');">date</a> itself.
+				The inverse function is <a href="#c_fromMonthOfYear">fromMonthOfYear</a>.<br><br>
+				<code>year</code> (CDate) is a date to get the month from or
+				(number) is the year to exmaine.<br><br>
+				<code>month</code> (number, optional) is the month to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var moy = gc.monthOfYear(d);
+var moy = hc.monthOfYear(5768, 7); // = 1</code></span></pre></td></tr>
+		<tr><td id="c_fromMonthOfYear">fromMonthOfYear(year, ord)</td>
+			<td>number</td>
+			<td>Retrieve the month for a given ordinal month number, i.e. the number of
+				the month within the list of months as opposed to its number within
+				a numbered year. This is only different in the Hebrew calendar
+				where the year numbering changes on month 7. The inverse function is
+				<a href="#c_monthOfYear">monthOfYear</a>.<br><br>
+				<code>year</code>(number) is the year to exmaine.<br><br>
+				<code>ord</code> (number) is the ordinal month number.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var m = gc.fromMonthOfYear(y, o);</code></span></pre></td></tr>
+		<tr><td id="c_weekOfYear">weekOfYear(year, month, day)</td>
+			<td>number</td>
+			<td>Retrieve the number of the week within the year in which a date
+				is located. By default this uses the ISO 8601 definition of a week:
+				weeks start on Monday, the first week of the year contains the first
+				Thursday of the year. This means that some dates at the start and end
+				of some years will appear in weeks from other years.
+				An error is thrown if the date is not valid for the calendar.
+				You can also find the week of the year from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_weekOfYear');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is the date to examine or
+				(number) is the year to examine.<br><br>
+				<code>month</code> (number, optional) is the month to examine.<br><br>
+				<code>day</code> (number, optional) is the day to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var woy = gc.weekOfYear(d);
+var woy = pc.weekOfYear(1388, 1, 1);</code></span></pre></td></tr>
+		<tr><td id="c_daysInYear">daysInYear(year)</td>
+			<td>number</td>
+			<td>Retrieve the number of days in a given year.
+				You can also find the day in a year from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_daysInYear');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to get the year from or
+				(number) is the year to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var diy = gc.daysInYear(d);
+var diy = hc.daysInYear(5768);</code></span></pre></td></tr>
+		<tr><td id="c_dayOfYear">dayOfYear(year, month, day)</td>
+			<td>number</td>
+			<td>Retrieve the number of the given day within its year.
+				An error is thrown if the date is not valid for the calendar.
+				You can also find the day of the year from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_dayOfYear');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to examine or
+				(number) is the year to examine.<br><br>
+				<code>month</code> (number, optional) is the month to examine.<br><br>
+				<code>day</code> (number, optional) is the day to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var doy = gc.dayOfYear(d);
+var doy = pc.dayOfYear(1388, 1, 1);</code></span></pre></td></tr>
+		<tr><td id="c_daysInMonth">daysInMonth(year, month)</td>
+			<td>number</td>
+			<td>Retrieve the number of days in a given month.
+				An error is thrown if the year or month is invalid.
+				You can also find the days in a month from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_daysInMonth');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to get the month and
+				year from or (number) is the year to examine.<br><br>
+				<code>month</code> (number, optional) is the month to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var dim = gc.daysInMonth(d);
+var dim = pc.daysInMonth(1388, 12);</code></span></pre></td></tr>
+		<tr><td id="c_daysInWeek">daysInWeek()</td>
+			<td>number</td>
+			<td>Retrieve the number of days in a week.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var diw = gc.daysInWeek();</code></span></pre></td></tr>
+		<tr><td id="c_dayOfWeek">dayOfWeek(year, month, day)</td>
+			<td>number</td>
+			<td>Retrieve the number of the given day within its week.
+				An error is thrown if the date is not valid for the calendar.
+				You can also find the day of the week from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_dayOfWeek');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to examine or
+				(number) is the year to examine.<br><br>
+				<code>month</code> (number, optional) is the month to examine.<br><br>
+				<code>day</code> (number, optional) is the day to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var dow = gc.dayOfWeek(d);
+var dow = pc.dayOfWeek(1388, 1, 1);</code></span></pre></td></tr>
+		<tr><td id="c_weekDay">weekDay(year, month, day)</td>
+			<td>boolean</td>
+			<td>Determine whether or not this date is a normal week day.
+				It returns <code>true</code> if it is (Monday through Friday in the
+				Gregorian calendar), or <code>false</code> if it is not.
+				You can also determine a week day from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_weekDay');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to examine or
+				(number) is the year to examine.<br><br>
+				<code>month</code> (number, optional) is the month to examine.<br><br>
+				<code>day</code> (number, optional) is the day to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">if (gc.weekDay(d)) ...
+if (pc.weekDay(1388, 1, 1)) ...</code></span></pre></td></tr>
+		<tr><td id="c_extraInfo">extraInfo(year, month, day)</td>
+			<td>object</td>
+			<td>Retrieve extra information about this date - the returned
+				object's attributes depend on the calendar implementation.
+				For example, the Mayan calendar returns the corresponding
+				Tzolkin and Haab dates.
+				An error is thrown if the date is not valid for the calendar.
+				You can also find extra information from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_extraInfo');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to examine or
+				(number) is the year to examine.<br><br>
+				<code>month</code> (number, optional) is the month to examine.<br><br>
+				<code>day</code> (number, optional) is the day to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var ei = hc.extraInfo(d);
+var ei = mc.extraInfo(5160, 1, 1);
+alert(ei.tzolkinDayName);</code></span></pre></td></tr>
+		<tr><td id="c_add">add(date, offset, period)</td>
+			<td><a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a></td>
+			<td>Add a number of periods to a date and return the modified date.
+				If changing by month or year and the new month has fewer days,
+				the day is adjusted to the end of that new month.
+				You can also add periods to the
+				<a href="#" onclick="jumpTo('cdate', 'cd_add');">date</a> itself.<br><br>
+				<code>date</code> (CDate)the day to modify.<br><br>
+				<code>offset</code> (number) is the amount of change; it may be negative.<br><br>
+				<code>period</code> (string) is the unit of change: 'y' for years,
+				'm' for months, 'w' for weeks, 'd' for days.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">gc.add(d, 1, 'w');
+gc.add(d, 18, 'm');</code></span></pre></td></tr>
+		<tr><td id="c_set">set(date, value, period)</td>
+			<td><a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a></td>
+			<td>Set a period for a date.
+				An error is thrown if the date is not valid for the calendar.
+				You can also set periods for the
+				<a href="#" onclick="jumpTo('cdate', 'cd_set');">date</a> itself.<br><br>
+				<code>date</code> (CDate)the day to modify.<br><br>
+				<code>value</code> (number) is the new period value.<br><br>
+				<code>period</code> (string) is the period designator:
+				'y' for year, 'm' for month, 'd' for day.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">gc.set(d, 2010, 'y');
+pc.set(d, 1, 'm');</code></span></pre></td></tr>
+		<tr><td id="c_isValid">isValid(year, month, day)</td>
+			<td>boolean</td>
+			<td>Determine whether or not a given date is valid within this calendar.
+				It returns <code>true</code> if valid, or <code>false</code> if not.<br><br>
+				<code>year</code> (number) is the year to examine.<br><br>
+				<code>month</code> (number) is the month to examine.<br><br>
+				<code>day</code> (number) is the day to examine.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">if (gc.isValid(2009, 1, 26)) ... // true
+if (gc.isValid(2009, 2, 29)) ... // false</code></span></pre></td></tr>
+		<tr><td id="c_toJD">toJD(year, month, day)</td>
+			<td>number</td>
+			<td>Convert a date into its Julian date equivalent. This is the
+				number of days since 1 January, 4713 BCE, Greenwich noon.
+				An error is thrown if the date is not valid for the calendar.
+				You can also convert to a Julian date from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_toJD');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to convert or
+				(number) is the year to convert.<br><br>
+				<code>month</code> (number, optional) is the month to convert.<br><br>
+				<code>day</code> (number, optional) is the day to convert.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var jd = gc.toJD(d);
+var jd = pc.toJD(1388, 1, 1);</code></span></pre></td></tr>
+		<tr><td id="c_fromJD">fromJD(jd)</td>
+			<td><a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a></td>
+			<td>Create a new date for a given Julian date.
+				You can also convert from a Julian date from another
+				<a href="#" onclick="jumpTo('cdate', 'cd_fromJD');">date</a>.<br><br>
+				<code>jd</code> (number) is the Julian date to convert.
+				Typically it would end in .5, e.g. 2454857.5.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var d = gc.fromJD(jd);</code></span></pre></td></tr>
+		<tr><td id="c_toJSDate">toJSDate(year, month, day)</td>
+			<td>Date</td>
+			<td>Convert this date into the equivalent JavaScript Date.
+				An error is thrown if the date is not valid for the calendar.
+				You can also convert to a JavaScript Date from the
+				<a href="#" onclick="jumpTo('cdate', 'cd_toJSDate');">date</a> itself.<br><br>
+				<code>year</code> (CDate) is a date to convert or
+				(number) is the year to convert.<br><br>
+				<code>month</code> (number, optional) is the month to convert.<br><br>
+				<code>day</code> (number, optional) is the day to convert.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var jsd = gc.toJSDate(d);
+var jsd = pc.toJSDate(1388, 1, 1);</code></span></pre></td></tr>
+		<tr><td id="c_fromJSDate">fromJSDate(jsd)</td>
+			<td><a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a></td>
+			<td>Convert a JavaScript Date into the equivalent CDate.
+				You can also convert from a JavaScript Date from another
+				<a href="#" onclick="jumpTo('cdate', 'cd_fromJSDate');">date</a>.<br><br>
+				<code>jsd</code> (Date) is the JavaScript date to convert.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var d = gc.fromJSDate(jsd);
+var d = pc.fromJSDate(new Date(2009, 1 - 1, 26));</code></span></pre></td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="calendar2" class="feature">
+		<header id="calendar2all">Generic Calendar Fields</header>
+		<p>All the calendar implementations within this plugin offer the same
+			functionality, providing basic information about the calendar
+			and generating and manipulating dates from that calendar.</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="c_name">name</td><td>string</td>
+			<td>The unchanging name of this calendar implementation.</td></tr>
+		<tr><td id="c_jdEpoch">jdEpoch</td><td>number</td>
+			<td>The Julian Date of the start of the epoch for this calendar,
+				e.g. the date for 1 January 0001 CE in the Gregorian calendar.</td></tr>
+		<tr><td id="c_hasYearZero">hasYearZero</td><td>boolean</td>
+			<td><code>True</code> if this calendar has a year zero or
+				<code>false</code> if not.</td></tr>
+		<tr><td id="c_minMonth">minMonth</td><td>number</td>
+			<td>The minimum month number, e.g. 1 in most calendars but 0 in the Mayan calendar.</td></tr>
+		<tr><td id="c_firstMonth">firstMonth</td><td>number</td>
+			<td>The number of the first month within a year, e.g. the same as <code>minMonth</code>
+				in most calendars, but 7 in the Hebrew calendar.</td></tr>
+		<tr><td id="c_minDay">minDay</td><td>number</td>
+			<td>The minimum day number, e.g. 1 in most calendars but 0 in the Mayan calendar.</td></tr>
+		<tr><td id="c_regional">regional</td><td>object[]</td>
+			<td>The localised settings for this calendar. Entries are indexed by their language code
+				and consist of an object with the fields <a href="#c_l10n">shown below</a>.</td></tr>
+		</tbody>
+		</table>
+		<h3 id="c_l10n">Regional Settings</h3>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="c_name2">name</td><td>string</td>
+			<td>The name of this calendar implementation.</td></tr>
+		<tr><td id="c_epochs">epochs</td><td>string[2]</td>
+			<td>The epoch indicators, e.g. 'BCE' and 'CE' for the Gregorian calendar.</td></tr>
+		<tr><td id="c_monthNames">monthNames</td><td>string[]</td>
+			<td>The full names of the months.</td></tr>
+		<tr><td id="c_monthNamesShort">monthNamesShort</td><td>string[]</td>
+			<td>The abbreviated names of the months.</td></tr>
+		<tr><td id="c_dayNames">dayNames</td><td>string[]</td>
+			<td>The full names of the days of the week.</td></tr>
+		<tr><td id="c_dayNamesShort">dayNamesShort</td><td>string[]</td>
+			<td>The abbreviated names of the days of the week.</td></tr>
+		<tr><td id="c_dayNamesMin">dayNamesMin</td><td>string[]</td>
+			<td>The minimal names of the days of the week.</td></tr>
+		<tr><td id="c_digits">digits</td><td>function</td>
+			<td>The function to localise numeric values, or <code>null</code> to use the standard
+				Arabic numerals. The function accepts a numeric value and returns the corresponding
+				localised value. For a straight character substitution use the
+				<a href="#" onclick="jumpTo('access', 'cs_substituteDigits');">substituteDigits</a> function.
+				For a substitution that includes powers of 10 use the
+				<a href="#" onclick="jumpTo('access', 'cs_substituteChineseDigits');">substituteChineseDigits</a> function.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">digits: $.calendars.substituteDigits(
+	['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩']),</code></span></pre><br>
+				<span class="version">Since 2.0.2</span>.</td></tr>
+		<tr><td id="c_dateFormat">dateFormat</td><td>string</td>
+			<td>The default date format. See the
+				<a href="#" onclick="jumpTo('plus', 'c_formatDate');">formatDate</a>
+				function for a description of this field.</td></tr>
+		<tr><td id="c_firstDay">firstDay</td><td>number</td>
+			<td>The first day of the week, 0 = Sunday, 1 = Monday, ...</td></tr>
+		<tr><td id="c_isRTL">isRTL</td><td>boolean</td>
+			<td><code>True</code> if this language runs right-to-left or
+				<code>false</code> if it does not.</td></tr>
+		</tbody>
+		</table>
+	</article>
+	<article id="impl" class="feature">
+		<header id="implall">Calendar Implementations</header>
+		<p>Several world calendars are implemented within this plugin.
+			Details about their implementation are shown below.</p>
+		<p class="quickref ui-state-highlight">
+			<a href="#coptic">Coptic</a> |
+			<a href="#discworld">Discworld</a> |
+			<a href="#ethiopian">Ethiopian</a> |
+			<a href="#gregorian">Gregorian</a> |
+			<a href="#hebrew">Hebrew</a> |
+			<a href="#islamic">Islamic</a> |
+			<a href="#julian">Julian</a> |
+			<a href="#mayan">Mayan</a> |
+			<a href="#nanakshahi">Nanakshahi</a> |
+			<a href="#nepali">Nepali</a> |
+			<a href="#persian">Persian</a> |
+			<a href="#taiwan">Taiwan</a> |
+			<a href="#thai">Thai</a> |
+			<a href="#ummalqura">Umm al-Qura</a>
+		</p>
+		<h3 id="gregorian">Gregorian Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar">proleptic Gregorian calendar</a>
+			that extends the <a href="http://en.wikipedia.org/wiki/Gregorian_calendar">normal Gregorian calendar</a>
+			back to dates before it was introduced on 15 October 1582 CE. It is the internationally
+			accepted civil calendar. Points to note are:</p>
+		<ul>
+			<li>This is a solar arithmetical calendar.</li>
+			<li>There is no year zero. 1 BCE (-1) was followed by 1 CE (+1).</li>
+			<li>Leap years happen on years divisible by four, except those also divisible by 100, unless a multiple of 400.
+				Negative leap years are offset by one due to the absence of year zero, i.e. 1 BCE is a leap year.</li>
+			<li>Each year has 12 months of between 28 and 31 days and 365 or 366 days in total.</li>
+			<li>The first day of the week is Sunday.</li>
+			<li>1 January 0001 CE has a Julian date of 1721425.5 and
+				corresponds to 3 January 0001 AD.</li>
+		</ul>
+		<h3 id="taiwan">Taiwan Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Minguo_calendar">Taiwanese calendar</a>,
+			which is identical to the Gregorian calendar except in its year numbering.
+			It is used in the Republic of China (ROC). Points to note are:</p>
+		<ul>
+			<li>This is a solar arithmetical calendar.</li>
+			<li>There is no year zero. 1 BROC (-1) was followed by 1 ROC (+1).</li>
+			<li>Leap years happen on the corresponding Gregorian leap years.</li>
+			<li>Each year has 12 months of between 28 and 31 days and 365 or 366 days in total.</li>
+			<li>The first day of the week is Monday.</li>
+			<li>1 January 0001 ROC has a Julian date of 2419037.5 and
+				corresponds to 1 January 1911 CE.</li>
+		</ul>
+		<h3 id="thai">Thai Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Thai_solar_calendar">Thai calendar</a>,
+			which is identical to the Gregorian calendar except in its year numbering.
+			It is used in Thailand. Points to note are:</p>
+		<ul>
+			<li>This is a solar arithmetical calendar.</li>
+			<li>There is no year zero. 1 BBE (-1) was followed by 1 BE (+1).</li>
+			<li>Leap years happen on the corresponding Gregorian leap years.</li>
+			<li>Each year has 12 months of between 28 and 31 days and 365 or 366 days in total.</li>
+			<li>The first day of the week is Sunday.</li>
+			<li>1 January 0001 BE has a Julian date of 1523098.5 and
+				corresponds to 1 January 0543 BCE.</li>
+		</ul>
+		<h3 id="julian">Julian Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Proleptic_Julian_calendar">proleptic Julian calendar</a>
+			that extends the <a href="http://en.wikipedia.org/wiki/Julian_calendar">normal Julian calendar</a>
+			to dates outside its actual use. It was widely used from 1 AD until 1582 AD when it was
+			replaced by the Gregorian calendar. Points to note are:</p>
+		<ul>
+			<li>This is a solar calendar.</li>
+			<li>There is no year zero. 1 BC (-1) was followed by 1 AD (+1).</li>
+			<li>Leap years happen on years divisible by four. Negative leap years are
+				offset by one due to the absence of year zero, i.e. 1 BC is a leap year.</li>
+			<li>Each year has 12 months of between 28 and 31 days and 365 or 366 days in total.</li>
+			<li>The first day of the week is Sunday.</li>
+			<li>1 January 0001 AD has a Julian date of 1721423.5 and
+				corresponds to 30 December 0001 BCE.</li>
+		</ul>
+		<h3 id="persian">Persian Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Persian_calendar">Persian calendar</a>,
+			also known as the Jalali or Iranian calendar. It is used in Iran, Afganistan,
+			and related societies. Points to note are:</p>
+		<ul>
+			<li>This is a solar calendar.</li>
+			<li>There is no year zero. 1 BP (-1) was followed by 1 AP (+1).</li>
+			<li>Leap years follow a 33-year cycle (occaisionally 29- or 37-year cycles).</li>
+			<li>Each year has 12 months of between 29 and 31 days and 365 or 366 days in total.</li>
+			<li>The first day of the week is Shambe (Saturday).</li>
+			<li>1 Farvardin 0001 AP has a Julian date of 1948320.5 and
+				corresponds to 22 March 0622 CE (19 March 0622 AD).</li>
+		</ul>
+		<h3 id="islamic">Islamic Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Islamic_calendar">Islamic calendar</a>
+			using the '16 civil' version, also known as the Hijri calendar.
+			It is used in many Muslim countries. Points to note are:</p>
+		<ul>
+			<li>This is a lunar calendar.</li>
+			<li>There is no year zero. 1 BH (-1) was followed by 1 AH (+1).</li>
+			<li>Leap years follow a 30 year cycle.</li>
+			<li>Each year has 12 months of between 29 or 30 days and 354 or 355 days in total.</li>
+			<li>The first day of the week is Yawm As-sabt (Saturday).</li>
+			<li>1 Muharram al Haram 0001 AH has a Julian date of 1948439.5 and
+				corresponds to 19 July 0622 CE (16 July 0622 AD).</li>
+		</ul>
+		<h3 id="ummalqura">Umm al-Qura Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Islamic_calendar#Saudi_Arabia.27s_Umm_al-Qura_calendar">Umm al-Qura calendar</a>,
+			also known as the Saudi calendar. It is used in many Muslim countries and is very
+			similar to the Islamic calendar. It was written by Amro Osama. Points to note are:</p>
+		<ul>
+			<li>This is a lunar calendar based on sightings.</li>
+			<li>It is only valid for dates in the years 1357 to 1500 AH.</li>
+			<li>Leap years follow a 30 year cycle.</li>
+			<li>Each year has 12 months of between 29 or 30 days and 354 or 355 days in total.</li>
+			<li>The first day of the week is Saturday.</li>
+		</ul>
+		<h3 id="hebrew">Hebrew Calendar</h3>
+		<p>This is the civil <a href="http://en.wikipedia.org/wiki/Hebrew_calendar">Hebrew calendar</a>.
+			It is used by Jews and followers of Judaism. Points to note are:</p>
+		<ul>
+			<li>This is a lunisolar calendar.</li>
+			<li>There is no year zero. 1 BAM (-1) was followed by 1 AM (+1).</li>
+			<li>Leap years follow a 19 year cycle.</li>
+			<li>Each year has 12 or 13 months months of 29 or 30 days and
+				353, 354, 355, 383, 384, or 385 days in total.</li>
+			<li>Year number changes at month 7 (Tishrei).</li>
+			<li>The first day of the week is Yom Rishon (Sunday).</li>
+			<li>1 Tishrei 0001 AM has a Julian date of 347997.5 and
+				corresponds to 7 September 3761 BCE (7 October 3761 BC).</li>
+			<li><a href="#" onclick="jumpTo('calendar1', 'c_extraInfo');"><code>extraInfo</code></a>
+				returns an explanation of the year type in <code>yearType</code>.</li>
+		</ul>
+		<h3 id="ethiopian">Ethiopian Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Ethiopian_calendar">Ethiopian calendar</a>.
+			It is identical to the Coptic calendar except in its year numbering.
+			It is used in Ethiopia and surrounding countries. Points to note are:</p>
+		<ul>
+			<li>This is a solar calendar.</li>
+			<li>There is no year zero. 1 BEE (-1) was followed by 1 EE (+1).</li>
+			<li>Leap years occur every four years on the third year of a cycle.</li>
+			<li>Each year has 12 months of 30 days and an intercalary month of 5 or 6 days,
+				making 365 or 366 days in total.</li>
+			<li>The first day of the week is Ehud (Sunday).</li>
+			<li>1 Meskerem 0001 EE has a Julian date of 1724220.5 and
+				corresponds to 29 August 0008 CE (27 August 0008 AD).</li>
+		</ul>
+		<h3 id="coptic">Coptic Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Coptic_calendar">Coptic calendar</a>.
+			It is identical to the Ethiopian calendar except in its year numbering.
+			It is used in Egypt. Points to note are:</p>
+		<ul>
+			<li>This is a solar calendar.</li>
+			<li>There is no year zero. 1 BAM (-1) was followed by 1 AM (+1).</li>
+			<li>Leap years occur every four years on the third year of a cycle.</li>
+			<li>Each year has 12 months of 30 days and an intercalary month of 5 or 6 days,
+				making 365 or 366 days in total.</li>
+			<li>The first day of the week is Tkyriaka (Sunday).</li>
+			<li>1 Thout 0001 AM has a Julian date of 1825029.5 and
+				corresponds to 29 August 0284 CE (27 August 0284 AD).</li>
+		</ul>
+		<h3 id="nepali">Nepali Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Vikram_Samvat">Nepali calendar</a>,
+			also known as Vikram Samvat. It is used in Nepal and Northern India.
+			It was written by Artur Neumann. Points to note are:</p>
+		<ul>
+			<li>It uses lunar months and solar sidereal year.</li>
+			<li>It is only exact for dates in the years 1970 to 2100 ABS.</li>
+			<li>There is no year zero. 1 BBS (-1) was followed by 1 ABS (+1).</li>
+			<li>Each year has 12 months of 29 to 32 days.</li>
+			<li>The first day of the week is Sombaar (Monday).</li>
+			<li>1 Baisakh 0001 ABS has a Julian date of 1700709.5 and
+				corresponds to 14 April 57 BCE.</li>
+		</ul>
+		<h3 id="nanakshahi">Nanakshahi Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Nanakshahi_calendar">Nanakshahi calendar</a>,
+			a calendar for the Sikh community. Points to note are:</p>
+		<ul>
+			<li>This is a tropical solar calendar.</li>
+			<li>There is no year zero. 1 BN (-1) was followed by 1 AN (+1).</li>
+			<li>Leap years happen on the corresponding Gregorian leap years.</li>
+			<li>Each year has 12 months of either 30 or 31 days and 365 or 366 days in total.</li>
+			<li>The first day of the week is Sunday.</li>
+			<li>1 January 0001 AN has a Julian date of 2257673.5 and
+				corresponds to 14 March 1469 CE.</li>
+		</ul>
+		<h3 id="mayan">Mayan Calendar</h3>
+		<p>This is the <a href="http://en.wikipedia.org/wiki/Mayan_calendar">Mayan Long Count calendar</a>
+			used by the Maya civilization of pre-Columbian Mesoamerica. Points to note are:</p>
+		<ul>
+			<li>This is an arithmetical calendar.</li>
+			<li>There is a year zero.</li>
+			<li>Years are grouped into repeating cycles based on the number 20.</li>
+			<li>Each year has 18 months of 20 days being 360 days in total.</li>
+			<li>Days and months number from 0.</li>
+			<li>0.0.0.0.0 has a Julian date of 584282.5 and
+				corresponds to 11 August 3114 BCE (6 September 3114 BC).</li>
+			<li><a href="#" onclick="jumpTo('calendar1', 'c_extraInfo');"><code>extraInfo</code></a>
+				returns the Tzolkin date details in <code>tzolkinDayName</code>,
+				<code>tzolkinDay</code>, and <code>tzolkinTrecena</code>,
+				and the Haab date details in <code>haabMonthName</code>,
+				<code>haabMonth</code>, and <code>haabDay</code>.</li>
+			<li>Adds the <code>forYear</code> function to convert from the formatted year
+				back to a sequential number.</li>
+		</ul>
+		<h3 id="discworld">Discworld Calendar</h3>
+		<p>This is the Unseen University's <a href="http://wiki.lspace.org/mediawiki/Discworld_calendar">Discworld calendar</a>,
+			used in the fictional Discworld in the books by Terry Pratchett. Points to note are:</p>
+		<ul>
+			<li>This is unlike other calendars.</li>
+			<li>This is the Unseen University's counting of years.</li>
+			<li>There is no year zero. 1 BUC (-1) was followed by 1 UC (+1).</li>
+			<li>There are no leap years.</li>
+			<li>Each year has 13 months of 16 or 32 days and is 400 days in total.</li>
+			<li>The first day of the week is Monday and there are eight days in a week.</li>
+			<li>There is no direct correspondence in dates so 1 Ick 0001 UC was chosen to have
+				a Julian date of 1721425.5 and corresponds to 1 January 0001 CE.</li>
+			<li><a href="#" onclick="jumpTo('calendar1', 'c_extraInfo');"><code>extraInfo</code></a>
+				returns the name of the century in <code>century</code>.</li>
+		</ul>
+	</article>
+	<article id="plus" class="feature">
+		<header id="plusall">Plus Module</header>
+		<p>The <code>plus</code> module adds extra functionality to
+			<a href="#" onclick="jumpTo('cdate', 'cdateall');"><code>CDate</code></a>.</p>
+		<table>
+		<thead>
+		<tr><th>Signature</th><th>Returns</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="cd_formatDate">formatDate(format, settings)</td>
+			<td>string</td>
+			<td>Format a date into a string representation.<br><br>
+				<code>format</code> (string, optional) is the format to apply (see the
+				<a href="#c_formatDate">calendar version</a> for a full description).
+				If not specified, it uses the default format for the calendar.<br><br>
+				<code>settings</code> (object, optional) is any additional settings (see the
+				<a href="#c_formatDate">calendar version</a> for a full description).<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var f = d.formatDate();
+var f = d.formatDate('yyyy-mm-dd');</code></span></pre><br>
+				<span class="version">Since 2.0.2</span> - added <code>settings</code>.</td></tr>
+		</tbody>
+		</table>
+		<p>The <code>plus</code> module adds extra functionality to
+			<a href="#" onclick="jumpTo('calendar1', 'calendar1all');">calendars</a>.</p>
+		<p class="quickref ui-state-highlight">
+			<a href="#c_determineDate">determineDate</a> |
+			<a href="#c_formatDate">formatDate</a> |
+			<a href="#c_parseDate">parseDate</a>
+		</p>
+		<table>
+		<thead>
+		<tr><th>Signature</th><th>Returns</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="c_formatDate">formatDate(format, date, settings)</td>
+			<td>string</td>
+			<td>Format a date into a string representation.
+				An error is thrown if the date belongs to a different calendar.<br><br>
+				<code>format</code> (string, optional) is the format to apply, consisting of
+				any combination of the specifications below or one of the
+				<a href="#c_predefined">predefined formats</a>. If not specified,
+				it uses the default format for the calendar.<br><br>
+				<ul>
+					<li>d - day of month (no leading zero)</li>
+					<li>dd - day of month (two digit)</li>
+					<li>o - day of year (no leading zeros)</li>
+					<li>oo - day of year (three digit)</li>
+					<li>D - day name short</li>
+					<li>DD - day name long</li>
+					<li>w - week of year (no leading zero)</li>
+					<li>ww - week of year (two digit)</li>
+					<li>m - month of year (no leading zero)</li>
+					<li>mm - month of year (two digit)</li>
+					<li>M - month name short</li>
+					<li>MM - month name long</li>
+					<li>yy - year (two digit)</li>
+					<li>yyyy - year (four digit)</li>
+					<li>YYYY - formatted year</li>
+					<li>J - Julian date (days since January 1, 4713 BCE Greenwich noon)</li>
+					<li>@ - Unix timestamp (secs since 01/01/1970)</li>
+					<li>! - Windows ticks (100ns since 01/01/0001)</li>
+					<li>'...' - literal text</li>
+					<li>'' - single quote</li>
+				</ul><br>
+				<code>date</code> (<a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a>)
+				is the date to format.<br><br>
+				<code>settings</code> (object, optional) is any overrides for the
+				formatting, being an object with the following attributes - all are optional
+				with the current calendar settings being used if they are not present:<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>dayNames</code> (string[])
+				is the full names of the days<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>dayNamesShort</code> (string[])
+				is the abbreviated names of the days<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>monthNames</code> (string[])
+				is the full names of the months<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>monthNamesShort</code> (string[])
+				is the abbreviated names of the months<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>calculateWeek</code> (function)
+				is a function to determine the week of the year - it receives a CDate
+				as a parameter and returns a number being the corresponding week<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>localNumbers</code> (boolean)
+				is <code>true</code> if localisation of numbers should occur (if available)
+				or <code>false></code> if standard Arabic numerals are used<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var f = gc.formatDate('yyyy-mm-dd', date);
+var f = gc.formatDate(
+	'\'day\' d \'of\' MM \'in the year\' yyyy', date,
+	{monthNames: ['1st month', '2nd month', ...]});</code></span></pre><br>
+				<span class="version">Since 2.0.2</span> - <code>localNumbers</code> added.</td></tr>
+		<tr><td id="c_parseDate">parseDate(format, value, settings)</td>
+			<td><a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a></td>
+			<td>Convert a string representation into an actual date.<br><br>
+				<code>format</code> (string) is the format to apply. See the 
+				possibilities in the <a href="#c_formatDate">formatDate</a>
+				function, with the following addition:<br><br>
+				<ul>
+					<li>* - ignore the remainder of the value</li>
+				</ul><br>
+				<code>value</code> (string) is the string to extract the date from.<br><br>
+				<code>settings</code> (object, optional) is any overrides for the
+				parsing, being an object with the following attributes - all are optional
+				with the current calendar settings being used if they are not present:<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>dayNames</code> (string[])
+				is the full names of the days<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>dayNamesShort</code> (string[])
+				is the abbreviated names of the days<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>monthNames</code> (string[])
+				is the full names of the months<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>monthNamesShort</code> (string[])
+				is the abbreviated names of the months<br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;<code>shortYearCutoff</code> (number or string)
+				is the cutoff point for the current or previous century when using the
+				shortened year format; if this is a string it is added to the current
+				year value, e.g. '+10'<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var date = gc.parseDate('yyyy-mm-dd', '2009-01-26');
+var date = gc.parseDate(
+	'\'day\' d \'of\' MM \'in the year\' yyyy',
+	'day 26 of 1st month in the year 2009',
+	{monthNames: ['1st month', '2nd month', ...]});</code></span></pre><br>
+				<span class="version">Since 1.2.0</span> - name parsing is case-insensitive.</td></tr>
+		<tr><td id="c_determineDate">determineDate(dateSpec, defaultDate, currentDate, dateFormat, settings)</td>
+			<td><a href="#" onclick="jumpTo('cdate', 'cdateall');">CDate</a></td>
+			<td>Convert multiple representations of a date into an actual date.<br><br>
+				<code>dateSpec</code> (CDate) is the date to use or
+				(number) is the offset in days from today or
+				(string) is the date in the current format or
+				(string) is one or more amounts and periods to offset from today.
+				For the last use 'y' for years, 'm' for months, 'w' for weeks, or 'd' for days,
+				e.g. '+1y +1d'. Prefix the value with 'c' to use the <code>currentDate</code>
+				as the starting point instead of today.<br><br>
+				<code>defaultDate</code> (CDate) is the date to use if no other is
+				specified. It may be <code>null</code>.<br><br>
+				<code>currentDate</code> (CDate, optional) is the current date to base
+				offsets from. Today is used if this is not specified.<br><br>
+				<code>dateFormat</code> (string, optional) is the date format to
+				use to check the <code>dateSpec</code>. If not specified,
+				the current format for the calendar is used.<br><br>
+				<code>settings</code> (object, optional) is any overrides for the formatting.
+				See the <a href="#c_formatDate">formatDate</a> function for more details.<br><br>
+				<pre class="showCode"><span class="ui-state-active"><code class="js">var date = gc.determineDate(+2);
+var date = gc.determineDate('+2y -3w',
+	gc.newDate(2001, 1, 1));
+var date = gc.determineDate('2004-01-26',
+	gc.newDate(2001, 1, 26), 'yyyy-mm-dd');</code></span></pre></td></tr>
+		</tbody>
+		</table>
+		<p id="c_predefined">This module also adds several predefined
+			<a href="#c_formatDate">date formats</a> to the calendars:</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Value</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td>ATOM</td><td>yyyy-mm-dd</td><td>RFC 3339/ISO 8601</td></tr>
+		<tr><td>COOKIE</td><td>D, dd M yyyy</td><td></td></tr>
+		<tr><td>FULL</td><td>DD, MM d, yyyy</td><td></td></tr>
+		<tr><td>ISO_8601</td><td>yyyy-mm-dd</td><td></td></tr>
+		<tr><td>JULIAN</td><td>J</td><td></td></tr>
+		<tr><td>RFC_822</td><td>D, d M yy</td><td></td></tr>
+		<tr><td>RFC_850</td><td>DD, dd-M-yy</td><td></td></tr>
+		<tr><td>RFC_1036</td><td>D, d M yy</td><td></td></tr>
+		<tr><td>RFC_1123</td><td>D, d M yyyy</td><td></td></tr>
+		<tr><td>RFC_2822</td><td>D, d M yyyy</td><td></td></tr>
+		<tr><td>RSS</td><td>D, d M yy</td><td>RFC 822</td></tr>
+		<tr><td>TICKS</td><td>!</td><td></td></tr>
+		<tr><td>TIMESTAMP</td><td>@</td><td></td></tr>
+		<tr><td>W3C</td><td>yyyy-mm-dd</td><td>ISO 8601</td></tr>
+		</tbody>
+		</table>
+		<p>Several error messages used during parsing and formatting are added to the global
+			<a href="#" onclick="jumpTo('access', 'l10n');">regional settings</a>.</p>
+		<table>
+		<thead>
+		<tr><th>Name</th><th>Type</th><th>Default</th><th>Comments</th></tr>
+		</thead>
+		<tbody>
+		<tr><td id="c_invalidArguments">invalidArguments</td><td>string</td>
+			<td>'Invalid arguments'</td>
+			<td>The eror message when no date is given to parse.</td></tr>
+		<tr><td id="c_invalidFormat">invalidFormat</td><td>string</td>
+			<td>'Cannot format a date from another calendar'</td>
+			<td>The error message when trying to format a date with a different calendar.</td></tr>
+		<tr><td id="c_missingNumberAt">missingNumberAt</td><td>string</td>
+			<td>'Missing number at position {0}'</td>
+			<td>The eror message when an expected number is missing during parsing.
+				'{0}' is the position at which the number was expected.</td></tr>
+		<tr><td id="c_unknownNameAt">unknownNameAt</td><td>string</td>
+			<td>'Unknown name at position {0}'</td>
+			<td>The error message when an unknown day or month name is found during parsing.
+				'{0}' is the position at which the name was expected.</td></tr>
+		<tr><td id="c_unexpectedLiteralAt">unexpectedLiteralAt</td><td>string</td>
+			<td>'Unexpected literal at position {0}'</td>
+			<td>The error message when an unexpected literal value is found during parsing.
+				'{0}' is the position at which the literal was expected.</td></tr>
+		<tr><td id="c_unexpectedText">unexpectedText</td><td>string</td>
+			<td>'Additional text found at end'</td>
+			<td>The error message when additional text is found at the completion of parsing.</td></tr>
+		</tbody>
+		</table>
+	</article>
+</section>
+<!-- Ad mid -->
+<ins class="adsbygoogle mid" style="width:728px;height:90px" data-ad-client="ca-pub-1555315548255079" data-ad-slot="5806135743"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<footer>
+<p>Contact <a href="index.html">Keith Wood</a> at kbwood{at}iinet.com.au 
+	with comments or suggestions.</p>
+<hr>
+<p>
+	&copy; 2009-16, Keith Wood
+	<a id="valid" href="http://validator.w3.org/check?uri=http://keith-wood.name/calendarsRef.html">
+		<img src="img/html5-small.png" alt="Valid HTML 5"></a>
+</p>
+</footer>
+</body>
+</html>

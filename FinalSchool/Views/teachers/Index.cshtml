@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FinalSchool.Models.teacher>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Serial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.teacherName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrainingDivision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Signature)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Practical)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Serial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.teacherName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrainingDivision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Signature)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Practical)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,57 @@
+﻿@model FinalSchool.Models.Coursedistribution
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>حذف</h2>
+
+<h3>هل انت متاكد من رغبتك في الحذف ؟ </h3>
+<div>
+    <h4> توزيع المقرر على الفصل التدريبي</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <b>الاسبوع </b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Week)
+        </dd>
+
+        <dt>
+            <b> التاريخ</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weekdate)
+        </dd>
+
+        <dt>
+            <b>المحتوي </b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+
+        @*<dt>
+           <b>   (عملي / نظري)</b>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Practical)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+            @*@Html.ActionLink("Back to List", "Index")*@
+        </div>
+    }
+</div>
+

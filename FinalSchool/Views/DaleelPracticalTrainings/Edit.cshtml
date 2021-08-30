@@ -1,0 +1,136 @@
+﻿@model FinalSchool.Models.DaleelPracticalTraining
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>تعديل</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>دليل المقرر التدريبي</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="form-group">
+        <b>القسم</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>التخصص</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Specialty, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Specialty, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>العام التدريبي</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.YearOfTraining, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.YearOfTraining, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*-----------------------------------------*@
+    <div class="form-group">
+        <b>الساعات المعتمدة</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreditHours, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreditHours, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>الساعات النظرية</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TheoreticalHours, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TheoreticalHours, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>	الساعات العملية</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PracticalHours, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PracticalHours, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <b>	الفصل التدريبي </b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Term, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Term, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*----------------------------------------------*@
+    <div class="form-group">
+        <b>رمز / اسم المقرر</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>الشعب التدريبية</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TraningDepartmentName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TraningDepartmentName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <b>الهدف من المقرر</b>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TheOverallGoalIsFromTraning, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TheOverallGoalIsFromTraning, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Type, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreationDate, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    <div class="form-group" style="display:none">
+
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CreationUserId, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    @*<div class="form-group">
+            <b>اضافة الي (عملي / نظري) </b>
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Practical)
+                    @Html.ValidationMessageFor(model => model.Practical, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="تعديل" class="btn btn-success" /> | <a href="@ViewData["LastPage"]" class="btn btn-danger hide-print">العودة الي الصفحة السابقة</a>
+        </div>
+    </div>
+</div>
+}
+
+

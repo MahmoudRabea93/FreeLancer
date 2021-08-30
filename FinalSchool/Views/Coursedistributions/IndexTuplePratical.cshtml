@@ -1,0 +1,595 @@
+﻿@using FinalSchool.Models;
+@model Tuple<List<Coursedistribution>, List<teacher>, List<Rating>>
+@{
+
+    DaleelPracticalTraining Course = ViewData["Courses"] as DaleelPracticalTraining;
+    IEnumerable<Degree> Degrees = ViewData["DegreeVB"] as IEnumerable<Degree>;
+    IEnumerable<DaleelPracticalTraining> CoursesList = ViewData["CoursesList"] as IEnumerable<DaleelPracticalTraining>;
+    IEnumerable<Evaluation> Evaluations = ViewData["Evaluation"] as IEnumerable<Evaluation>;
+    IEnumerable<Supervisors> Supervisor = ViewData["supervisors"] as IEnumerable<Supervisors>;
+    IEnumerable<PracticalDegree> PracticalDegree = ViewData["practicalDegrees"] as IEnumerable<PracticalDegree>;
+
+}
+<link href="~/Content/SizeA4.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/Mystyle.css" rel="stylesheet" />
+
+
+@*--------------------------------*@
+
+
+@Html.Partial("_HeaderPartial")
+<h2 style="text-align:center">
+    دلـــــــــيل المقــــــــرر التــــدريبي (عمـــلي)
+</h2>
+@*<div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn hide-print">  قائمــة المـــواد العملي <i class="fa fa-caret-down"></i></button>
+        <div id="myDropdown" class="dropdown-content">
+
+            <input type="text" placeholder="ابحث" id="myInput" onkeyup="filterFunction()">
+            @foreach (var item in CoursesList)
+            {
+                <a href="/DaleelPracticalTrainings/Details/@item.ID">@item.CourseName</a>
+            }
+
+
+        </div>
+    </div>
+    <br />
+    <br />*@
+@*@if (User.IsInRole("Admin"))
+    {
+        <p>
+            <a href="/DaleelPracticalTrainings/Create" class="btn btn-primary hide-print">إضافة مقرر</a>
+
+        </p>
+    }*@
+<table class="table table-hover tableshadow table-bordered bordered-success" style=" direction:rtl;text-align:center">
+
+
+
+    <tr>
+
+        <td style="background-color:#28a745;color:aliceblue;font-size:larger"><b>القسم</b></td>
+        <td colspan="2"><b>@Course.Department</b></td>
+        <td style="background-color:#28a745;color:aliceblue;font-size:larger"><b>التخصص</b></td>
+        <td><b>@Course.Specialty</b></td>
+        <td style="background-color:#28a745;color:aliceblue;font-size:larger"><b>العلم التدريبي</b></td>
+        <td colspan="2"><b>@Course.YearOfTraining</b></td>
+    </tr>
+
+    <tr>
+        <td style="background-color:#28a745;color:aliceblue;font-size:larger"><b>الساعات المعتمدة</b></td>
+        <td style="color:red">@Course.CreditHours</td>
+        <td style="background-color:#28a745;color:aliceblue;font-size:larger"><b>الساعات النظرية</b></td>
+        <td style="color:red">@Course.TheoreticalHours</td>
+        <td style="background-color:#28a745;color:aliceblue;font-size:larger"><b>الساعات العملية</b></td>
+        <td style="color:red">@Course.PracticalHours</td>
+        <td style="background-color:#28a745;color:aliceblue;font-size:larger"><b>الفصل التدريبي</b></td>
+        <td><b>@Course.Term</b></td>
+    </tr>
+
+
+    <tr>
+        <td style="background-color:#28a745;color:aliceblue;font-size:larger"><b>رمز / اسم المقرر</b></td>
+        <td colspan="3"><b>@Course.CourseName</b></td>
+        <td style="background-color:#28a745;color:aliceblue;font-size:larger"><b>الشعب التدريبية</b></td>
+        <td colspan="3"><b>@Course.TraningDepartmentName</b></td>
+
+
+    </tr>
+    <tr>
+        <td colspan="3" style="background-color:#28a745;color:aliceblue;font-size:larger"><b>الهدف العام من المقرر</b></td>
+        <td colspan="5"><b>@Course.TheOverallGoalIsFromTraning</b></td>
+    </tr>
+
+    <tr>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <td class="hide-print">
+
+                <a href="/DaleelPracticalTrainings/Edit?id=@Course.ID" class="btn btn-success hide-print">تعديل</a>|
+                <a href="/DaleelPracticalTrainings/Delete?id=@Course.ID" class="btn btn-danger hide-print">حذف</a>|
+                <a href="/DaleelPracticalTrainings/Details?id=@Course.ID" class="btn btn-info">تقرير</a>
+
+            </td>
+        }
+        @if (User.IsInRole("Manger"))
+        {
+            <td class="hide-print">
+
+                <a href="/DaleelPracticalTrainings/Edit?id=@Course.ID" class="btn btn-success hide-print">تعديل</a>|
+                <a href="/DaleelPracticalTrainings/Delete?id=@Course.ID" class="btn btn-danger hide-print">حذف</a>
+
+            </td>
+        }
+        @if (User.IsInRole("Supervisor"))
+        {
+            <td class="hide-print">
+
+                <a href="/DaleelPracticalTrainings/Edit?id=@Course.ID" class="btn btn-success hide-print">تعديل</a>
+
+            </td>
+        }
+    </tr>
+
+
+</table>
+<h2 style="text-align:center">
+    توزيع المقرر على الفصل التدريبي
+</h2>
+@if (User.IsInRole("Admin") || User.IsInRole("Manger"))
+{
+    <p>
+        <a href="/Coursedistributions/CreatePractical/@Course.ID" class="btn btn-primary hide-print">اضافة اسبوع عملي</a>
+
+    </p>
+}
+<table class="table table-hover tableshadow table-bordered bordered-success" style=" direction:rtl;text-align:center">
+    <tr style="background-color:#28a745">
+        <th>
+            <p>الأسبوع</p>
+        </th>
+        <th>
+            <p>التاريخ</p>
+        </th>
+        <th>
+            <p>المحتوي</p>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Item1)
+    {
+    <tr style="direction:rtl">
+        <td>
+            <b>
+                @Html.DisplayFor(modelItem => item.Week) 
+            </b>
+        </td>
+        <td>
+
+                <b>
+                    @Html.DisplayFor(modelItem => item.Weekdate) 
+                </b>
+
+        </td>
+        <td>
+            <b>
+                @Html.DisplayFor(modelItem => item.Content)
+            </b>
+        </td>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <td class="hide-print">
+                <a href="/Coursedistributions/Edit/@item.ID" class="btn btn-success hide-print">تعديل</a> |
+                <a href="/Coursedistributions/Delete/@item.ID" class="btn btn-danger hide-print">حــذف</a>|
+                <a href="/Coursedistributions/Details?id=@item.ID" class="btn btn-info">تقرير</a>
+            </td>
+        }
+        @if (User.IsInRole("Manger"))
+        {
+            <td class="hide-print">
+                <a href="/Coursedistributions/Edit/@item.ID" class="btn btn-success hide-print">تعديل</a> |
+                <a href="/Coursedistributions/Delete/@item.ID" class="btn btn-danger hide-print">حــذف</a>
+            </td>
+        }
+        @if (User.IsInRole("Supervisor"))
+        {
+            <td class="hide-print">
+                <a href="/Coursedistributions/Edit/@item.ID" class="btn btn-success hide-print">تعديل</a> 
+            </td>
+        }
+    </tr>
+    }
+
+</table>
+
+<h2 style="text-align:center" class="h_Print">
+    طريقة التقييم وتوزيع الدرجات للمقرر
+</h2>
+
+@if (User.IsInRole("Admin") || User.IsInRole("Manger"))
+{
+    <a href="/Evaluations/CreatePractical/@Course.ID" class="btn btn-primary hide-print">أضافة</a>
+}
+<table class="table tableshadow table-bordered" style="direction:rtl;">
+    <thead style="background-color:#28a745;text-align:center">
+
+        <tr style="color: aliceblue; font-size: larger;text-align:center">
+            <th></th>
+            <th scope="row" style="text-align:center;font-size:larger">
+                الاسبوع
+            </th>
+            @for (var i = 1; i <= int.Parse(Session["Praticalcount"].ToString()); i++)
+            {
+                <th style="text-align:center">  @i </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row" style="text-align:center;font-size:larger;" rowspan="2">
+                الجزء النظري
+
+            </th>
+            <td><b>طريقة التقييم</b></td>
+            @foreach (var item in Evaluations)
+            {
+
+                <td colspan="@item.CellCount" style="text-align:center;width:55px">
+                    @Html.DisplayFor(modelItem => item.RatingType)
+                </td>
+
+            }
+        </tr>
+
+        <tr>
+
+            <td> <b>الدرجــــة</b></td>
+            @foreach (var item in Evaluations)
+            {
+
+                <td colspan="@item.CellCount" style="text-align:center;width:55px">
+                    @Html.DisplayFor(modelItem => item.DegreeRating)
+                </td>
+
+            }
+        </tr>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <tr class="hide-print">
+                <td></td>
+                <td></td>
+                @foreach (var item in Evaluations)
+                {
+
+                    <td colspan="@item.CellCount" style="text-align:center">
+                        <a href="/Evaluations/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a>
+                        <a href="/Evaluations/Delete?id=@item.ID" class="btn btn-danger hide-print">حذف</a>
+                        <a href="/Evaluations/Details?id=@item.ID" class="btn btn-info">تقرير</a>
+                    </td>
+
+                }
+            </tr>
+        }
+        @if (User.IsInRole("Manger"))
+        {
+            <tr class="hide-print">
+                <td></td>
+                <td></td>
+                @foreach (var item in Evaluations)
+                {
+
+                    <td colspan="@item.CellCount" style="text-align:center">
+                        <a href="/Evaluations/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a>
+                        <a href="/Evaluations/Delete?id=@item.ID" class="btn btn-danger hide-print">حذف</a>
+                       
+                    </td>
+
+                }
+            </tr>
+        }
+        @if (User.IsInRole("Supervisor"))
+        {
+            <tr calss="hide-print">
+                <td></td>
+                <td></td>
+                @foreach (var item in Evaluations)
+                {
+
+
+                    <td colspan="@item.CellCount" style="text-align:center">
+                        <a href="/Evaluations/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a>
+
+                    </td>
+
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="col-lg-12">
+    <div class="col-lg-8 tablePrintLag">
+        <h3 style="direction:rtl;text-align:center;font-weight:bold">
+            مدربو المقرر
+        </h3>
+    </div>
+    <div class="col-lg-4tablePrintsm">
+    </div>
+
+</div>
+<div class="col-lg-12">
+    <div class="col-lg-8 tablePrintLag">
+        @if (User.IsInRole("Admin") || User.IsInRole("Manger"))
+        {
+            <p>
+                <a href="/teachers/CreatePratical/@Course.ID" class="btn btn-primary hide-print">إضافة مدرب</a>
+
+            </p>
+        }
+        <table class="table table-bordered tableshadow table-hover" style=" direction:rtl;text-align:center">
+            <thead style="background-color:#28a745;text-align:center;color:aliceblue">
+                <tr style="text-align:center">
+                    <th style="text-align:center;font-size:larger">م</th>
+                    <th style="text-align:center;font-size:larger">اسم المدرب</th>
+                    <th style="text-align:center;font-size:larger">الشعبة التدريبية </th>
+                    <th style="text-align:center;font-size:larger"> التوقيع </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Item2)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Serial)
+                        </td>
+                        <td>
+                            <b>  @Html.DisplayFor(modelItem => item.teacherName)</b>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrainingDivision)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Signature)
+                        </td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td class="hide-print">
+                                <a href="/teachers/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a> |
+                                <a href="/teachers/Delete?id=@item.ID" class="btn btn-danger hide-print">حذف</a>| <a href="/teachers/Details?id=@item.ID" class="btn btn-info">تقرير</a>
+
+                            </td>
+                        }
+                        @if (User.IsInRole("Manger"))
+                        {
+                            <td class="hide-print">
+                                <a href="/teachers/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a> |
+                                <a href="/teachers/Delete?id=@item.ID" class="btn btn-danger hide-print">حذف</a>
+
+                            </td>
+                        }
+                        @if (User.IsInRole("Supervisor"))
+                        {
+                            <td class="hide-print">
+                                <a href="/teachers/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a>
+
+                            </td>
+                        }
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Manger"))
+    {
+        <p>
+            <a href="/PracticalDegrees/Create/@Course.ID" class="btn btn-primary hide-print">إضافة درجات </a>
+
+        </p>
+    }
+    <div class="col-lg-4 tablePrintsm">
+        <table class="table table-bordered tableshadow table-hover" style=" direction:rtl;text-align:center">
+            <thead style="background-color:#28a745;text-align:center;color:aliceblue">
+                <tr style="text-align:center">
+
+                    <th colspan="2" style="text-align:center;font-size:larger">درجة الأعمال الفصلية</th>
+
+                </tr>
+            </thead>
+            <tbody style="font-weight:bold">
+                <tr style="font-size: larger;text-align:center">
+                    <td>إختبار نظري</td>
+                    <td>إختبار عملي</td>
+
+                </tr>
+                @foreach (var item in PracticalDegree)
+                {
+
+
+                    <tr style="font-size: larger;text-align:center">
+                        <td>@item.TheoreticalTest</td>
+                        <td>@item.PracticalTest</td>
+                        <td class="hidden">
+                            @{
+                                int Result = int.Parse(item.PracticalTest.ToString()) + int.Parse(item.TheoreticalTest.ToString());
+                            }
+                        </td>
+
+                    </tr>
+                    <tr style="font-size: larger;text-align:center">
+                        <td colspan="2">@Result</td>
+
+                    </tr>
+                    <tr>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td colspan="2" class="hide-print">
+                                <a href="/PracticalDegrees/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a> |
+                                <a href="/PracticalDegrees/Delete?id=@item.ID" class="btn btn-danger hide-print">حذف</a>| <a href="/PracticalDegrees/Details?id=@item.ID" class="btn btn-info">تقرير</a>
+
+                            </td>
+                        }
+                        @if (User.IsInRole("Supervisor"))
+                        {
+                            <td colspan="2" class="hide-print">
+                                <a href="/PracticalDegrees/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a>
+
+                            </td>
+                        }
+                        @if (User.IsInRole("Manger"))
+                        {
+                            <td colspan="2" class="hide-print">
+                                <a href="/PracticalDegrees/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a> |
+                                <a href="/PracticalDegrees/Delete?id=@item.ID" class="btn btn-danger hide-print">حذف</a>|
+
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@if (User.IsInRole("Admin") || User.IsInRole("Manger"))
+{
+    <p>
+        <a href="/Supervisors/CreatePractical/@Course.ID" class="btn btn-primary hide-print">إضافة </a>
+
+    </p>
+}
+<br />
+<table style="width:100%;direction:rtl;border: none">
+    <tr style="text-align:right">
+        <td>
+            <b>
+                وكيل الكلية للتدريب
+
+            </b>
+        </td>
+        <td>
+            <b style="text-align:center">
+                رئيس القسم
+
+            </b>
+        </td>
+        <td>
+            <b style="text-align:center">
+                منسق المقرر
+            </b>
+        </td>
+    </tr>
+    <tr style="text-align:right">
+        @foreach (var item in Supervisor)
+        {
+
+
+            <td>
+                <b>
+                    @item.RepresentativeName
+
+                </b>
+            </td>
+
+
+            <td>
+                <b>
+                    @item.SupervisorsName
+
+                </b>
+            </td>
+
+
+            <td>
+                <b>
+                    @item.CoordinatorName
+
+                </b>
+            </td>
+
+
+
+        }
+    </tr>
+    <tr style="text-align:right">
+        @foreach (var item in Supervisor)
+        {
+            <td>
+                <b style="text-align:center">
+                    التوقيع / @item.RepresentativSignature
+
+                </b>
+            </td>
+            <td>
+                <b style="text-align:center">
+                    التوقيع / @item.SupervisorsSignature
+
+                </b>
+            </td>
+            <td>
+                <b style="text-align:center">
+                    التوقيع / @item.CoordinatorSignature
+
+                </b>
+            </td>
+        }
+
+    </tr>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <tr>
+            @foreach (var item in Supervisor)
+            {
+                <td class="hide-print">
+                    <a href="/Supervisors/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a> |
+                    <a href="/Supervisors/Delete?id=@item.ID" class="btn btn-danger hide-print">حذف</a>| <a href="/Supervisors/Details?id=@item.ID" class="btn btn-info">تقرير</a>
+
+                </td>
+            }
+        </tr>
+    }
+    @if (User.IsInRole("Manger"))
+    {
+        <tr>
+            @foreach (var item in Supervisor)
+            {
+                <td class="hide-print">
+                    <a href="/Supervisors/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a> |
+                    <a href="/Supervisors/Delete?id=@item.ID" class="btn btn-danger hide-print">حذف</a>
+
+                </td>
+            }
+        </tr>
+    }
+    @if (User.IsInRole("Supervisor"))
+    {
+        <tr>
+            @foreach (var item in Supervisor)
+            {
+                <td class="hide-print">
+                    <a href="/Supervisors/Edit?id=@item.ID" class="btn btn-success hide-print">تعديل</a> 
+
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+<button class="btn btn-primary hide-print" onclick="window.print()">
+    طباعــة
+</button>
+
+
+<script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+
